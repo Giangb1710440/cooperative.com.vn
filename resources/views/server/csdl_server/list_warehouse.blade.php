@@ -1,5 +1,5 @@
 @extends('server_view.master_admin')
-@section('title','Danh sách loại hóa đơn')
+@section('title','Danh sách kho hàng')
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">
@@ -8,7 +8,7 @@
                     <div class="row">
                         <!-- Small table -->
                         <div class="col-md-12 my-4">
-                            <h2 class="h4 mb-1">Danh sách loại hóa đơn</h2>
+                            <h2 class="h4 mb-1">Danh sách kho hàng</h2>
                             <p class="mb-3">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
                             <div class="card shadow">
                                 <div class="card-body">
@@ -26,8 +26,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-auto">
-                                                    <label for="search" class="sr-only">Tìm kiếm</label>
-                                                    <input type="text" class="form-control" id="search1" value="" placeholder="Tìm kiêm">
+                                                    <label for="search" class="sr-only">Search</label>
+                                                    <input type="text" class="form-control" id="search1" value="" placeholder="Search">
                                                 </div>
                                             </div>
                                         </form>
@@ -41,15 +41,16 @@
                                                     <i class="fas fa-directions custom-control-label"></i>
                                                 </div>
                                             </td>
-                                            <th>ID</th>
-                                            <th>TÊN LOẠI HÓA ĐƠN</th>
-                                            <th class="w-25">MÔ TẢ</th>
-                                            <th>NGÀY THÊM</th>
-                                            <th>TÙY CHỌN</th>
+                                            <th><strong>ID</strong></th>
+                                            <th><strong>IMAGES</strong></th>
+                                            <th><strong>ĐỊA CHỈ</strong></th>
+                                            <th class="w-25"><strong>MÔ TẢ</strong></th>
+                                            <th><strong>NGÀY THÊM</strong></th>
+                                            <th><strong>TÙY CHỌN</strong></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($list_invoice_cate as $list_invoice_cates)
+                                        @foreach($warehouses as $warehousess)
                                             <tr>
                                                 <td>
                                                     <div class="custom-control custom-checkbox">
@@ -59,16 +60,17 @@
                                                 </td>
                                                 <td>
                                                     <div class="avatar avatar-md">
-                                                        IDIC0{{$list_invoice_cates->id}}
+                                                        <img src="{{asset('public/server/avatar/'.$warehousess->image_warehouse)}}" alt="..." class="avatar-img rounded-circle">
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-0 text-muted"><strong>{{ucwords($list_invoice_cates->name_cate_invoice)}}</strong></p>
+                                                    IDS0{{$warehousess->id}}
                                                 </td>
-                                                <td class="w-25"><small class="text-muted">{{trans($list_invoice_cates->description_cate_invoice)}}.</small></td>
-                                                {{--                                                ham lay ngay thang trong laravel
-                                                --}}
-                                                <td class="text-muted">{{date('d-m-Y', strtotime($list_invoice_cates->created_at))}}</td>
+                                                <td>
+                                                    <p class="mb-0 text-muted"><a href="#" class="text-muted">{{$warehousess->address_warehouse}}</a></p>
+                                                </td>
+                                                <td class="w-25"><small class="text-muted"> {{trans($warehousess->description_warehouse)}}</small></td>
+                                                <td class="text-muted"> {{date('d-m-Y', strtotime($warehousess->created_at))}}</td>
                                                 <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <span class="text-muted sr-only">Action</span>
                                                     </button>
@@ -85,7 +87,7 @@
                                     <nav aria-label="Table Paging" class="mb-0 text-muted">
                                         <ul class="pagination justify-content-center mb-0">
                                             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item" active><a class="page-link" href="#">1</a></li>
                                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
@@ -169,7 +171,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="defaultModalLabel">Phím tắt</h5>
+                        <h5 class="modal-title" id="defaultModalLabel">Shortcuts</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -177,17 +179,30 @@
                     <div class="modal-body px-5">
                         <div class="row align-items-center">
                             <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i style="padding-top: 12px" class="fas fa-store-alt fa-4x"></i>
-
+                                <div class="squircle bg-success justify-content-center">
+                                    <i class="fe fe-cpu fe-32 align-self-center text-white"></i>
                                 </div>
-                                <p><a href="{{route('home')}}">Bán hàng</a></p>
+                                <p>Control area</p>
                             </div>
                             <div class="col-6 text-center">
                                 <div class="squircle bg-primary justify-content-center">
-                                    <i style="padding-top: 12px" class="fas fa-user-plus fa-4x"></i>
+                                    <i class="fe fe-activity fe-32 align-self-center text-white"></i>
                                 </div>
-                                <p><a href="{{route('add_user')}}">Add user</a></p>
+                                <p>Activity</p>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-6 text-center">
+                                <div class="squircle bg-primary justify-content-center">
+                                    <i class="fe fe-droplet fe-32 align-self-center text-white"></i>
+                                </div>
+                                <p>Droplet</p>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="squircle bg-primary justify-content-center">
+                                    <i class="fe fe-upload-cloud fe-32 align-self-center text-white"></i>
+                                </div>
+                                <p>Upload</p>
                             </div>
                         </div>
                         <div class="row align-items-center">
@@ -195,29 +210,13 @@
                                 <div class="squircle bg-primary justify-content-center">
                                     <i class="fe fe-users fe-32 align-self-center text-white"></i>
                                 </div>
-                                <p><a href="#">Users</a></p>
+                                <p>Users</p>
                             </div>
                             <div class="col-6 text-center">
                                 <div class="squircle bg-primary justify-content-center">
-                                    <i class="fas fa-tasks fe-32 align-self-center text-white"></i>
-
+                                    <i class="fe fe-settings fe-32 align-self-center text-white"></i>
                                 </div>
-                                <p><a href="#">Duyệt đơn</a></p>
-                            </div>
-                        </div>
-                        <div class="row align-items-center">
-
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i style="padding-top: 12px" class="fas fa-warehouse fa-4x"></i>
-                                </div>
-                                <p><a href="#">Quản lý kho</a></p>
-                            </div>
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i style="padding-top: 12px" class="fas fa-user fa-4x"></i>
-                                </div>
-                                <p><a href="#">Thành viên</a></p>
+                                <p>Settings</p>
                             </div>
                         </div>
                     </div>

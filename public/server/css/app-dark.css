@@ -1827,12 +1827,12 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #1b68ff;
-  border-color: #1b68ff; }
+  background-color: chocolate;
+  border-color: chocolate; }
   .btn-primary:hover {
     color: #ffffff;
-    background-color: #0052f4;
-    border-color: #004ee7; }
+    background-color: lightseagreen;
+    border-color: lightseagreen; }
   .btn-primary:focus, .btn-primary.focus {
     color: #ffffff;
     background-color: #0052f4;

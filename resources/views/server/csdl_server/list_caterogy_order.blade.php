@@ -1,5 +1,5 @@
 @extends('server_view.master_admin')
-@section('title','Danh sách loại hóa đơn')
+@section('title','Danh sách loại đơn hàng')
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">
@@ -8,7 +8,7 @@
                     <div class="row">
                         <!-- Small table -->
                         <div class="col-md-12 my-4">
-                            <h2 class="h4 mb-1">Danh sách loại hóa đơn</h2>
+                            <h2 class="h4 mb-1">Danh sách loại đơn hàng</h2>
                             <p class="mb-3">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
                             <div class="card shadow">
                                 <div class="card-body">
@@ -42,14 +42,14 @@
                                                 </div>
                                             </td>
                                             <th>ID</th>
-                                            <th>TÊN LOẠI HÓA ĐƠN</th>
+                                            <th>TÊN LOẠI ĐƠN HÀNG</th>
                                             <th class="w-25">MÔ TẢ</th>
                                             <th>NGÀY THÊM</th>
                                             <th>TÙY CHỌN</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($list_invoice_cate as $list_invoice_cates)
+                                        @foreach($list_order_caterogy as $list_order_caterogys)
                                             <tr>
                                                 <td>
                                                     <div class="custom-control custom-checkbox">
@@ -59,13 +59,13 @@
                                                 </td>
                                                 <td>
                                                     <div class="avatar avatar-md">
-                                                        IDIC0{{$list_invoice_cates->id}}
+                                                        IDIC0{{$list_order_caterogys->id}}
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-0 text-muted"><strong>{{ucwords($list_invoice_cates->name_cate_invoice)}}</strong></p>
+                                                    <p class="mb-0 text-muted"><strong>{{ucwords($list_order_caterogys->name_cate_order)}}</strong></p>
                                                 </td>
-                                                <td class="w-25"><small class="text-muted">{{trans($list_invoice_cates->description_cate_invoice)}}.</small></td>
+                                                <td class="w-25"><small class="text-muted">{{trans($list_order_caterogys->description_cate_order)}}.</small></td>
                                                 {{--                                                ham lay ngay thang trong laravel
                                                 --}}
                                                 <td class="text-muted">{{date('d-m-Y', strtotime($list_invoice_cates->created_at))}}</td>

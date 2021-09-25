@@ -20,8 +20,6 @@
                             <div class="header__top__right__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-
                             </div>
 
                         </div>
@@ -156,20 +154,14 @@
                         <div class="hero__categories">
                             <div class="hero__categories__all">
                                 <i class="fa fa-bars"></i>
-                                <span>Tất cả sản phẩm</span>
+                                <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
-                                <li><a href="#">Fresh Bananas</a></li>
+                                <li><a href="#">Thịt, cá, trứng</a></li>
+                                <li><a href="#">Hoa quả</a></li>
+                                <li><a href="#">Rau củ</a></li>
+                                <li><a href="#">Gạo</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -177,10 +169,6 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="#">
-                                    {{--                                <div class="hero__search__categories">--}}
-                                    {{--                                    All Categories--}}
-                                    {{--                                    <span class="arrow_carrot-down"></span>--}}
-                                    {{--                                </div>--}}
                                     <input type="text" placeholder="Bạn cần tìm gì?">
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
@@ -215,20 +203,13 @@
                         <div class="hero__categories">
                             <div class="hero__categories__all">
                                 <i class="fa fa-bars"></i>
-                                <span>Tất cả sản phẩm</span>
+                                <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
-                                <li><a href="#">Fresh Bananas</a></li>
+                                <li><a href="#">Thịt, cá, trứng</a></li>
+                                <li><a href="#">Hoa quả</a></li>
+                                <li><a href="#">Rau củ</a></li>
+                                <li><a href="#">Gạo</a></li>
                             </ul>
                         </div>
                     </div>
@@ -236,10 +217,6 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="#">
-                                    {{--                                <div class="hero__search__categories">--}}
-                                    {{--                                    All Categories--}}
-                                    {{--                                    <span class="arrow_carrot-down"></span>--}}
-                                    {{--                                </div>--}}
                                     <input type="text" placeholder="Bạn cần tìm gì?">
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
@@ -250,7 +227,7 @@
                                 </div>
                                 <div class="hero__search__phone__text">
                                     <h5>+84 93.933.7416</h5>
-                                    <span>Hỡ trợ 24/7</span>
+                                    <span>Hỗ trợ 24/7</span>
                                 </div>
                             </div>
                         </div>
@@ -278,7 +255,7 @@
                             <div class="header__top__right__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
+
                             </div>
                         </div>
                     </div>
@@ -297,7 +274,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="{{asset('public/server/assets/avatars/GosCooperativehome.jpg')}}" alt=""></a>
+                        <a href="{{route('home')}}"><img src="{{asset('public/server/assets/avatars/GosCooperativehome.jpg')}}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -341,20 +318,14 @@
                         <div class="hero__categories">
                             <div class="hero__categories__all">
                                 <i class="fa fa-bars"></i>
-                                <span>Tất cả sản phẩm</span>
+                                <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
-                                <li><a href="#">Fresh Bananas</a></li>
+                                <li><a href="#">Thịt, cá, trứng</a></li>
+                                <li><a href="#">Hoa quả</a></li>
+                                <li><a href="#">Rau củ</a></li>
+                                <li><a href="#">Gạo</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -400,20 +371,14 @@
                         <div class="hero__categories">
                             <div class="hero__categories__all">
                                 <i class="fa fa-bars"></i>
-                                <span>Tất cả sản phẩm</span>
+                                <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
-                                <li><a href="#">Fresh Bananas</a></li>
+                                <li><a href="#">Thịt, cá, trứng</a></li>
+                                <li><a href="#">Hoa quả</a></li>
+                                <li><a href="#">Rau củ</a></li>
+                                <li><a href="#">Gạo</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -421,10 +386,6 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="#">
-                                    {{--                                <div class="hero__search__categories">--}}
-                                    {{--                                    All Categories--}}
-                                    {{--                                    <span class="arrow_carrot-down"></span>--}}
-                                    {{--                                </div>--}}
                                     <input type="text" placeholder="Bạn cần tìm gì?">
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
@@ -435,7 +396,7 @@
                                 </div>
                                 <div class="hero__search__phone__text">
                                     <h5>+84 93.933.7416</h5>
-                                    <span>Hỡ trợ 24/7</span>
+                                    <span>Hỗ trợ 24/7</span>
                                 </div>
                             </div>
                         </div>

@@ -6,3 +6,34 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+-bán hàng
+	Bán hàng
+	nhập hàng
+	CSDL đơn hàng
+	CSDL hóa đơn
+	duyệt đơn
+-kho hàng
+	nhập kho
+	tình trạng kho theo ngày
+	tình trạng kho theo tháng
+	hàng tồn kho
+	hết hàng
+	hóa đơn nhập
+	đăng ký kho
+	tình trạng kho
+-báo cáo
+	biểu đồ doanh thu
+	doanh thu theo ngày
+	doanh thu theo tháng
+	lợi nhuận
+	
+-danh mục
+	sản phẩm
+	thành viên
+	nhà cung cấp
+	kho hàng
+-quản trị
+	quản trị dữ liệu
+	quản trị thành viên
+-hỗ trợ

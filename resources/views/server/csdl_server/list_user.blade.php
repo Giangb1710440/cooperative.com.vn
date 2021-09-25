@@ -1,107 +1,71 @@
 @extends('server_view.master_admin')
-@section('title','Danh sách nhà cung cấp')
+@section('title','Danh sách thành viên')
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
+                    <div class="row align-items-center my-4">
+                        <div class="col">
+                            <h2 class="h3 mb-0 page-title">Contacts</h2>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-secondary"><span class="fe fe-trash fe-12 mr-2"></span>Delete</button>
+                            <button type="button" class="btn btn-primary"><span class="fe fe-filter fe-12 mr-2"></span>Create</button>
+                        </div>
+                    </div>
                     <div class="row">
-                        <!-- Small table -->
-                        <div class="col-md-12 my-4">
-                            <h2 class="h4 mb-1">Danh sách chức vụ</h2>
-                            <p class="mb-3">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <div class="toolbar">
-                                        <form class="form">
-                                            <div class="form-row">
-                                                <div class="form-group col-auto mr-auto">
-                                                    <label class="my-1 mr-2 sr-only" for="inlineFormCustomSelectPref1">Show</label>
-                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelectPref1">
-                                                        <option value="">...</option>
-                                                        <option value="1" selected>12</option>
-                                                        <option value="2">32</option>
-                                                        <option value="3">64</option>
-                                                        <option value="3">128</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-auto">
-                                                    <label for="search" class="sr-only">Search</label>
-                                                    <input type="text" class="form-control" id="search1" value="" placeholder="Search">
+                        @foreach($user as $users)
+                            <div class="col-md-3">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body text-center">
+                                        <div class="avatar avatar-lg mt-4">
+                                            <a href="">
+                                                <img src="./assets/avatars/face-4.jpg" alt="..." class="avatar-img rounded-circle">
+                                            </a>
+                                        </div>
+                                        <div class="card-text my-2">
+                                            <strong class="card-title my-0">{{$users->name_user}} </strong>
+                                            <p class="small text-muted mb-0">{{$users->email }}</p>
+                                            <p class="small text-muted mb-0">{{$users->phone_user}}</p>
+                                            <p class="small"><span class="badge badge-light text-muted">{{$users->address_user}}</span></p>
+                                        </div>
+                                    </div> <!-- ./card-text -->
+                                    <div class="card-footer">
+                                        <div class="row align-items-center justify-content-between">
+                                            <div class="col-auto">
+                                                <small>
+                                                    <span class="dot dot-lg bg-success mr-1"></span></small>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="file-action">
+                                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+                                                    <div class="dropdown-menu m-2">
+                                                        <a class="dropdown-item" href="#"><i class="fe fe-meh fe-12 mr-4"></i>Profile</a>
+
+                                                        <a class="dropdown-item" href="#"><i class="fe fe-delete fe-12 mr-4"></i>Delete</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <!-- table -->
-                                    <table class="table table-borderless table-hover">
-                                        <thead>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <i class="fas fa-directions custom-control-label"></i>
-                                                </div>
-                                            </td>
-                                            <th><strong>ID</strong></th>
-                                            <th><strong>TÊN NHÀ CUNG CẤP</strong></th>
-                                            <th><strong>EMAIL</strong></th>
-                                            <th><strong>SỐ ĐIỆN THOẠI</strong></th>
-                                            <th class="w-25"><strong>ĐỊA CHỈ</strong></th>
-                                            <th><strong>NGÀY THÊM</strong></th>
-                                            <th><strong>TÙY CHỌN</strong></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($supplier as $suppliers)
-                                                <tr>
-                                                    <td>
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="2474">
-                                                            <label class="custom-control-label" for="2474"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="avatar avatar-md">
-                                                            IDS0{{$suppliers->id}}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0 text-muted"><strong>{{trans($suppliers->name_supplier)}}</strong></p>
-
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0 text-muted">{{$suppliers->email_supplier}}</p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0 text-muted"><a href="#" class="text-muted">{{$suppliers->phone_supplier}}</a></p>
-                                                    </td>
-                                                    <td class="w-25"><small class="text-muted"> {{trans($suppliers->address_supplier)}}</small></td>
-                                                    <td class="text-muted"> {{date('d-m-Y', strtotime($suppliers->created_at))}}</td>
-                                                    <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="text-muted sr-only">Action</span>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Remove</a>
-                                                            <a class="dropdown-item" href="#">Assign</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    <nav aria-label="Table Paging" class="mb-0 text-muted">
-                                        <ul class="pagination justify-content-center mb-0">
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item" active><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                        </ul>
-                                    </nav>
+                                        </div>
+                                    </div> <!-- /.card-footer -->
                                 </div>
-                            </div>
-                        </div> <!-- customized table -->
-                    </div> <!-- end section -->
+                            </div> <!-- .col -->
+                        @endforeach
+                        <div class="col-md-9">
+                        </div> <!-- .col -->
+                    </div> <!-- .row -->
+                    <nav aria-label="Table Paging" class="my-3">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
                 </div> <!-- .col-12 -->
             </div> <!-- .row -->
         </div> <!-- .container-fluid -->

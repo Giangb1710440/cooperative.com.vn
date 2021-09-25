@@ -52,13 +52,26 @@ Route::post('post-add-caterogy-order',[AdminController::class,'post_add_caterogy
 Route::get('page-add-warehouse',[AdminController::class,'page_add_warehouse'])->name('page_add_warehouse');
 Route::post('post-add-warehouse',[AdminController::class,'post_add_warehouse'])->name('post_add_warehouse');
 
+Route::get('page-add-product',[AdminController::class,'page_add_product'])->name('page_add_product');
+Route::post('post-add-product',[AdminController::class,'post_add_product'])->name('post_add_product');
+
+//khoi tao kho hang
+Route::get('page-add-detail-warehouse',[AdminController::class,'page_add_detail_warehouse'])->name('page_add_detail_warehouse');
+Route::post('post_detail_warehouse',[AdminController::class,'post_detail_warehouse'])->name('post_detail_warehouse');
+Route::get('update-cart', [AdminController::class,'getUpdateUnit'])->name('getUpdateUnit');
 //-------------------------------------LIET KE
 Route::get('list-caterogy-product',[ListController::class,'list_caterogy_product'])->name('list_caterogy_product');
 Route::get('list-position',[ListController::class,'list_position'])->name('list_position');
 Route::get('list-unit',[ListController::class,'list_unit'])->name('list_unit');
 Route::get('list-invoice-caterogy',[ListController::class,'list_invoice_caterogy'])->name('list_invoice_caterogy');
+Route::get('list-order-caterogy',[ListController::class,'list_order_caterogy'])->name('list_order_caterogy');
 Route::get('list-role-access',[ListController::class,'list_role_access'])->name('list_role_access');
 Route::get('list-supplier',[ListController::class,'list_supplier'])->name('list_supplier');
+Route::get('list-warehouse',[ListController::class,'list_warehouse'])->name('list_warehouse');
+Route::get('list-customer',[ListController::class,'list_customer'])->name('list_customer');
+Route::get('list-user',[ListController::class,'list_user'])->name('list_user');
+Route::get('list-product',[ListController::class,'list_product'])->name('list_product');
+
 
 
 

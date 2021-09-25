@@ -49,7 +49,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($position as $positions)
+                                        @foreach($list_role_access as $list_role_accesss)
                                             <tr>
                                                 <td>
                                                     <div class="custom-control custom-checkbox">
@@ -59,16 +59,16 @@
                                                 </td>
                                                 <td>
                                                     <div class="avatar avatar-md">
-                                                        IDPOSI0{{$positions->id}}
+                                                        IDPOSI0{{$list_role_accesss->id}}
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-0 text-muted"><strong>{{ucwords($positions->name_position)}}</strong></p>
+                                                    <p class="mb-0 text-muted"><strong>{{ucwords($list_role_accesss->role_name)}}</strong></p>
                                                 </td>
-                                                <td class="w-25"><small class="text-muted">{{trans($positions->description_position)}}.</small></td>
+                                                <td class="w-25"><small class="text-muted">{{trans($list_role_accesss->role_description)}}.</small></td>
                                                 {{--                                                ham lay ngay thang trong laravel
                                                 --}}
-                                                <td class="text-muted">{{date('d-m-Y', strtotime($positions->created_at))}}</td>
+                                                <td class="text-muted">{{date('d-m-Y', strtotime($list_role_accesss->created_at))}}</td>
                                                 <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <span class="text-muted sr-only">Action</span>
                                                     </button>
@@ -224,5 +224,5 @@
                 </div>
             </div>
         </div>
-    </main> <!-- main -->
+    </main>
 @endsection

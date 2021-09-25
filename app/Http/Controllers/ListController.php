@@ -31,9 +31,15 @@ class ListController extends Controller
             'list_invoice_cate'=>$list_invoice_cate
         ]);
     }
+        public function list_order_caterogy (){
+        $list_order_caterogy = DB::table('order_caterogys')->get();
+        return view('server.csdl_server.list_caterogy_order')->with([
+            'list_order_caterogy'=>$list_order_caterogy
+        ]);
+    }
     public function list_role_access (){
         $list_role_access = DB::table('role_accesss')->get();
-        return view('server.csdl_server.role_access')->with([
+        return view('server.csdl_server.list_role_access')->with([
             'list_role_access'=>$list_role_access
         ]);
     }
@@ -42,6 +48,31 @@ class ListController extends Controller
         $supplier = DB::table('suppliers')->get();
         return view('server.csdl_server.list_supplier')->with([
             'supplier'=>$supplier
+        ]);
+    }
+    public function list_warehouse(){
+        $warehouses = DB::table('warehouses')->get();
+        return view('server.csdl_server.list_warehouse')->with([
+            'warehouses'=>$warehouses
+        ]);
+    }
+
+    public function list_customer(){
+        $customer = DB::table('customers')->get();
+        return view('server.csdl_server.list_customer')->with([
+            'customer'=>$customer
+        ]);
+    }
+    public function list_user(){
+        $user = DB::table('users')->get();
+        return view('server.csdl_server.list_user')->with([
+            'user'=>$user
+        ]);
+    }
+    public function list_product(){
+        $product = DB::table('products')->get();
+        return view('server.csdl_server.list_product')->with([
+            'product'=>$product
         ]);
     }
 }
