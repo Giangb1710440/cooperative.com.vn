@@ -58,7 +58,46 @@ Route::post('post-add-product',[AdminController::class,'post_add_product'])->nam
 //khoi tao kho hang
 Route::get('page-add-detail-warehouse',[AdminController::class,'page_add_detail_warehouse'])->name('page_add_detail_warehouse');
 Route::post('post_detail_warehouse',[AdminController::class,'post_detail_warehouse'])->name('post_detail_warehouse');
+
+//ajax cap nhat trong trang warehouse
 Route::get('update-cart', [AdminController::class,'getUpdateUnit'])->name('getUpdateUnit');
+
+//them moi ky thuat canh tac
+Route::get('page-add-technique',[AdminController::class,'page_add_technique'])->name('page_add_technique');
+Route::post('post-add-technique',[AdminController::class,'post_add_technique'])->name('post_add_technique');
+
+//them  giai doan san xuat
+Route::get('page-add-gdst',[AdminController::class,'page_add_gdst'])->name('page_add_gdst');
+Route::post('post_add-gdst',[AdminController::class,'post_add_gdst'])->name('post_add_gdst');
+
+//them moi diary
+Route::get('page-add-diary',[AdminController::class,'page_add_diary'])->name('page_add_diary');
+Route::post('page-add-diary',[AdminController::class,'post_add_diary'])->name('post_add_diary');
+
+//them moi giai doan sinh truong
+
+Route::post('post-gdst/{id}',[AdminController::class,'post_gdst'])->name('post_gdst');
+Route::post('post-bp/{id}',[AdminController::class,'post_bonphan'])->name('post_bonphan');
+Route::post('post-pt/{id}',[AdminController::class,'post_phunthuoc'])->name('post_phunthuoc');
+Route::post('post-thsb/{id}',[AdminController::class,'post_thsb'])->name('post_thsb');
+Route::post('post-thu-hoach/{id}',[AdminController::class,'post_thuhoach'])->name('post_thuhoach');
+
+//edit nhat ky nong ho
+Route::post('post-edit-gdst/{id}',[AdminController::class,'post_edit_gdsts'])->name('post_edit_gdsts');
+Route::post('post-edit-bp/{id}',[AdminController::class,'post_edit_bonphan'])->name('post_edit_bonphan');
+Route::post('post-edit-pt/{id}',[AdminController::class,'post_edit_phunthuoc'])->name('post_edit_phunthuoc');
+Route::post('post-edit-thsb/{id}',[AdminController::class,'post_edit_thsb'])->name('post_edit_thsb');
+Route::post('post-edit-th/{id}',[AdminController::class,'post_edit_th'])->name('post_edit_th');
+
+//delete diary farmer
+
+Route::get('page-delete-gdst/{id}',[AdminController::class,'page_delete_gdst'])->name('page_delete_gdst');
+Route::get('page-delete-bp/{id}',[AdminController::class,'page_delete_bp'])->name('page_delete_bp');
+Route::get('page-delete-pt/{id}',[AdminController::class,'page_delete_pt'])->name('page_delete_pt');
+Route::get('page-delete-thsb/{id}',[AdminController::class,'page_delete_thsb'])->name('page_delete_thsb');
+Route::get('page-delete-th/{id}',[AdminController::class,'page_delete_th'])->name('page_delete_th');
+Route::get('page-delete-diary/{id}',[AdminController::class,'post_delete_diary'])->name('post_delete_diary');
+
 //-------------------------------------LIET KE
 Route::get('list-caterogy-product',[ListController::class,'list_caterogy_product'])->name('list_caterogy_product');
 Route::get('list-position',[ListController::class,'list_position'])->name('list_position');
@@ -71,7 +110,13 @@ Route::get('list-warehouse',[ListController::class,'list_warehouse'])->name('lis
 Route::get('list-customer',[ListController::class,'list_customer'])->name('list_customer');
 Route::get('list-user',[ListController::class,'list_user'])->name('list_user');
 Route::get('list-product',[ListController::class,'list_product'])->name('list_product');
+Route::get('detail-diary/{id}',[ListController::class,'detail_diary'])->name('detail_diary');
 
+
+
+//diary
+//danh sach diary
+Route::get('list-diary',[ListController::class,'list_diary'])->name('list_diary');
 
 
 

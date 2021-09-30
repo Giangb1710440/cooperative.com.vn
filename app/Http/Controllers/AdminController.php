@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bonphan;
+use App\Models\detail_gdst;
 use App\Models\detail_warehouse;
+use App\Models\farmer_diary;
+use App\Models\gdst;
 use App\Models\invoice_caterogy;
 use App\Models\order_caterogy;
+use App\Models\phunthuoc;
 use App\Models\position;
 use App\Models\product;
 use App\Models\product_caterogy;
 use App\Models\role_access;
 use App\Models\supplier;
+use App\Models\tdsb;
+use App\Models\technique;
+use App\Models\thuhoach;
 use App\Models\unit;
 use App\Models\warehouse;
 use Illuminate\Http\Request;
@@ -422,6 +430,337 @@ class AdminController extends Controller
             return redirect()->route('login');
         }
     }
+
+    //them moi ki thuat canh tac
+    public function page_add_technique(){
+        return view('server.diary.page_add_technique');
+    }
+    public function post_add_technique(Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                    $technique = new technique();
+                    $technique->name_technique = $res->input('name_technique');
+                    $technique->description_technique = $res->input('description_technique');
+                    $technique->save();
+                    $register_success = Session::get('success_add_technique');
+                    Session()->put('success_add_technique');
+                    return redirect()->back()->with('success_add_technique', 'Thêm thành công');
+                }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+    //them moi giai doan san xuat
+    public function page_add_gdst(){
+        return view('server.diary.page_add_gdst');
+    }
+    public function post_add_gdst(Request $res){
+        $gdst = new gdst();
+        $gdst->name_gdst = $res->input('name_gdst');
+        $gdst->description_gdst = $res ->input('description_gdst');
+        $gdst->save();
+        $register_success = Session::get('success_add_gdst');
+        Session()->put('success_add_gdst');
+        return redirect()->back()->with('success_add_gdst', 'Thêm thành công');
+    }
+
+    //them moi diary
+    public function page_add_diary(){
+        $product = DB::table('products')->get();
+        $technique =DB::table('techniques')->get();
+        return view('server.diary.page_add_diary')->with([
+            'product' => $product,
+            'technique'=> $technique
+        ]);
+    }
+
+    //them moi dỉay
+    public function post_add_diary(Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                if (farmer_diary::where('id_product', '=',$res->input('cate_diary'))->count() > 0) {
+                    $register_success = Session::get('no_add_diary');
+                    Session()->put('no_add_diary');
+                    return redirect()->back()->with('no_add_diary', 'Không thành công');
+                }else{
+                    $diary = new farmer_diary();
+                    $diary->id_user = Auth::user()->id;
+                    $diary->id_product= $res->input('cate_diary');
+                    $diary->id_technique  = $res->input('technique_diary');
+                    $diary->name_diary=$res->input('name_diary');
+                    $diary->address_diary=$res->input('address_diary');
+                    $diary->phone_diary=$res->input('sdt_diary');
+                    $diary->dientich_diary=$res->input('area_diary');
+                    $diary->qty_DIARY=$res->input('qty_diary');
+                    $diary->save();
+                    $register_success = Session::get('success_add_diary');
+                    Session()->put('success_add_diary');
+                    return redirect()->back()->with('success_add_diary', 'Thêm thành công');
+                }
+
+            }
+        }else{
+            return redirect()->route('login');
+        }
+
+    }
+
+    //them moi bang giai doan sinh truong
+    public function post_gdst(Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                    $detail_gdst = new detail_gdst();
+                    $detail_gdst->id_diary  = $request->id;
+                    $detail_gdst->id_gdst   = $request->input('id_gdst');
+                    $detail_gdst->time_st   = $request->input('time_gdst');
+                    $detail_gdst->save();
+                    $register_success = Session::get('success_add_detail_diary');
+                    Session()->put('success_add_detail_diary');
+                    return redirect()->back()->with('success_add_detail_diary', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+    //them du lieu bon phan
+
+    public function post_bonphan(Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $bonphan  = new bonphan();
+                $bonphan -> id_diary  = $request->id;
+                $bonphan->ngaybon   = $request->input('time_bonphan');
+                $bonphan->loaiphan   = $request->input('loaiphan');
+                $bonphan->luongbon   = $request->input('luongbon');
+                $bonphan->save();
+                $register_success = Session::get('success_add_detail_diary');
+                Session()->put('success_add_detail_diary');
+                return redirect()->back()->with('success_add_detail_diary', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    // them du lieu phun thuoc
+    public function post_phunthuoc(Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                    $phunthuoc  = new phunthuoc();
+                    $phunthuoc->id_diary  = $request->id;
+                    $phunthuoc->ngayphun   = $request->input('time_phunthuoc');
+                    $phunthuoc->loaithuoc   = $request->input('loaithuoc');
+                    $phunthuoc->luongphun   = $request->input('lieuluong');
+                    $phunthuoc->save();
+                    $register_success = Session::get('success_add_detail_diary');
+                    Session()->put('success_add_detail_diary');
+                    return redirect()->back()->with('success_add_detail_diary', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //tinh hinh sau benh
+    public function post_thsb(Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                    $thsb  = new tdsb();
+                    $thsb->id_diary  = $request->id;
+                    $thsb->loaibenh   = $request->input('loaibenh');
+                    $thsb->date_phathien   = $request->input('ngayphathien');
+                    $thsb->trieutrung   = $request->input('trieutrung');
+                    $thsb->anhhuong   = $request->input('anhhuong');
+                    $thsb->save();
+                    $register_success = Session::get('success_add_detail_diary');
+                    Session()->put('success_add_detail_diary');
+                    return redirect()->back()->with('success_add_detail_diary', 'Thêm thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //thuhoach
+    public function post_thuhoach(Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                    $thuhoach  = new thuhoach();
+                    $thuhoach->id_diary  = $request->id;
+                    $thuhoach->date_thuhoach   = $request->input('time_thuhoach');
+                    $thuhoach->sl_thuhoach   = $request->input('sl_thuhoach');
+                    $thuhoach->sl_banra   = $request->input('sl_banra');
+                    $thuhoach->giaban   = $request->input('giabanra');
+                    $thuhoach->save();
+                    $register_success = Session::get('success_add_detail_diary');
+                    Session()->put('success_add_detail_diary');
+                    return redirect()->back()->with('success_add_detail_diary', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+    //chinh sua gia doan sinh truiong
+    public function post_edit_gdsts(Request $res,$id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $detail_gdst = detail_gdst::find($id);
+                $detail_gdst->id_gdst =$res->input('edit_name_gdst');
+                $detail_gdst->time_st =$res->input('edit_time_gdst');
+                $detail_gdst->save();
+                $register_success = Session::get('success_edit_diary_unit');
+                Session()->put('success_edit_diary_unit');
+                return redirect()->back()->with('success_edit_diary_unit', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+    //chinh sua bang bon phan
+    public function post_edit_bonphan($id,Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $bp = bonphan::find($id);
+                $bp->ngaybon   = $res->input('edit_time_bonphan');
+                $bp->loaiphan   = $res->input('edit_cate_phan');
+                $bp->luongbon   = $res->input('edit_dinhluong');
+                $bp->save();
+                $register_success = Session::get('success_edit_diary_unit');
+                Session()->put('success_edit_diary_unit');
+                return redirect()->back()->with('success_edit_diary_unit', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //cap nhat phun thuoc
+    public function post_edit_phunthuoc($id,Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $pt = phunthuoc::find($id);
+                $pt->ngayphun   = $res->input('edit_time_bonphan');
+                $pt->loaithuoc   = $res->input('edit_cate_phan');
+                $pt->luongphun   = $res->input('edit_dinhluong');
+                $pt->save();
+                $register_success = Session::get('success_edit_diary_unit');
+                Session()->put('success_edit_diary_unit');
+                return redirect()->back()->with('success_edit_diary_unit', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //cap nhat tinh hinh sau benh
+    public function post_edit_thsb($id,Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $thsb = tdsb::find($id);
+                $thsb->loaibenh   = $res->input('edit_lb');
+                $thsb->date_phathien   = $res->input('edit_time_lb');
+                $thsb->trieutrung   = $res->input('edit_thsb_tt');
+                $thsb->anhhuong   = $res->input('edit_thsb_ah');
+                $thsb->save();
+                $register_success = Session::get('success_edit_diary_unit');
+                Session()->put('success_edit_diary_unit');
+                return redirect()->back()->with('success_edit_diary_unit', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //banh thu hoach chih sua
+    public function post_edit_th($id,Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $th = thuhoach::find($id);
+                $th->date_thuhoach   = $res->input('edit_date_th');
+                $th->sl_thuhoach   = $res->input('edit_thsl');
+                $th->sl_banra   = $res->input('edit_slbr');
+                $th->giaban   = $res->input('edit_thgb');
+                $th->save();
+                $register_success = Session::get('success_edit_diary_unit');
+                Session()->put('success_edit_diary_unit');
+                return redirect()->back()->with('success_edit_diary_unit', 'Thêm thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+//        delete --giai doan sinh truong
+    public function page_delete_gdst($id){
+        $gdst = detail_gdst::find($id)->delete();
+        $register_success = Session::get('success_delete_diary');
+        Session()->put('success_delete_diary');
+        return redirect()->back()->with('success_delete_diary', 'Thêm thành công');
+    }
+//    xoa bon phan
+    public function page_delete_bp($id){
+        $gdst = bonphan::find($id)->delete();
+        $register_success = Session::get('success_delete_diary');
+        Session()->put('success_delete_diary');
+        return redirect()->back()->with('success_delete_diary', 'Thêm thành công');
+    }
+    public function page_delete_pt($id){
+        $gdst = phunthuoc::find($id)->delete();
+        $register_success = Session::get('success_delete_diary');
+        Session()->put('success_delete_diary');
+        return redirect()->back()->with('success_delete_diary', 'Thêm thành công');
+    }
+    public function page_delete_thsb($id){
+        $gdst = tdsb::find($id)->delete();
+        $register_success = Session::get('success_delete_diary');
+        Session()->put('success_delete_diary');
+        return redirect()->back()->with('success_delete_diary', 'Thêm thành công');
+    }
+    public function page_delete_th($id){
+        $gdst = thuhoach::find($id)->delete();
+        $register_success = Session::get('success_delete_diary');
+        Session()->put('success_delete_diary');
+        return redirect()->back()->with('success_delete_diary', 'Thêm thành công');
+    }
+    public function post_delete_diary($id){
+        $gdst = farmer_diary::find($id)->delete();
+        $register_success = Session::get('success_delete_diary');
+        Session()->put('success_delete_diary');
+        return redirect()->back()->with('success_delete_diary', 'Thêm thành công');
+    }
+
 
 
 }

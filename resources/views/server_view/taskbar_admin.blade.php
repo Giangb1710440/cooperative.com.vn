@@ -191,6 +191,15 @@
                         <a class="nav-link pl-3" href="{{route('page_add_warehouse')}}"><span class="ml-1 item-text">Thêm kho</span></a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_technique')}}"><span class="ml-1 item-text">Thêm kỹ thuật canh tác</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_gdst')}}"><span class="ml-1 item-text">Thêm giai đoạn sinh trưởng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_diary')}}"><span class="ml-1 item-text">Khởi tạo nhật ký cây trồng</span></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_detail_warehouse')}}"><span class="ml-1 item-text">Khởi tạo kho hàng</span></a>
                     </li>
                 </ul>
@@ -232,6 +241,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('list_product')}}"><span class="ml-1 item-text">CSDL sản phẩm</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_diary')}}"><span class="ml-1 item-text">CSDL nhật ký nông hộ</span></a>
                     </li>
                 </ul>
             </li>

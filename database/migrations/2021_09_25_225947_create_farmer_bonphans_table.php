@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSupplierProductsTable extends Migration
+class CreateFarmerBonphansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateSupplierProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('supplier_products', function (Blueprint $table) {
+        Schema::create('bonphans', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('id_supplier')->unsigned();
-            $table->foreign('id_supplier')->references('id')->on('suppliers');
-            $table->integer('id_product')->unsigned();
-            $table->foreign('id_product')->references('id')->on('products');
+            $table->integer('id_diary')->unsigned();
+            $table->foreign('id_diary')->references('id')->on('farmer_diarys')->onDelete('cascade');
+            $table->string('ngaybon');
+            $table->string('loaiphan');
+            $table->string('luongbon');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateSupplierProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supplier_products');
+        Schema::dropIfExists('farmer_bonphans');
     }
 }

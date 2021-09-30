@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvoiceCaterogysTable extends Migration
+class CreateGdstsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateInvoiceCaterogysTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_caterogys', function (Blueprint $table) {
+        Schema::create('gdsts', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name_cate_invoice');
-            $table->string('description_cate_invoice')->nullable();
+            $table->string('name_gdst');
+            $table->string('description_gdst')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateInvoiceCaterogysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoice_caterogys');
+        Schema::dropIfExists('gdsts');
     }
 }

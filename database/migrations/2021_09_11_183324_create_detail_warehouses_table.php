@@ -16,9 +16,9 @@ class CreateDetailWarehousesTable extends Migration
         Schema::create('detail_warehouses', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('id_product')->unsigned();
-            $table->foreign('id_product')->references('id')->on('products');
+            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
             $table->integer('id_warehouse')->unsigned();
-            $table->foreign('id_warehouse')->references('id')->on('warehouses');
+            $table->foreign('id_warehouse')->references('id')->on('warehouses')->onDelete('cascade');
             $table->integer('qty_opening_stock');
             $table->integer('qty_import_warehouse');
             $table->integer('qty_export_warehouse');

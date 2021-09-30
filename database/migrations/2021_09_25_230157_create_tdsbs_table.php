@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomersTable extends Migration
+class CreateTdsbsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('tdsbs', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name_customer');
-            $table->string('email_customer');
-            $table->string('address_customer');
-            $table->string('phone_customer','12');
+            $table->integer('id_diary')->unsigned();
+            $table->foreign('id_diary')->references('id')->on('farmer_diarys')->onDelete('cascade');
+            $table->string('date_phathien');
+            $table->string('trieutrung');
+            $table->string('anhhuong');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('tdsbs');
     }
 }

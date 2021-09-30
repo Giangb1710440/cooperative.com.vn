@@ -75,4 +75,38 @@ class ListController extends Controller
             'product'=>$product
         ]);
     }
+
+    public function list_diary(){
+        $diary = DB::table('farmer_diarys')->get();
+        $product =DB::table('products')->get();
+        $technique = DB::table('techniques')->get();
+        return view('server.csdl_server.list_diary')->with([
+            'diary'=>$diary,
+            'product'=>$product,
+            'technique'=>$technique
+        ]);
+    }
+
+    public function detail_diary(Request $res){
+        $detail_diary = DB::table('farmer_diarys')->where('id',$res->id)->get();
+        $product = DB::table('products')->get();
+        $technique = DB::table('techniques')->get();
+        $gdst=DB::table('gdsts')->get();
+        $detail_gdst = DB::table('detail_gdsts')->get();
+        $phunthuoc = DB::table('phunthuocs')->get();
+        $bonphan=DB::table('bonphans')->get();
+        $thsb=DB::table('tdsbs')->get();
+        $thuhoach=DB::table('thuhoachs')->get();
+        return view('server.csdl_server.detail_diary')->with([
+            'detail_diary'=>$detail_diary,
+            'product'=>$product,
+            'technique'=>$technique,
+            'gdst'=>$gdst,
+            'detail_gdst'=>$detail_gdst,
+            'phunthuoc'=>$phunthuoc,
+            'bonphan'=>$bonphan,
+            'thsb'=>$thsb,
+            'thuhoach'=>$thuhoach
+        ]);
+    }
 }

@@ -68,7 +68,7 @@
                                                 <input required type="file" class="form-control" id="validatedCustomFile" name="image[]" placeholder="images" multiple>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Submit form</button>
+                                        <button class="btn btn-primary" type="submit">Thêm mới</button>
                                         <button class="btn btn-primary" type="submit">Thoát</button>
                                     </form>
                                 </div> <!-- /.card-body -->
