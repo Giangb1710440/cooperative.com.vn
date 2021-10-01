@@ -332,7 +332,7 @@ class AdminController extends Controller
                     //image
                     $res->validate([
                         'image' => 'required',
-                        'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+                        'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf'
                     ]);
 
                     if ($res->hasfile('image')) {

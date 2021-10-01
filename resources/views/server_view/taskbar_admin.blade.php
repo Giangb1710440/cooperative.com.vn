@@ -58,11 +58,11 @@
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item dropdown">
-                <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <a href="#ui-elementsbh" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fas fa-cash-register"></i>
                     <span class="ml-3 item-text">Bán hàng</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+                <ul class="collapse list-unstyled pl-4 w-100" id="ui-elementsbh">
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_caterogy_product')}}"><span class="ml-1 item-text">Đơn hàng mới</span>
                         </a>
@@ -206,11 +206,11 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <a href="#tablesqtdl" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fas fa-database"></i>
                     <span class="ml-3 item-text">Quản trị dữ liệu</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                <ul class="collapse list-unstyled pl-4 w-100" id="tablesqtdl">
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">CSDL nhà cung cấp</span></a>
                     </li>
