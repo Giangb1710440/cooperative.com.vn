@@ -4,7 +4,7 @@
 </div>
 @if(Auth::check())
     <header class="header">
-        <div class="header__top">
+        <div class="header__top" style="background-color: rgba(97, 173, 4, 0.89);">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -116,8 +116,16 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="{{route('page_product')}}">Sản phẩm</a></li>
+                            <li class=""><a href="{{route('home')}}">Home</a></li>
+                            <li><a href="{{route('page_product')}}">Sản phẩm</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="{{route('page_detail_product')}}">Tất cả sản phẩm</a></li>
+                                    <li><a href="{{route('page_cart')}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                    <li><a href="{{route('page_checkout')}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                    <li><a href="./blog-details.html"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                    <li><a href="./blog-details.html"><i class="fab fa-servicestack"></i> Gạo </a></li>
+                                </ul>
+                            </li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="{{route('page_detail_product')}}">Chi tiết sản phẩm</a></li>
@@ -157,11 +165,11 @@
                                 <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Thịt, cá, trứng</a></li>
-                                <li><a href="#">Hoa quả</a></li>
-                                <li><a href="#">Rau củ</a></li>
-                                <li><a href="#">Gạo</a></li>
-
+                                <li><a href="{{route('page_detail_product')}}">Tất cả sản phẩm</a></li>
+                                <li><a href="{{route('page_cart')}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                <li><a href="{{route('page_checkout')}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                <li><a href="./blog-details.html"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                <li><a href="./blog-details.html"><i class="fab fa-servicestack"></i> Gạo </a></li>
                             </ul>
                         </div>
                     </div>
@@ -183,12 +191,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="hero__item set-bg" data-setbg="{{asset('public/client/img/hero/banner.jpg')}}">
-                            <div class="hero__text">
-                                <span>Trái cây tươi</span>
-                                <h2>Rau quả <br />100% không thuốc trừ sâu</h2>
-                                <p>Nhận và giao hàng miễn phí cho đơn từ 99k</p>
-                                <a href="#" class="primary-btn">Xem thêm</a>
+                        <div class="categories__slider owl-carousel">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-1.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-2.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-3.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-4.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-5.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -239,7 +266,7 @@
     @endif
 @else
     <header class="header">
-        <div class="header__top">
+        <div class="header__top" style="background-color: rgba(97, 173, 4, 0.89);">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -281,7 +308,14 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="{{route('page_product')}}">Sản phẩm</a></li>
+                            <li><a href="{{route('page_product')}}">Sản phẩm</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="{{route('page_detail_product')}}">Tất cả sản phẩm</a></li>
+                                    <li><a href="{{route('page_cart')}}">Giỏ hàng</a></li>
+                                    <li><a href="{{route('page_checkout')}}">Thanh toán</a></li>
+                                    <li><a href="./blog-details.html">Tin tức</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="{{route('page_detail_product')}}">Chi tiết sản phẩm</a></li>
@@ -351,12 +385,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="hero__item set-bg" data-setbg="{{asset('public/client/img/hero/banner.jpg')}}">
-                            <div class="hero__text">
-                                <span>Trái cây tươi</span>
-                                <h2>Rau quả <br />100% không thuốc trừ sâu</h2>
-                                <p>Nhận và giao hàng miễn phí cho đơn từ 99k</p>
-                                <a href="#" class="primary-btn">Xem thêm</a>
+                        <div class="categories__slider owl-carousel">
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-1.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-2.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-3.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-4.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-5.jpg')}}">
+                                    <h5><a href="#">Name_product</a></h5>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -404,7 +457,6 @@
                 </div>
             </div>
         </section>
-
     @endif
 @endif
 

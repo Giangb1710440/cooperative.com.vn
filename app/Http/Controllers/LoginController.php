@@ -72,14 +72,20 @@ class LoginController extends Controller
     }
 //dang xuất
     public function logout(Request $request){
-        if (Auth::user()->role_id == 1){
-            Auth::logout();
-            Session::forget('cart');
-            return redirect()->route('login');
+        if (Auth::check()){
+            if (Auth::user()->role_id == 1 or Auth::user()->role_id == 2){
+                Auth::logout();
+                Session::forget('cart');
+                return redirect()->route('login');
+            }else{
+                Auth::logout();
+                Session::forget('cart');
+                return redirect()->back();
+            }
         }else{
             Auth::logout();
             Session::forget('cart');
-            return redirect()->back();
+            return redirect()->route('home');
         }
     }
     //them thanh vien

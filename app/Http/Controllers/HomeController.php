@@ -36,4 +36,8 @@ class HomeController extends Controller
         Session::forget('home');
         return view('client.page_checkout');
     }
+
+    public function page_cate_product(){
+        return view('client.page_cate_product');
+    }
 }

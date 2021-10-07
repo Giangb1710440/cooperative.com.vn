@@ -1,39 +1,39 @@
 @extends('client_view.master')
 @section('title','Trang chủ')
 @section('content')
-<section class="categories">
-    <div class="container">
-        <div class="row">
-            <div class="categories__slider owl-carousel">
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-1.jpg')}}">
-                        <h5><a href="#">Name_product</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-2.jpg')}}">
-                        <h5><a href="#">Name_product</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-3.jpg')}}">
-                        <h5><a href="#">Name_product</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-4.jpg')}}">
-                        <h5><a href="#">Name_product</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-5.jpg')}}">
-                        <h5><a href="#">Name_product</a></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section class="categories">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="categories__slider owl-carousel">--}}
+{{--                <div class="col-lg-3">--}}
+{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-1.jpg')}}">--}}
+{{--                        <h5><a href="#">Name_product</a></h5>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-3">--}}
+{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-2.jpg')}}">--}}
+{{--                        <h5><a href="#">Name_product</a></h5>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-3">--}}
+{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-3.jpg')}}">--}}
+{{--                        <h5><a href="#">Name_product</a></h5>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-3">--}}
+{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-4.jpg')}}">--}}
+{{--                        <h5><a href="#">Name_product</a></h5>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-3">--}}
+{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-5.jpg')}}">--}}
+{{--                        <h5><a href="#">Name_product</a></h5>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <!-- Categories Section End -->
 
 <!-- Featured Section Begin -->
@@ -179,231 +179,6 @@
         </div>
     </div>
 </section>
-<!-- Featured Section End -->
-
-{{--<!-- Banner Begin -->--}}
-{{--<div class="banner">--}}
-{{--    <div class="container">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-lg-6 col-md-6 col-sm-6">--}}
-{{--                <div class="banner__pic">--}}
-{{--                    <img src="{{asset('public/client/img/banner/banner-1.jpg')}}" alt="">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="col-lg-6 col-md-6 col-sm-6">--}}
-{{--                <div class="banner__pic">--}}
-{{--                    <img src="{{asset('public/client/img/banner/banner-2.jpg')}}" alt="">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--<!-- Banner End -->--}}
-
-<!-- Latest Product Section Begin -->
-<section class="latest-product spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="latest-product__text">
-                    <h4>Sản phẩm mới</h4>
-                    <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="latest-product__text">
-                    <h4>Xiếp hạng tốt nhất</h4>
-                    <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="latest-product__text">
-                    <h4>Đánh giá bởi người dùng</h4>
-                    <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Name_product</h6>
-                                    <span>1xx.xxx VNĐ</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Latest Product Section End -->
-
 <!-- Blog Section Begin -->
 <section class="from-blog spad">
     <div class="container">

@@ -43,7 +43,6 @@
 
                                     <table class="table datatables" id="dataTable-1">
                                         <thead>
-
                                         <tr>
                                             <th></th>
                                             <th><strong>ID_DIARY</strong></th>
@@ -79,69 +78,7 @@
                                                 @endforeach
                                                 <td>{{date('d-m-Y', strtotime($diarys->created_at))}} </td>
                                                 <td>
-{{--                                                    <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" data-target="#varyModal" data-whatever="@mdo"><i class="fas fa-edit"></i></button>--}}
                                                     <a href="{{route('detail_diary',$diarys->id)}}" type="button" class="btn mb-2 btn-outline-secondary"><i class="fas fa-edit"></i> </a>
-{{--                                                    <div class="modal fade" id="varyModal" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">--}}
-{{--                                                        <div class="modal-dialog" role="document">--}}
-{{--                                                            <div class="modal-content">--}}
-{{--                                                                <div class="modal-header">--}}
-{{--                                                                    <h5 class="modal-title" id="varyModalLabel">Tùy chọn</h5>--}}
-{{--                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                        <span aria-hidden="true">&times;</span>--}}
-{{--                                                                    </button>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="modal-body">--}}
-{{--                                                                    <form>--}}
-{{--                                                                        <div class="form-group">--}}
-{{--                                                                            <form action="">--}}
-{{--                                                                                <button type="submit" class="form-control" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                                    <span aria-hidden="true">Chi tiết nhật ký nông hộ</span>--}}
-{{--                                                                                </button>--}}
-{{--                                                                            </form>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="form-group">--}}
-{{--                                                                            <form action="">--}}
-{{--                                                                                <button type="submit" class="form-control" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                                    <span aria-hidden="true">Cập nhật giai đoạn sinh trưởng</span>--}}
-{{--                                                                                </button>--}}
-{{--                                                                            </form>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="form-group">--}}
-{{--                                                                            <form action="">--}}
-{{--                                                                                <button type="submit" class="form-control" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                                    <span aria-hidden="true">Cập nhật nhật ký phun thuốc</span>--}}
-{{--                                                                                </button>--}}
-{{--                                                                            </form>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="form-group">--}}
-{{--                                                                            <form action="">--}}
-{{--                                                                                <button type="submit" class="form-control" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                                    <span aria-hidden="true">Cập nhật nhật ký bón phân</span>--}}
-{{--                                                                                </button>--}}
-{{--                                                                            </form>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="form-group">--}}
-{{--                                                                            <form action="">--}}
-{{--                                                                                <button type="submit" class="form-control" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                                    <span aria-hidden="true">Cập nhật tình hình sâu bệnh</span>--}}
-{{--                                                                                </button>--}}
-{{--                                                                            </form>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="form-group">--}}
-{{--                                                                            <form action="">--}}
-{{--                                                                                <button type="submit" class="form-control" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                                    <span aria-hidden="true">Thống kê thu hoạch</span>--}}
-{{--                                                                                </button>--}}
-{{--                                                                            </form>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    </form>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="modal-footer">--}}
-{{--                                                                    <button type="button" class="btn mb-2 btn-primary btn-lg btn-block" data-dismiss="modal">Close</button>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
                                                     <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#varyModal1" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
                                                     <div class="modal fade" id="varyModal1" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">

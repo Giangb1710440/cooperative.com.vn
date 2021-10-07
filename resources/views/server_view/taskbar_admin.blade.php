@@ -54,101 +54,6 @@
 {{--        </ul>--}}
 
         <p class="text-muted nav-heading mt-4 mb-1">
-            <span><i class="fas fa-list-alt"></i> Danh mục</span>
-        </p>
-        <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-                <a href="#ui-elementsbh" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-cash-register"></i>
-                    <span class="ml-3 item-text">Bán hàng</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="ui-elementsbh">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_product')}}"><span class="ml-1 item-text">Đơn hàng mới</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_product')}}"><span class="ml-1 item-text">Danh sách đơn hàng</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('add_user')}}"><span class="ml-1 item-text">Hóa đơn mới</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_unit')}}"><span class="ml-1 item-text">Danh sách hóa đơn</span></a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-warehouse"></i>
-                    <span class="ml-3 item-text">Kho hàng</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">Thêm phiếu nhập hàng</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_warehouse')}}"><span class="ml-1 item-text">Kiểm kho </span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_unit')}}"><span class="ml-1 item-text">Sản phẩm tồn</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_caterogy_product')}}"><span class="ml-1 item-text">Sản phẩm cần nhập</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_invoice_caterogy')}}"><span class="ml-1 item-text">Hóa đơn nhập hàng</span></a>
-                    </li>
-                </ul>
-            </li>
-
-        </ul>
-        <p class="text-muted nav-heading mt-4 mb-1">
-            <span><i class="fas fa-scroll"></i> Báo cáo</span>
-        </p>
-        <ul class="navbar-nav flex-fill w-100 mb-2">
-
-            <li class="nav-item dropdown">
-                <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="ml-3 item-text">Biểu đồ</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="contact">
-                    <a class="nav-link pl-3" href="./contacts-list.html"><span class="ml-1">Biểu đồ doanh thu</span></a>
-                    <a class="nav-link pl-3" href="./contacts-grid.html"><span class="ml-1">Biểu đồ doanh số</span></a>
-                    <a class="nav-link pl-3" href="./contacts-new.html"><span class="ml-1">Biểu đồ thu chi</span></a>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-chart-area"></i>
-                    <span class="ml-3 item-text">Bán hàng</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="profile">
-                    <a class="nav-link pl-3" href="./profile.html"><span class="ml-1">Doanh số bán</span></a>
-                    <a class="nav-link pl-3" href="./profile-settings.html"><span class="ml-1">Khoản thu</span></a>
-                    <a class="nav-link pl-3" href="./profile-security.html"><span class="ml-1">Danh sách đơn hàng</span></a>
-                    <a class="nav-link pl-3" href="./profile-security.html"><span class="ml-1">khách hàng tiềm năng</span></a>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#fileman" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-chart-area"></i>
-                    <span class="ml-3 item-text">Kho hàng</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="fileman">
-                    <a class="nav-link pl-3" href="./files-list.html"><span class="ml-1">Báo cáo nhập hàng</span></a>
-                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">Báo cáo kho hàng</span></a>
-                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">khoản chi</span></a>
-                </ul>
-            </li>
-
-        </ul>
-
-        <p class="text-muted nav-heading mt-4 mb-1">
             <span><i class="fas fa-cogs"></i> &nbsp Quản trị</span>
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -172,15 +77,11 @@
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_unit')}}"><span class="ml-1 item-text">Thêm đơn vị</span></a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_suppliers')}}"><span class="ml-1 item-text">Thêm nhà cung cấp</span></a>
+                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_order')}}"><span class="ml-1 item-text">Thêm loại hóa đơn</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_invoice')}}"><span class="ml-1 item-text">Thêm loại hóa đơn</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_order')}}"><span class="ml-1 item-text">Thêm loại đơn hàng</span></a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_role_access')}}"><span class="ml-1 item-text">Thêm quyền user</span></a>
                     </li>
@@ -211,9 +112,9 @@
                     <span class="ml-3 item-text">Quản trị dữ liệu</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="tablesqtdl">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">CSDL nhà cung cấp</span></a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">CSDL nhà cung cấp</span></a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('list_warehouse')}}"><span class="ml-1 item-text">CSDL kho hàng </span></a>
                     </li>
@@ -261,7 +162,163 @@
 
         </ul>
 
+        <p class="text-muted nav-heading mt-4 mb-1">
+            <span><i class="fas fa-list-alt"></i> Danh mục</span>
+        </p>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item dropdown">
+                <a href="#ui-elementsbh" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-cash-register"></i>
+                    <span class="ml-3 item-text">Bán hàng</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="ui-elementsbh">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_product')}}"><span class="ml-1 item-text">Đơn hàng mới</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_product')}}"><span class="ml-1 item-text">Quản lý đơn hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('add_user')}}"><span class="ml-1 item-text">Đơn hàng cần duyệt</span></a>
+                    </li>
+                </ul>
+            </li>
 
+            <li class="nav-item dropdown">
+                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <span class="ml-3 item-text">Kho hàng</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">Quản lý kho hàng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_warehouse')}}"><span class="ml-1 item-text">Khởi tạo kho hàng </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_unit')}}"><span class="ml-1 item-text">Nhập hàng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_caterogy_product')}}"><span class="ml-1 item-text">Cập nhật giá sản phẩm</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_invoice_caterogy')}}"><span class="ml-1 item-text">Kiểm kho</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_invoice_caterogy')}}"><span class="ml-1 item-text">Thống kê tồn kho</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#ketoan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-money-bill-wave-alt"></i>
+                    <span class="ml-3 item-text">Kế toán</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="ketoan">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">Hóa đơn bán hàng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_warehouse')}}"><span class="ml-1 item-text">Hóa đơn nhập hàng </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_unit')}}"><span class="ml-1 item-text">Báo cáo doanh thu</span></a>
+                    </li>
+
+                </ul>
+            </li>
+
+        </ul>
+        <p class="text-muted nav-heading mt-4 mb-1">
+            <span><i class="fas fa-book"></i> Nhật ký nông hộ</span>
+        </p>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+
+            <li class="nav-item dropdown">
+                <a href="#nknh_kt" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="ml-3 item-text">Khởi tạo</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="nknh_kt">
+                    <a class="nav-link pl-3" href="./contacts-list.html"><span class="ml-1">Khởi tạo nhật ký</span></a>
+                    <a class="nav-link pl-3" href="./contacts-grid.html"><span class="ml-1">Thêm mới Kỹ thuật canh tác</span></a>
+                    <a class="nav-link pl-3" href="./contacts-new.html"><span class="ml-1">Thêm mới giai đoạn sinh trưởng</span></a>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-chart-area"></i>
+                    <span class="ml-3 item-text">Quản lý </span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="profile">
+                    <a class="nav-link pl-3" href="./profile.html"><span class="ml-1">Quản lý nhật ký</span></a>
+                    <a class="nav-link pl-3" href="./profile-settings.html"><span class="ml-1">Dữ liệu giai đoạn sinh trưởng </span></a>
+                    <a class="nav-link pl-3" href="./profile-security.html"><span class="ml-1">Dữ liệu kỹ thuật canh tác</span></a>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#fileman" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-chart-area"></i>
+                    <span class="ml-3 item-text">Kho hàng</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="fileman">
+                    <a class="nav-link pl-3" href="./files-list.html"><span class="ml-1">Báo cáo nhập hàng</span></a>
+                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">Báo cáo kho hàng</span></a>
+                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">khoản chi</span></a>
+                </ul>
+            </li>
+
+        </ul>
+
+
+        <p class="text-muted nav-heading mt-4 mb-1">
+            <span><i class="fas fa-scroll"></i> Báo cáo</span>
+        </p>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+
+            <li class="nav-item dropdown">
+                <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="ml-3 item-text">Biểu đồ</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="contact">
+                    <a class="nav-link pl-3" href="./contacts-list.html"><span class="ml-1">Biểu đồ doanh thu</span></a>
+                    <a class="nav-link pl-3" href="./contacts-grid.html"><span class="ml-1">Biểu đồ doanh số</span></a>
+                    <a class="nav-link pl-3" href="./contacts-new.html"><span class="ml-1">Biểu đồ thu chi</span></a>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-chart-area"></i>
+                    <span class="ml-3 item-text">Bán hàng</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="profile">
+                    <a class="nav-link pl-3" href="./profile.html"><span class="ml-1">Doanh số bán</span></a>
+                    <a class="nav-link pl-3" href="./profile-settings.html"><span class="ml-1">Khoản thu</span></a>
+                    <a class="nav-link pl-3" href="./profile-security.html"><span class="ml-1">Danh sách đơn hàng</span></a>
+                    <a class="nav-link pl-3" href="./profile-security.html"><span class="ml-1">khách hàng tiềm năng</span></a>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#fileman" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-chart-area"></i>
+                    <span class="ml-3 item-text">Kho hàng</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="fileman">
+                    <a class="nav-link pl-3" href="./files-list.html"><span class="ml-1">Báo cáo nhập hàng</span></a>
+                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">Báo cáo kho hàng</span></a>
+                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">khoản chi</span></a>
+                </ul>
+            </li>
+
+        </ul>
+
+
+{{--        quan tri--}}
         <p class="text-muted nav-heading mt-4 mb-1">
             <span><i class="fas fa-hands-helping"></i> Hỗ trợ</span>
         </p>

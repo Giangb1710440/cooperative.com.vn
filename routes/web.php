@@ -16,6 +16,7 @@ Route::get('/page-detail-product',[HomeController::class,'page_detail_product'])
 Route::get('/page-cart',[HomeController::class,'page_cart'])->name('page_cart');
 
 Route::get('/page-checkout',[HomeController::class,'page_checkout'])->name('page_checkout');
+Route::get('/page-cate-product',[HomeController::class,'page_cate_product'])->name('page_cate_product');
 
 
 //---------------------------------------SERVER
@@ -30,8 +31,11 @@ Route::post('post-add-caterogy-product',[AdminController::class,'post_add_catero
 Route::get('page-add-unit',[AdminController::class,'page_add_unit'])->name('page_add_unit');
 Route::post('post-add-unit',[AdminController::class,'post_add_unit'])->name('post_add_unit');
 
-//them san pham
+                                                //them san pham
 Route::get('page-add-product',[AdminController::class,'page_add_product'])->name('page_add_product');
+Route::post('post-add-product',[AdminController::class,'post_add_product'])->name('post_add_product');
+Route::post('post-edit-product/{id}/{cate_edit}',[AdminController::class,'post_edit_product'])->name('post_edit_product');
+Route::get('post-delete-product/{id}',[AdminController::class,'post_delete_product'])->name('post_delete_product');
 
 //them nha cung cap
 Route::get('page-add-suppliers',[AdminController::class,'page_add_suppliers'])->name('page_add_suppliers');
@@ -52,8 +56,6 @@ Route::post('post-add-caterogy-order',[AdminController::class,'post_add_caterogy
 Route::get('page-add-warehouse',[AdminController::class,'page_add_warehouse'])->name('page_add_warehouse');
 Route::post('post-add-warehouse',[AdminController::class,'post_add_warehouse'])->name('post_add_warehouse');
 
-Route::get('page-add-product',[AdminController::class,'page_add_product'])->name('page_add_product');
-Route::post('post-add-product',[AdminController::class,'post_add_product'])->name('post_add_product');
 
 //khoi tao kho hang
 Route::get('page-add-detail-warehouse',[AdminController::class,'page_add_detail_warehouse'])->name('page_add_detail_warehouse');
@@ -62,6 +64,8 @@ Route::post('post_detail_warehouse',[AdminController::class,'post_detail_warehou
 //ajax cap nhat trong trang warehouse
 Route::get('update-cart', [AdminController::class,'getUpdateUnit'])->name('getUpdateUnit');
 
+
+//---------------------------DIARY
 //them moi ky thuat canh tac
 Route::get('page-add-technique',[AdminController::class,'page_add_technique'])->name('page_add_technique');
 Route::post('post-add-technique',[AdminController::class,'post_add_technique'])->name('post_add_technique');
@@ -73,7 +77,8 @@ Route::post('post_add-gdst',[AdminController::class,'post_add_gdst'])->name('pos
 //them moi diary
 Route::get('page-add-diary',[AdminController::class,'page_add_diary'])->name('page_add_diary');
 Route::post('page-add-diary',[AdminController::class,'post_add_diary'])->name('post_add_diary');
-
+//danh sach diary
+Route::get('list-diary',[ListController::class,'list_diary'])->name('list_diary');
 //them moi giai doan sinh truong
 
 Route::post('post-gdst/{id}',[AdminController::class,'post_gdst'])->name('post_gdst');
@@ -98,6 +103,10 @@ Route::get('page-delete-thsb/{id}',[AdminController::class,'page_delete_thsb'])-
 Route::get('page-delete-th/{id}',[AdminController::class,'page_delete_th'])->name('page_delete_th');
 Route::get('page-delete-diary/{id}',[AdminController::class,'post_delete_diary'])->name('post_delete_diary');
 
+
+
+
+
 //-------------------------------------LIET KE
 Route::get('list-caterogy-product',[ListController::class,'list_caterogy_product'])->name('list_caterogy_product');
 Route::get('list-position',[ListController::class,'list_position'])->name('list_position');
@@ -114,9 +123,7 @@ Route::get('detail-diary/{id}',[ListController::class,'detail_diary'])->name('de
 
 
 
-//diary
-//danh sach diary
-Route::get('list-diary',[ListController::class,'list_diary'])->name('list_diary');
+
 
 
 

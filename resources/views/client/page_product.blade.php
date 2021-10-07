@@ -2,18 +2,10 @@
 @section('title','Sản phẩm')
 @section('content')
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="{{asset('public/client/img/breadcrumb.jpg')}}">
+<section class="breadcrumb-section set-bg">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Chất lượng thay lời nói</h2>
-                    <div class="breadcrumb__option">
-                        <a href="{{route('home')}}">Gos - Cooperative</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+            <hr style="size: 1px">
     </div>
 </section>
 <!-- Breadcrumb Section End -->
@@ -21,7 +13,7 @@
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
-        <div class="row">
+        <div class="row" style="padding-bottom: 45px">
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
@@ -59,77 +51,46 @@
                             </label>
                         </div>
                     </div>
-                    <div class="sidebar__item">
-                        <div class="latest-product__text">
-                            <h4>Latest Products</h4>
-                            <div class="latest-product__slider owl-carousel">
-                                <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Name_product</h6>
-                                            <span>1xx.xxx VNĐ</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Name_product</h6>
-                                            <span>1xx.xxx VNĐ</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Name_product</h6>
-                                            <span>1xx.xxx VNĐ</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{asset('public/client/img/latest-product/lp-1.jpg')}}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Name_product</h6>
-                                            <span>1xx.xxx VNĐ</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{asset('public/client/img/latest-product/lp-2.jpg')}}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Name_product</h6>
-                                            <span>1xx.xxx VNĐ</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{asset('public/client/img/latest-product/lp-3.jpg')}}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Name_product</h6>
-                                            <span>1xx.xxx VNĐ</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="col-lg-9 col-md-7">
                 <div class="product__discount">
                     <div class="section-title product__discount__title">
-                        <h2>Giảm giá</h2>
+                        <style>
+                            div.tieude_giua1
+                            {
+                                color: #fff;
+                                font-size: 16px;
+                                height: 37px;
+                                line-height: 37px;
+
+                                text-transform: uppercase;
+                                border-bottom: 1px solid #ee4d2d;
+                                margin-bottom: 5px;
+                                font-family:Tahoma, Geneva, sans-serif;
+                            }
+                            div.tieude_giua1 div {
+                                float: left;
+                                background: coral;
+                                padding: 0px 20px;
+                                min-width: 170px;
+                                position: relative;
+                            }
+                            div.tieude_giua1 div:before {
+                                position: absolute;
+                                right: -37px;
+                                top: 0px;
+                                height: 0;
+                                width: 0;
+                                content: '';
+                                border-top: 37px solid transparent;
+                                border-left: 37px solid coral;
+                            }
+                        </style>
+                        <div class="tieude_giua1">
+                            <div>Giảm giá  <p style="margin-left: 200px; color: white"><i class="fas fa-shopping-cart"></i> Sale Lớn mùa dịch</p> </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="product__discount__slider owl-carousel">
@@ -145,7 +106,6 @@
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <span>caterogy_product</span>
                                         <h5><a href="#">Name_product</a></h5>
                                         <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
                                     </div>
@@ -163,7 +123,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <span>caterogy_product</span>
+
                                         <h5><a href="#">Name_product</a></h5>
                                         <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
                                     </div>
@@ -181,7 +141,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <span>caterogy_product</span>
+
                                         <h5><a href="#">Name_product</a></h5>
                                         <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
                                     </div>
@@ -199,7 +159,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <span>caterogy_product</span>
+
                                         <h5><a href="#">Name_product</a></h5>
                                         <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
                                     </div>
@@ -217,7 +177,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <span>caterogy_product</span>
+
                                         <h5><a href="#">Name_product</a></h5>
                                         <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
                                     </div>
@@ -235,7 +195,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <span>caterogy_product</span>
+
                                         <h5><a href="#">Name_product</a></h5>
                                         <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
                                     </div>
@@ -244,6 +204,45 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <style>
+            div.tieude_giua
+            {
+                color: #fff;
+                font-size: 16px;
+                height: 37px;
+                line-height: 37px;
+
+                text-transform: uppercase;
+                border-bottom: 1px solid #61B000;
+                margin-bottom: 5px;
+                font-family:Tahoma, Geneva, sans-serif;
+            }
+            div.tieude_giua div {
+                float: left;
+                background: #61B000;
+                padding: 0px 20px;
+                min-width: 170px;
+                position: relative;
+            }
+            div.tieude_giua div:before {
+                position: absolute;
+                right: -37px;
+                top: 0px;
+                height: 0;
+                width: 0;
+                content: '';
+                border-top: 37px solid transparent;
+                border-left: 37px solid #61B000;
+            }
+        </style>
+        <div class="tieude_giua">
+            <div>Sản phẩm</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
                 <div class="filter__item">
                     <div class="row">
                         <div class="col-lg-4 col-md-5">

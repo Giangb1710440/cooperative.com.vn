@@ -299,6 +299,7 @@ class AdminController extends Controller
 
     }
 
+//-------------------------------san pham
     //them moi san pham
     public function page_add_product(){
         if (Auth::check()){
@@ -326,7 +327,7 @@ class AdminController extends Controller
                 if (product::where('name_product', '=',$res->input('name_product'))->count() > 0) {
                     $register_success = Session::get('no_add_product');
                     Session()->put('no_add_product');
-                    return redirect()->back()->with('no_add_product', 'Thêm thành công');
+                    return redirect()->back()->with('no_add_product', 'Thêm không thành công');
                 }else {
                     $product = new product();
                     //image
@@ -350,6 +351,7 @@ class AdminController extends Controller
                     $product->status_product = "Mới thêm";
                     $product->cost_price_product = $res->input('cost_price');
                     $product->sale_price_product = $res->input('sale_price');
+                    $product->sale = $res->input('khuyenmai');
                     $product->save();
                     $register_success = Session::get('add_product');
                     Session()->put('add_product');
@@ -361,6 +363,85 @@ class AdminController extends Controller
         }
     }
 
+    public function post_edit_product(Request $res,$id,$cate_edit){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                if ($cate_edit == 1){
+                    if (product::where('name_product', '=',$res->input('name_product'))->count() > 0) {
+                        $register_success = Session::get('no_add_product');
+                        Session()->put('no_add_product');
+                        return redirect()->back()->with('no_add_product', 'Thêm không thành công');
+                    }else {
+                        $product_name = product::find($id);
+                        $product_name->name_product = $res->input('name_product');
+                        $product_name->save();
+                        $register_success = Session::get('add_product');
+                        Session()->put('add_product');
+                        return redirect()->back()->with('add_product', 'Thêm thành công');
+                    }
+                }elseif ($cate_edit == 0){
+                    $product_name = product::find($id);
+                    $product_name->name_product = $res->input('name_product');
+                    $product_name->cost_price_product = $res->input('cost_price');
+                    $product_name->sale_price_product = $res->input('sale_price');
+                    $product_name->sale = $res->input('sale');
+                    $product_name->status_product = $res->input('stt_product');
+                    $product_name->save();
+                    $register_success = Session::get('add_product');
+                    Session()->put('add_product');
+                    return redirect()->back()->with('add_product', 'Thêm thành công');
+                }elseif ($cate_edit == 2){
+                    $product_name = product::find($id);
+                    $product_name->cost_price_product = $res->input('cost_price');
+                    $product_name->save();
+                    $register_success = Session::get('add_product');
+                    Session()->put('add_product');
+                    return redirect()->back()->with('add_product', 'Thêm thành công');
+                }elseif ($cate_edit == 3){
+                    $product_name = product::find($id);
+                    $product_name->sale_price_product = $res->input('sale_price');
+                    $product_name->save();
+                    $register_success = Session::get('add_product');
+                    Session()->put('add_product');
+                    return redirect()->back()->with('add_product', 'Thêm thành công');
+                }elseif ($cate_edit == 4){
+                    $product_name = product::find($id);
+                    $product_name->sale = $res->input('salep');
+                    $product_name->save();
+                    $register_success = Session::get('add_product');
+                    Session()->put('add_product');
+                    return redirect()->back()->with('add_product', 'Thêm thành công');
+                }elseif ($cate_edit == 5){
+                    $product_name = product::find($id);
+                    $product_name->status_product = $res->input('stt_product');
+                    $product_name->save();
+                    $register_success = Session::get('add_product');
+                    Session()->put('add_product');
+                    return redirect()->back()->with('add_product', 'Thêm thành công');
+                }
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+
+    public function post_delete_product($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                product::find($id)->delete();
+                $register_success = Session::get('success_delete_product');
+                Session()->put('success_delete_product');
+                return redirect()->back()->with('success_delete_product', 'Thêm thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
     //khoi tao kho hang
     public function page_add_detail_warehouse(Request $res){
         if (Auth::check()){

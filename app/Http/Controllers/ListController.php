@@ -26,9 +26,9 @@ class ListController extends Controller
         ]);
     }
     public function list_invoice_caterogy (){
-        $list_invoice_cate = DB::table('invoice_caterogys')->get();
+        $list_order_cate = DB::table('order_caterogys')->get();
         return view('server.csdl_server.list_invoice_caterogy')->with([
-            'list_invoice_cate'=>$list_invoice_cate
+            'list_order_cate'=>$list_order_cate
         ]);
     }
         public function list_order_caterogy (){
@@ -71,8 +71,12 @@ class ListController extends Controller
     }
     public function list_product(){
         $product = DB::table('products')->get();
+        $unit =DB::table('units')->get();
+        $cate_product =DB::table('product_caterogys')->get();
         return view('server.csdl_server.list_product')->with([
-            'product'=>$product
+            'product'=>$product,
+            'unit'=>$unit,
+            'cate_product'=>$cate_product
         ]);
     }
 

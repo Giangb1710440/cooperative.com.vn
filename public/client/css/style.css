@@ -141,7 +141,7 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
+	/*padding-top: 100px;*/
 	padding-bottom: 100px;
 }
 
@@ -167,7 +167,7 @@ ol {
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
-	background: #7fad39;
+	background: #e93b35;
 	letter-spacing: 2px;
 }
 
@@ -773,12 +773,12 @@ ol {
 
 .categories__item h5 a {
 	font-size: 18px;
-	color: #1c1c1c;
+	color: #61B000;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	padding: 12px 0 10px;
-	background: #ffffff;
+
 	display: block;
 }
 
@@ -795,7 +795,7 @@ ol {
 	text-align: center;
 	border: 1px solid #ebebeb;
 	position: absolute;
-	left: -35px;
+	/*left: -35px;*/
 	top: 50%;
 	-webkit-transform: translateY(-35px);
 	background: #ffffff;
@@ -803,7 +803,7 @@ ol {
 
 .categories__slider.owl-carousel .owl-nav button.owl-next {
 	left: auto;
-	right: -35px;
+	right: 0px;
 }
 
 /*---------------------
@@ -811,8 +811,8 @@ ol {
 -----------------------*/
 
 .featured {
-	padding-top: 80px;
-	padding-bottom: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 .featured__controls {
@@ -939,7 +939,7 @@ ol {
 }
 
 .featured__item__text h5 {
-	color: #252525;
+	color: #61B000;
 	font-weight: 700;
 }
 
@@ -948,7 +948,7 @@ ol {
 -----------------------*/
 
 .latest-product {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 0;
 }
 
@@ -1041,7 +1041,7 @@ ol {
 .breadcrumb-section {
 	display: flex;
 	align-items: center;
-	padding: 45px 0 40px;
+	/*padding: 45px 0 40px;*/
 }
 
 .breadcrumb__text h2 {
@@ -1254,7 +1254,7 @@ ol {
 -----------------------*/
 
 .product {
-	padding-top: 80px;
+	/*padding-top: 80px;*/
 	padding-bottom: 80px;
 }
 
@@ -1383,7 +1383,7 @@ ol {
 
 .product__discount__item__text .product__item__price {
 	font-size: 18px;
-	color: #1c1c1c;
+	color: #61B000;
 	font-weight: 700;
 }
 
@@ -1421,7 +1421,7 @@ ol {
 }
 
 .filter__item {
-	padding-top: 45px;
+	padding-top: 20px;
 	border-top: 1px solid #ebebeb;
 	padding-bottom: 20px;
 }
@@ -1615,8 +1615,9 @@ ol {
 }
 
 .product__item__text h5 {
-	color: #252525;
-	font-weight: 700;
+    font-size: 17px;
+    color: #61B000;
+    font-weight: bold;
 }
 
 .product__pagination,
@@ -1660,7 +1661,7 @@ ol {
 -----------------------*/
 
 .product-details {
-	padding-top: 80px;
+	padding-top: 25px;
 }
 
 .product__details__pic__item {

@@ -49,7 +49,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($list_invoice_cate as $list_invoice_cates)
+                                        @foreach($list_order_cate as $list_order_cates)
                                             <tr>
                                                 <td>
                                                     <div class="custom-control custom-checkbox">
@@ -59,16 +59,16 @@
                                                 </td>
                                                 <td>
                                                     <div class="avatar avatar-md">
-                                                        IDIC0{{$list_invoice_cates->id}}
+                                                        IDIC0{{$list_order_cates->id}}
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-0 text-muted"><strong>{{ucwords($list_invoice_cates->name_cate_invoice)}}</strong></p>
+                                                    <p class="mb-0 text-muted"><strong>{{ucwords($list_order_cates->name_cate_order)}}</strong></p>
                                                 </td>
-                                                <td class="w-25"><small class="text-muted">{{trans($list_invoice_cates->description_cate_invoice)}}.</small></td>
+                                                <td class="w-25"><small class="text-muted">{{trans($list_order_cates->description_cate_order)}}.</small></td>
                                                 {{--                                                ham lay ngay thang trong laravel
                                                 --}}
-                                                <td class="text-muted">{{date('d-m-Y', strtotime($list_invoice_cates->created_at))}}</td>
+                                                <td class="text-muted">{{date('d-m-Y', strtotime($list_order_cates->created_at))}}</td>
                                                 <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <span class="text-muted sr-only">Action</span>
                                                     </button>

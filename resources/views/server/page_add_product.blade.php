@@ -35,13 +35,17 @@
                                                     <div class="invalid-feedback"> Please choose a username. </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5 mb-3">
+                                            <div class="col-md-4 mb-3">
                                                 <label for="validationCustom01">Giá vốn</label>
                                                 <input type="text" class="form-control" id="validationCustom01" name="cost_price" required>
                                             </div>
-                                            <div class="col-md-5 mb-3">
+                                            <div class="col-md-4 mb-3">
                                                 <label for="validationCustom02">Giá bán ra</label>
                                                 <input type="text" class="form-control" id="validationCustom02" name="sale_price" required>
+                                            </div>
+                                            <div class="col-md-2 mb-3">
+                                                <label for="validationCustom02">Khuyến mãi</label>
+                                                <input type="text" class="form-control" id="validationCustom02" name="khuyenmai" placeholder="%" required>
                                             </div>
                                             <div class="col-md-2 mb-3">
                                                 <label for="validationCustom02">Đơn vị</label>

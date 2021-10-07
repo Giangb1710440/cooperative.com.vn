@@ -16,7 +16,7 @@
                                     <strong class="card-title">Loại đơn hàng</strong>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" action="{{route('page_add_caterogy_order')}}" method="post">
+                                    <form class="needs-validation" action="{{route('post_add_caterogy_order')}}" method="post">
                                         @csrf
                                         <div class="form-group mb-3">
                                             <label for="exampleInputEmail1">Tên loại đơn hàng</label>
