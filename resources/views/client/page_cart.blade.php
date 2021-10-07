@@ -135,7 +135,7 @@
                             <li> Chiết khấu<span>1xx.xxx VNĐ</span></li>
                             <li>Thành tiền <span>1.xxx.xxxx VNĐ</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Thanh toán</a>
+                        <a href="{{route('page_checkout')}}" class="primary-btn">Thanh toán</a>
                     </div>
                 </div>
             </div>

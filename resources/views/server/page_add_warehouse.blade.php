@@ -9,7 +9,6 @@
                     <p class="text-muted">Mỗi kho hàng sẽ có mã kho phục vụ cho việc quản lý hàng hóa</p>
                     <div class="row">
                         <div class="col-md-1"></div>
-
                         <div class="col-md-10">
                             <div class="card shadow mb-4">
                                 <div class="card-header">
@@ -21,11 +20,6 @@
                                         <div class="form-group mb-3">
                                             <label for="exampleInputEmail1">Địa chỉ kho</label>
                                             <input type="text" class="form-control" id="" name="address_warehouse"  required>
-                                        </div>
-                                        <br>
-                                        <div class="form-group mb-3">
-                                            <label for="exampleInputEmail1">Hình ảnh</label>
-                                            <input type="file" class="form-control" id="" name="images_warehouse"  required>
                                         </div>
                                         <br>
                                         <div class="form-group mb-3">
@@ -69,4 +63,5 @@
             })
         }
     </script>
+
 @endsection

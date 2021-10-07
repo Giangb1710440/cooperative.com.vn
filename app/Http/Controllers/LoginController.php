@@ -92,4 +92,22 @@ class LoginController extends Controller
     public function add_user(){
         return view('server.page_add_user');
     }
+
+    function index()
+    {
+        return view('welcome');
+    }
+
+    function action(Request $request)
+    {
+        $data = $request->all();
+
+        $query = $data['query'];
+
+        $filter_data = User::select('name')
+            ->where('name', 'LIKE', '%'.$query.'%')
+            ->get();
+
+        return response()->json($filter_data);
+    }
 }

@@ -1,5 +1,5 @@
 @extends('server_view.master_admin')
-@section('title','Danh sách loại sản phẩm')
+@section('title','Quản lý loại sản phẩm')
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">
@@ -7,9 +7,38 @@
                 <div class="col-12">
                     <div class="row">
                         <!-- Small table -->
-                        <div class="col-md-12 my-4">
+                        <div class="col-md-5 my-4">
+                            <h2 class="h4 mb-1">Thêm mới loại sản phẩm</h2>
+                            <p class="mb-3">Chức năng được tích hợp ngay tại trang quản lí loại sản phẩm, thuận tiện cho người dùng thao tác</p>
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                    <strong class="card-title">Loại sản phẩm</strong>
+                                </div>
+                                <div class="card-body">
+                                    <form class="needs-validation" action="{{route('post_add_caterogy_product')}}" method="post">
+                                        @csrf
+                                        <div class="form-group mb-3">
+                                            <label for="exampleInputEmail1">Tên loại sản phẩm</label>
+                                            <input type="text" class="form-control" id="" name="name_caterogy_product"  required>
+
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="validationTextarea">Mô tả</label>
+                                            <textarea class="form-control" id="validationTextarea" name="description_caterogy_product" required></textarea>
+                                            <div class="invalid-feedback"> Hãy nhập vào mô tả. </div>
+                                        </div>
+
+                                        <button class="btn btn-primary" type="submit"><i class="far fa-plus-square"></i> Thêm mới</button>
+
+                                        <a class="btn btn-primary" href="{{route('admin_home')}}"><i class="far fa-times-circle"></i> Thoát </a>
+                                    </form>
+                                </div> <!-- /.card-body -->
+                            </div> <!-- /.card -->
+                        </div> <!-- customized table -->
+                        <div class="col-md-7 my-4">
                             <h2 class="h4 mb-1">Danh sách loại sản phẩm</h2>
                             <p class="mb-3">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
+                            <br>
                             <div class="card shadow">
                                 <div class="card-body">
                                     <div class="toolbar">
@@ -37,9 +66,7 @@
                                         <thead>
                                         <tr>
                                             <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <i class="fas fa-directions custom-control-label"></i>
-                                                </div>
+
                                             </td>
                                             <th>ID</th>
                                             <th>TÊN LOẠI SẢN PHẨM</th>
@@ -49,8 +76,8 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($cate_product as $cate_products)
-                                                <tr>
+                                        @foreach($cate_product as $cate_products)
+                                            <tr>
                                                 <td>
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="2474">
@@ -68,17 +95,70 @@
                                                 </td>
                                                 <td class="w-25"><small class="text-muted">{{trans($cate_products->description_cate_product)}} .</small></td>
                                                 <td class="text-muted">{{date('d-m-Y', strtotime($cate_products->created_at))}}</td>
-                                                <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
+                                                <td>
+                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#">Edit</a>
-                                                        <a class="dropdown-item" href="#">Remove</a>
-                                                        <a class="dropdown-item" href="#">Assign</a>
+                                                        <button type="button" class="dropdown-item btn mb-2 btn-outline-secondary" data-toggle="modal"  data-target="#edit_unit{{$cate_products->id}}" data-whatever="@mdo"><i class="fas fa-edit"></i> Chỉnh sửa</button>
+                                                        <button type="button" class="dropdown-item btn mb-2 btn-outline-secondary" data-toggle="modal"  data-target="#delete_unit{{$cate_products->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i> Xóa</button>
+                                                    </div>
+                                                    {{--                                                    xoa du lieu unit--}}
+                                                    <div class="modal fade" id="delete_unit{{$cate_products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form>
+                                                                        <div class="form-group">
+                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan sẽ bị xóa sạch và không thể phục hồi</label>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+                                                                    <a href="{{route('post_delete_catep',$cate_products->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{--                                                        Edit du lieu unit--}}
+                                                    <div class="modal fade" id="edit_unit{{$cate_products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật dữ liệu</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method="post">
+                                                                        @csrf
+                                                                        <div class="form-group mb-3">
+                                                                            <label for="exampleInputEmail1">Tên loại sản phẩm</label>
+                                                                            <input type="text" class="form-control" id="" name="time_bonphan" value="{{$cate_products->name_cate_product}}"  required>
+                                                                        </div>
+                                                                        <div class="form-group mb-3">
+                                                                            <label for="exampleInputEmail1">Mô tả</label>
+                                                                            <textarea class="form-control" id="validationTextarea" name="description_unit" required>{{$cate_products->description_cate_product}}</textarea>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
+                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                        @endforeach
                                         </tbody>
                                     </table>
                                     <nav aria-label="Table Paging" class="mb-0 text-muted">
@@ -224,4 +304,47 @@
             </div>
         </div>
     </main> <!-- main -->
+
+    <script>
+        var msg = '{{Session::get('success_delete_catep')}}';
+        var exist = '{{Session::has('success_delete_catep')}}';
+        if (exist) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1200,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'Đã xóa'
+            })
+        }
+    </script>
+    <script>
+        var msg = '{{Session::get('add_caterogy_product_success')}}';
+        var exist = '{{Session::has('add_caterogy_product_success')}}';
+        if (exist) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1200,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Đã thêm'
+            })
+        }
+    </script>
 @endsection

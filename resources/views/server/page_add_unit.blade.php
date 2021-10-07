@@ -10,7 +10,6 @@
                     phục vụ cho việc bán hàng.</p>
                     <div class="row">
                         <div class="col-md-1"></div>
-
                         <div class="col-md-10">
                             <div class="card shadow mb-4">
                                 <div class="card-header">
@@ -37,7 +36,6 @@
                                 </div> <!-- /.card-body -->
                             </div> <!-- /.card -->
                         </div> <!-- /.col -->
-
                         <div class="col-md-1"></div>
                     </div> <!-- end section -->
                 </div> <!-- /.col-12 col-lg-10 col-xl-10 -->

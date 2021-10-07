@@ -26,10 +26,12 @@ Route::get('page-admin',[AdminController::class,'index'])->name('admin_home');
 //them loai san pham
 Route::get('page-add-caterogy-product',[AdminController::class,'page_add_caterogy_product'])->name('page_add_caterogy_product');
 Route::post('post-add-caterogy-product',[AdminController::class,'post_add_caterogy_product'])->name('post_add_caterogy_product');
+Route::get('post-add-caterogyp/{id}',[AdminController::class,'post_delete_catep'])->name('post_delete_catep');
 
 //them don vi tinh
 Route::get('page-add-unit',[AdminController::class,'page_add_unit'])->name('page_add_unit');
 Route::post('post-add-unit',[AdminController::class,'post_add_unit'])->name('post_add_unit');
+Route::get('post-delete-unit/{id}',[AdminController::class,'post_delete_unit'])->name('post_delete_unit');
 
                                                 //them san pham
 Route::get('page-add-product',[AdminController::class,'page_add_product'])->name('page_add_product');
@@ -55,6 +57,7 @@ Route::post('post-add-caterogy-order',[AdminController::class,'post_add_caterogy
 //them kho hang
 Route::get('page-add-warehouse',[AdminController::class,'page_add_warehouse'])->name('page_add_warehouse');
 Route::post('post-add-warehouse',[AdminController::class,'post_add_warehouse'])->name('post_add_warehouse');
+Route::get('post-delete-warehouse/{id}',[AdminController::class,'post_delete_warehouse'])->name('post_delete_warehouse');
 
 
 //khoi tao kho hang
@@ -140,3 +143,7 @@ Route::get('/page-sign-up',[LoginController::class,'page_sign_up'])->name('page_
 Route::post('/post-sign-up',[LoginController::class,'check_sign_up'])->name('post_sign_up');
     //logot
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
+Route::get('/typeahead_autocomplete', [LoginController::class, 'index']);
+
+Route::get('/typeahead_autocomplete/action', [LoginController::class, 'action'])->name('typeahead_autocomplete.action');

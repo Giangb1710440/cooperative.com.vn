@@ -72,6 +72,21 @@ class AdminController extends Controller
 
     }
 
+    public function post_delete_catep($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                product_caterogy::find($id)->delete();
+                $register_success = Session::get('success_delete_catep');
+                Session()->put('success_delete_catep');
+                return redirect()->back()->with('success_delete_catep', 'xoa thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
     //them moi don vi
     public function page_add_unit(){
         if (Auth::check()){
@@ -103,6 +118,21 @@ class AdminController extends Controller
             return redirect()->route('login');
         }
 
+    }
+
+    public function post_delete_unit($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                unit::find($id)->delete();
+                $register_success = Session::get('success_delete_unit');
+                Session()->put('success_delete_unit');
+                return redirect()->back()->with('success_delete_unit', 'xoa thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
     }
 
     //them nha cung cap
@@ -286,7 +316,7 @@ class AdminController extends Controller
             }else{
                 $warehouse = new warehouse();
                 $warehouse->address_warehouse=$res->input('address_warehouse');
-                $warehouse->image_warehouse=$res->input('images_warehouse');
+
                 $warehouse->description_warehouse=$res->input('description_warehouse');
                 $warehouse->save();
                 $register_success = Session::get('add_warehouse_success');
@@ -297,6 +327,20 @@ class AdminController extends Controller
             return redirect()->route('login');
         }
 
+    }
+    public function post_delete_warehouse($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                warehouse::find($id)->delete();
+                $register_success = Session::get('success_delete_warehouse');
+                Session()->put('success_delete_warehouse');
+                return redirect()->back()->with('success_delete_warehouse', 'Thêm thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
     }
 
 //-------------------------------san pham

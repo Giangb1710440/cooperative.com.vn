@@ -422,7 +422,7 @@ ol {
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
-	margin-right: 50px;
+	margin-right: 45px;
 	position: relative;
 }
 
@@ -589,7 +589,7 @@ ol {
 .hero__categories__all {
 	background: #7fad39;
 	position: relative;
-	padding: 10px 25px 10px 40px;
+	padding: 10px 25px 10px 20px;
 	cursor: pointer;
 }
 
@@ -639,7 +639,7 @@ ol {
 }
 
 .hero__search__form {
-	width: 610px;
+	width: 600px;
 	height: 50px;
 	border: 1px solid #ebebeb;
 	position: relative;

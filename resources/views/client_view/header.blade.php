@@ -143,7 +143,7 @@
                     <div class="header__cart">
                         <ul>
                             {{--                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>--}}
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">Tạm tính: <span>150.000 VNĐ</span></div>
                     </div>
@@ -177,7 +177,7 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="#">
-                                    <input type="text" placeholder="Bạn cần tìm gì?">
+                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -244,7 +244,7 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="#">
-                                    <input type="text" placeholder="Bạn cần tìm gì?">
+                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì..." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -333,7 +333,7 @@
                     <div class="header__cart">
                         <ul>
                             {{--                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>--}}
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">Tạm tính: <span>150.000 VNĐ</span></div>
                     </div>
@@ -367,11 +367,7 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="#">
-                                    {{--                                <div class="hero__search__categories">--}}
-                                    {{--                                    All Categories--}}
-                                    {{--                                    <span class="arrow_carrot-down"></span>--}}
-                                    {{--                                </div>--}}
-                                    <input type="text" placeholder="Bạn cần tìm gì?">
+                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -439,7 +435,7 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="#">
-                                    <input type="text" placeholder="Bạn cần tìm gì?">
+                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -459,6 +455,25 @@
         </section>
     @endif
 @endif
+<script>
+
+    var path = "{{ url('typeahead_autocomplete/action') }}";
+
+    $('#user_name').typeahead({
+
+        source: function(query, process){
+
+            return $.get(path, {query:query}, function(data){
+
+                return process(data);
+
+            });
+
+        }
+
+    });
+</script>
+
 
 
 
