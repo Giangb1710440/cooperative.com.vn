@@ -9,9 +9,9 @@ use App\Http\Controllers\ListController;
 //client
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
-Route::get('/page-product',[HomeController::class,'page_product'])->name('page_product');
+Route::get('/page-product/{id}',[HomeController::class,'page_product'])->name('page_product');
 
-Route::get('/page-detail-product',[HomeController::class,'page_detail_product'])->name('page_detail_product');
+Route::get('/page-detail-product/{id}',[HomeController::class,'page_detail_product'])->name('page_detail_product');
 
 Route::get('/page-cart',[HomeController::class,'page_cart'])->name('page_cart');
 

@@ -4,7 +4,6 @@
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg">
     <div class="container">
-
             <hr style="size: 1px">
     </div>
 </section>
@@ -17,15 +16,12 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
-                        <h4>Lựa chọn</h4>
+                        <h4>Lựa chọn cho bạn</h4>
                         <ul>
-                            <li><a href="#">Chuối</a></li>
-                            <li><a href="#">Dưa leo</a></li>
-                            <li><a href="#">Dưa hấu</a></li>
-                            <li><a href="#">Gạo hàm châu</a></li>
-                            <li><a href="#">Thịt lợn</a></li>
-                            <li><a href="#">Thịt gà ta</a></li>
-                            <li><a href="#">Trứng</a></li>
+                            @php($cate_product = DB::table('product_caterogys')->get())
+                            @foreach($cate_product as $cate_products)
+                                <li><a href="{{route('page_product',$cate_products->id)}}">{{ucwords($cate_products->name_cate_product)}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -94,119 +90,37 @@
                     </div>
                     <div class="row">
                         <div class="product__discount__slider owl-carousel">
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                         data-setbg="{{asset('public/client/img/product/discount/pd-1.jpg')}}">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
+                            @php($product_sale = DB::table('products')->where('sale','!=',0)->get())
+                            @foreach($product_sale as $key => $product_sales)
+                                @php($key += 1)
+                                @if($key < 5)
+                                    <div class="col-lg-4">
+                                        <div class="product__discount__item">
+                                            @foreach((array)json_decode($product_sales->image_product,true) as $images)
+                                                <div class="product__discount__item__pic set-bg"
+                                                     data-setbg="{{asset('public/uploads/'.$images)}}">
+                                                    <div class="product__discount__percent">-{{$product_sales->sale}}%</div>
+                                                    <ul class="product__item__pic__hover">
+                                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                        <li><a href="{{route('page_detail_product',$product_sales->id)}}"><i class="far fa-eye"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                @break
+                                            @endforeach
+                                            <div class="product__discount__item__text">
+                                                <h5><a href="{{route('page_detail_product',$product_sales->id)}}">{{$product_sales->name_product}}</a></h5>
+                                                <div class="product__item__price">{{number_format(ceil($product_sales->sale_price_product -($product_sales->sale_price_product*($product_sales->sale/100))))}} VNĐ <span>{{number_format($product_sales->sale_price_product)}} VNĐ</span></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="product__discount__item__text">
-                                        <h5><a href="#">Name_product</a></h5>
-                                        <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                         data-setbg="{{asset('public/client/img/product/discount/pd-2.jpg')}}">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-
-                                        <h5><a href="#">Name_product</a></h5>
-                                        <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                         data-setbg="{{asset('public/client/img/product/discount/pd-3.jpg')}}">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-
-                                        <h5><a href="#">Name_product</a></h5>
-                                        <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                         data-setbg="{{asset('public/client/img/product/discount/pd-4.jpg')}}">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-
-                                        <h5><a href="#">Name_product</a></h5>
-                                        <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                         data-setbg="{{asset('public/client/img/product/discount/pd-5.jpg')}}">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-
-                                        <h5><a href="#">Name_product</a></h5>
-                                        <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg"
-                                         data-setbg="{{asset('public/client/img/product/discount/pd-6.jpg')}}">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__discount__item__text">
-
-                                        <h5><a href="#">Name_product</a></h5>
-                                        <div class="product__item__price">1x.xxx VNĐ <span>3x.xxx VNĐ</span></div>
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <style>
             div.tieude_giua
             {
@@ -239,7 +153,11 @@
             }
         </style>
         <div class="tieude_giua">
-            <div>Sản phẩm</div>
+            @if(Session::has('tieude'))
+                <div>{{Session::get('tieude')}}</div>
+            @else
+                <div>Không tìm thấy sản phẩm</div>
+            @endif
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -256,103 +174,33 @@
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <div class="filter__found">
-                                <h6><span>16</span> Sản phẩm được tìm thấy</h6>
+                                <h6><span>{{count($product)}}</span> Sản phẩm được tìm thấy</h6>
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    @foreach($product as $products)
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{asset('public/client/img/product/product-1.jpg')}}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
+                            @foreach((array)json_decode($products->image_product,true) as $images)
+                                <div class="product__item__pic set-bg" data-setbg="{{asset('public/uploads/'.$images)}}">
+                                    <ul class="product__item__pic__hover">
+                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="far fa-eye"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
+                                </div>
+                                @break
+                            @endforeach
                             <div class="product__item__text">
-                                <h6><a href="#">Name_product</a></h6>
-                                <h5>1xx.xxx VNĐ</h5>
+                                <h6><a href="#">{{$products->name_product}}</a></h6>
+                                <h5>{{number_format($products->sale_price_product)}} VNĐ</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{asset('public/client/img/product/product-2.jpg')}}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Name_product</a></h6>
-                                <h5>1xx.xxx VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{asset('public/client/img/product/product-3.jpg')}}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Name_product</a></h6>
-                                <h5>1xx.xxx VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{asset('public/client/img/product/product-4.jpg')}}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Name_product</a></h6>
-                                <h5>1xx.xxx VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{asset('public/client/img/product/product-6.jpg')}}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Name_product</a></h6>
-                                <h5>1xx.xxx VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{asset('public/client/img/product/product-7.jpg')}}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Name_product</a></h6>
-                                <h5>1xx.xxx VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="product__pagination">
                     <a href="#">1</a>

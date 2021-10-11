@@ -117,22 +117,17 @@
                     <nav class="header__menu">
                         <ul>
                             <li class=""><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="{{route('page_product')}}">Sản phẩm</a>
+                            <li><a href="{{route('page_product',0)}}">Sản phẩm</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="{{route('page_detail_product')}}">Tất cả sản phẩm</a></li>
-                                    <li><a href="{{route('page_cart')}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
-                                    <li><a href="{{route('page_checkout')}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
-                                    <li><a href="./blog-details.html"><i class="fas fa-carrot"></i> Rau củ</a></li>
-                                    <li><a href="./blog-details.html"><i class="fab fa-servicestack"></i> Gạo </a></li>
+                                    <li><a href="{{route('page_product',0)}}">Tất cả sản phẩm</a></li>
+                                    <li><a href="{{route('page_product',4)}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                    <li><a href="{{route('page_product',1)}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                    <li><a href="{{route('page_product',2)}}"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                    <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="{{route('page_detail_product')}}">Chi tiết sản phẩm</a></li>
-                                    <li><a href="{{route('page_cart')}}">Giỏ hàng</a></li>
-                                    <li><a href="{{route('page_checkout')}}">Thanh toán</a></li>
-                                    <li><a href="./blog-details.html">Tin tức</a></li>
-                                </ul>
+                            <li><a href="#">Khuyến mãi</a>
+
                             </li>
                             <li><a href="./blog.html">Tin tức</a></li>
                             <li><a href="./contact.html">Liên hệ</a></li>
@@ -165,11 +160,11 @@
                                 <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="{{route('page_detail_product')}}">Tất cả sản phẩm</a></li>
-                                <li><a href="{{route('page_cart')}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
-                                <li><a href="{{route('page_checkout')}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
-                                <li><a href="./blog-details.html"><i class="fas fa-carrot"></i> Rau củ</a></li>
-                                <li><a href="./blog-details.html"><i class="fab fa-servicestack"></i> Gạo </a></li>
+                                <li><a href="{{route('page_product',0)}}">Tất cả sản phẩm</a></li>
+                                <li><a href="{{route('page_product',4)}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                <li><a href="{{route('page_product',1)}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                <li><a href="{{route('page_product',2)}}"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                             </ul>
                         </div>
                     </div>
@@ -192,31 +187,16 @@
                             </div>
                         </div>
                         <div class="categories__slider owl-carousel">
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-1.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
+                            @foreach($product_slider as $product_sliders)
+                                <div class="col-lg-3">
+                                    @foreach((array)json_decode($product_sliders->image_product,true) as $image)
+                                        <div class="categories__item set-bg" data-setbg="{{asset('public/uploads/'.$image)}}">
+                                            <h5><a href="#">{{$product_sliders->name_product}}</a></h5>
+                                        </div>
+                                        @break
+                                    @endforeach
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-2.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-3.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-4.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-5.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -233,10 +213,11 @@
                                 <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Thịt, cá, trứng</a></li>
-                                <li><a href="#">Hoa quả</a></li>
-                                <li><a href="#">Rau củ</a></li>
-                                <li><a href="#">Gạo</a></li>
+                                <li><a href="{{route('page_product',0)}}">Tất cả sản phẩm</a></li>
+                                <li><a href="{{route('page_product',4)}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                <li><a href="{{route('page_product',1)}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                <li><a href="{{route('page_product',2)}}"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                             </ul>
                         </div>
                     </div>
@@ -307,22 +288,17 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="{{route('page_product')}}">Sản phẩm</a>
+                            <li class=""><a href="{{route('home')}}">Home</a></li>
+                            <li><a href="{{route('page_product',0)}}">Sản phẩm</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="{{route('page_detail_product')}}">Tất cả sản phẩm</a></li>
-                                    <li><a href="{{route('page_cart')}}">Giỏ hàng</a></li>
-                                    <li><a href="{{route('page_checkout')}}">Thanh toán</a></li>
-                                    <li><a href="./blog-details.html">Tin tức</a></li>
+                                    <li><a href="{{route('page_product',0)}}">Tất cả sản phẩm</a></li>
+                                    <li><a href="{{route('page_product',4)}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                    <li><a href="{{route('page_product',1)}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                    <li><a href="{{route('page_product',2)}}"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                    <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="{{route('page_detail_product')}}">Chi tiết sản phẩm</a></li>
-                                    <li><a href="{{route('page_cart')}}">Giỏ hàng</a></li>
-                                    <li><a href="{{route('page_checkout')}}">Thanh toán</a></li>
-                                    <li><a href="./blog-details.html">Tin tức</a></li>
-                                </ul>
+                            <li><a href="#">Khuyến mãi</a>
                             </li>
                             <li><a href="./blog.html">Tin tức</a></li>
                             <li><a href="./contact.html">Liên hệ</a></li>
@@ -355,11 +331,11 @@
                                 <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Thịt, cá, trứng</a></li>
-                                <li><a href="#">Hoa quả</a></li>
-                                <li><a href="#">Rau củ</a></li>
-                                <li><a href="#">Gạo</a></li>
-
+                                <li><a href="{{route('page_product',0)}}">Tất cả sản phẩm</a></li>
+                                <li><a href="{{route('page_product',4)}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                <li><a href="{{route('page_product',1)}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                <li><a href="{{route('page_product',2)}}"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                             </ul>
                         </div>
                     </div>
@@ -382,31 +358,16 @@
                             </div>
                         </div>
                         <div class="categories__slider owl-carousel">
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-1.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
+                            @foreach($product_slider as $product_sliders)
+                                <div class="col-lg-3">
+                                    @foreach((array)json_decode($product_sliders->image_product, true) as $image)
+                                        <div class="categories__item set-bg" data-setbg="{{asset('public/uploads/'.$image)}}">
+                                            <h5><a href="#">{{$product_sliders->name_product}}</a></h5>
+                                        </div>
+                                        @break
+                                    @endforeach
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-2.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-3.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-4.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-5.jpg')}}">
-                                    <h5><a href="#">Name_product</a></h5>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -423,11 +384,11 @@
                                 <span>Danh mục sản phẩm</span>
                             </div>
                             <ul>
-                                <li><a href="#">Thịt, cá, trứng</a></li>
-                                <li><a href="#">Hoa quả</a></li>
-                                <li><a href="#">Rau củ</a></li>
-                                <li><a href="#">Gạo</a></li>
-
+                                <li><a href="{{route('page_product',0)}}">Tất cả sản phẩm</a></li>
+                                <li><a href="{{route('page_product',4)}}"><i class="fas fa-fish"></i> Thịt, Cá, Trứng</a></li>
+                                <li><a href="{{route('page_product',1)}}"><i class="fas fa-apple-alt"></i> Trái cây</a></li>
+                                <li><a href="{{route('page_product',2)}}"><i class="fas fa-carrot"></i> Rau củ</a></li>
+                                <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                             </ul>
                         </div>
                     </div>

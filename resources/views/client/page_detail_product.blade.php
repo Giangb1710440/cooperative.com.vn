@@ -4,7 +4,6 @@
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg">
         <div class="container">
-
             <hr style="size: 1px">
             <style>
                 div.tieude_giua
@@ -38,7 +37,14 @@
                 }
             </style>
             <div class="tieude_giua">
-                <div>Trái cây phun thuốc trừ xâu nhiều, ăn vô chết gán chịu</div>
+                @php($catep = DB::table('product_caterogys')->get())
+                @foreach($product_detail as $product_details)
+                    @foreach($catep as $cateps)
+                        @if($cateps->id == $product_details->id_cate_product)
+                            <div>{{strtoupper($cateps->name_cate_product)}}</div>
+                        @endif
+                    @endforeach
+                @endforeach
             </div>
         </div>
     </section>
@@ -48,100 +54,100 @@
     <section class="product-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__pic">
-                        <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                 src="{{asset('public/client/img/product/details/product-details-1.jpg')}}" alt="">
-                        </div>
-                        <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="{{asset('public/client/img/product/details/product-details-2.jpg')}}"
-                                 src="{{asset('public/client/img/product/details/thumb-1.jpg')}}" alt="">
-                            <img data-imgbigurl="{{asset('public/client/img/product/details/product-details-3.jpg')}}"
-                                 src="{{asset('public/client/img/product/details/thumb-2.jpg')}}" alt="">
-                            <img data-imgbigurl="{{asset('public/client/img/product/details/product-details-5.jpg')}}"
-                                 src="{{asset('public/client/img/product/details/thumb-3.jpg')}}" alt="">
-                            <img data-imgbigurl="{{asset('public/client/img/product/details/product-details-4.jpg')}}"
-                                 src="{{asset('public/client/img/product/details/thumb-4.jpg')}}" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__text">
-                        <h3>Name_product</h3>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 đánh giá)</span>
-                        </div>
-                        <div class="product__details__price">$50.00</div>
-                        <p>Phần Mô tả.</p>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
+                @php($unit = DB::table('units')->get())
+                @foreach($product_detail as $product_details)
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product__details__pic">
+                            <div class="product__details__pic__item">
+                                    @foreach((array)json_decode($product_details->image_product,true) as $images)
+                                    <img class="product__details__pic__item--large"
+                                         src="{{asset('public/uploads/'.$images)}}" alt="">
+                                        @break
+                                    @endforeach
+                            </div>
+                            <div class="product__details__pic__slider owl-carousel">
+                                @foreach((array)json_decode($product_details->image_product,true) as $images)
+                                    <img data-imgbigurl="{{asset('public/uploads/'.$images)}}"
+                                     src="{{asset('public/uploads/'.$images)}}" alt="">
+                                @endforeach
                             </div>
                         </div>
-                        <a href="#" class="primary-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                        <ul>
-                            <li><b>Tình trạng</b> <span>còn hàng</span></li>
-                            <li><b>Vận chuyển</b> <span>Miễn ship cho đơn trong  <samp>phạm vi 5km.</samp></span></li>
-                            <li><b>Định lượng</b> <span>Kg</span></li>
-                            <li><b>Share on</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product__details__text">
+                            <h3>{{$product_details->name_product}}</h3>
+                            <div class="product__details__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span>(18 đánh giá)</span>
+                            </div>
+                            <div class="product__details__price">{{number_format($product_details->sale_price_product)}} VNĐ</div>
 
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">
+                                    </div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                            <a href="#" class="primary-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            <ul>
+                                <li><b>Tình trạng</b> <span>còn hàng</span></li>
+                                <li><b>Vận chuyển</b> <span>Miễn ship cho đơn trong  <samp>phạm vi 5km.</samp></span></li>
+                                <li><b>Đơn vị</b>
+                                    @foreach($unit as $units)
+                                        @if($units->id == $product_details->id_unit)
+                                            <span>{{strtoupper($units->name_unit)}}</span>
+                                        @endif
+                                    @endforeach
+                                </li>
+                                <li><b>Chia sẻ</b>
+                                    <div class="share">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="product__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                   aria-selected="true">Mô tả sản phẩm</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                   aria-selected="false">Thông tin</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                   aria-selected="false">Đánh giá <span>(xx)</span></a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Mô tả sản phẩm</h6>
-                                    <p>Phần header.</p>
-                                    <p>Phần footer.</p>
+                    <div class="col-lg-12">
+                        <div class="product__details__tab">
+                            <ul class="nav nav-tabs" role="tablist">
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"--}}
+{{--                                       aria-selected="true">Mô tả sản phẩm</a>--}}
+{{--                                </li>--}}
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-2" role="tab"
+                                       aria-selected="false">Thông tin</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                       aria-selected="false">Đánh giá <span></span></a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tabs-2" role="tabpanel">
+                                    <div class="product__details__tab__desc">
+                                        <h6>Mô tả sản phẩm</h6>
+                                        <p>{{$product_details->description_product}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Thông tin sản phẩm</h6>
-                                    <p>Phần header.</p>
-                                    <p>Phần footer.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Đánh giá</h6>
-                                    <p>Phần đánh giá.</p>
+
+                                <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                    <div class="product__details__tab__desc">
+                                        <h6>Đánh giá</h6>
+                                        <p>Phần đánh giá.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

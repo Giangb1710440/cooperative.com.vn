@@ -1,40 +1,6 @@
 @extends('client_view.master')
 @section('title','Trang chủ')
 @section('content')
-{{--<section class="categories">--}}
-{{--    <div class="container">--}}
-{{--        <div class="row">--}}
-{{--            <div class="categories__slider owl-carousel">--}}
-{{--                <div class="col-lg-3">--}}
-{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-1.jpg')}}">--}}
-{{--                        <h5><a href="#">Name_product</a></h5>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-3">--}}
-{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-2.jpg')}}">--}}
-{{--                        <h5><a href="#">Name_product</a></h5>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-3">--}}
-{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-3.jpg')}}">--}}
-{{--                        <h5><a href="#">Name_product</a></h5>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-3">--}}
-{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-4.jpg')}}">--}}
-{{--                        <h5><a href="#">Name_product</a></h5>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-3">--}}
-{{--                    <div class="categories__item set-bg" data-setbg="{{asset('public/client/img/categories/cat-5.jpg')}}">--}}
-{{--                        <h5><a href="#">Name_product</a></h5>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</section>--}}
-<!-- Categories Section End -->
 
 <!-- Featured Section Begin -->
 <section class="featured spad">
@@ -47,7 +13,7 @@
                 <div class="featured__controls">
                     <ul>
                         <li class="active" data-filter="*">Tất cả</li>
-                        <li data-filter=".oranges">Hoa quả</li>
+                        <li data-filter=".oranges">Trái cây</li>
                         <li data-filter=".fresh-meat">Rau củ quả</li>
                         <li data-filter=".vegetables">Thịt, cá, trứng</li>
 
@@ -56,126 +22,47 @@
             </div>
         </div>
         <div class="row featured__filter">
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-1.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
+            @foreach($product_flu as $product_flus)
+                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges">
+                    <div class="featured__item">
+                        @foreach((array)json_decode($product_flus ->image_product,true) as $images)
+                            <div class="featured__item__pic set-bg" data-setbg="{{asset('public/uploads/'.$images)}}">
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="far fa-eye"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            @break
+                        @endforeach
+                        <div class="featured__item__text">
+                            <h6><a href="#">{{$product_flus->name_product}}</a></h6>
+                            <h5>{{number_format($product_flus->sale_price_product)}} VNĐ</h5>
+                        </div>
                     </div>
+                </div>
+            @endforeach
+            @foreach($product_ve as $product_ves)
+                 <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat">
+                <div class="featured__item">
+                    @foreach((array)json_decode($product_ves ->image_product,true) as $images)
+                        <div class="featured__item__pic set-bg" data-setbg="{{asset('public/uploads/'.$images)}}">
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="far fa-eye"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        @break
+                    @endforeach
                     <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
+                        <h6><a href="#">{{$product_ves->name_product}}</a></h6>
+                        <h5>{{number_format($product_ves->sale_price_product)}} VNĐ</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-2.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-3.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-4.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-5.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-6.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-7.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{asset('public/client/img/featured/feature-8.jpg')}}">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-glasses"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">Name_product</a></h6>
-                        <h5>1xx.xxx VNĐ</h5>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </section>
