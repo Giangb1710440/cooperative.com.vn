@@ -41,33 +41,11 @@
                             <br>
                             <div class="card shadow">
                                 <div class="card-body">
-                                    <div class="toolbar">
-                                        <form class="form">
-                                            <div class="form-row">
-                                                <div class="form-group col-auto mr-auto">
-                                                    <label class="my-1 mr-2 sr-only" for="inlineFormCustomSelectPref1">Show</label>
-                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelectPref1">
-                                                        <option value="">...</option>
-                                                        <option value="1" selected>12</option>
-                                                        <option value="2">32</option>
-                                                        <option value="3">64</option>
-                                                        <option value="3">128</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-auto">
-                                                    <label for="search" class="sr-only">Tìm kiếm</label>
-                                                    <input type="text" class="form-control" id="search1" value="" placeholder="Tìm kiêm">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
                                     <!-- table -->
-                                    <table class="table table-borderless table-hover">
+                                    <table class="table datatables" id="dataTable-1">
                                         <thead>
                                         <tr>
-                                            <td>
-
-                                            </td>
+                                            <td></td>
                                             <th><strong>ID</strong></th>
                                             <th><strong>TÊN ĐƠN VỊ</strong></th>
                                             <th class="w-25"><strong>MÔ TẢ</strong></th>
@@ -76,6 +54,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
                                         @foreach($list_unit as $list_units)
                                             <tr>
                                                 <td>
@@ -99,7 +78,7 @@
                                                         <button type="button" class="dropdown-item btn mb-2 btn-outline-secondary" data-toggle="modal"  data-target="#edit_unit{{$list_units->id}}" data-whatever="@mdo"><i class="fas fa-edit"></i> Chỉnh sửa</button>
                                                         <button type="button" class="dropdown-item btn mb-2 btn-outline-secondary" data-toggle="modal"  data-target="#delete_unit{{$list_units->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i> Xóa</button>
                                                     </div>
-{{--                                                    xoa du lieu unit--}}
+                                                    {{--                                                    xoa du lieu unit--}}
                                                     <div class="modal fade" id="delete_unit{{$list_units->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -123,7 +102,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-{{--                                                        Edit du lieu unit--}}
+                                                    {{--                                                        Edit du lieu unit--}}
                                                     <div class="modal fade" id="edit_unit{{$list_units->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -158,17 +137,9 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    <nav aria-label="Table Paging" class="mb-0 text-muted">
-                                        <ul class="pagination justify-content-center mb-0">
-                                            <li class="page-item"><a class="page-link" href="#">Trước</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Tiếp</a></li>
-                                        </ul>
-                                    </nav>
                                 </div>
                             </div>
+
                         </div> <!-- customized table -->
                     </div> <!-- end section -->
                 </div> <!-- .col-12 -->

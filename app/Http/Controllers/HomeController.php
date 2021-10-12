@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\giohang;
+use App\Models\order;
+use App\Models\order_detail;
 use App\Models\product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +27,17 @@ class HomeController extends Controller
         ]);
     }
 
+    public function page_contact(){
+        Session::forget('home');
+        return view('client.page_contact');
+    }
+    public function page_discount(){
+        Session::forget('home');
+        $product = DB::table('products')->where('sale','!=',0)->get();
+        return view('client.page_discount')->with([
+            'product'=>$product
+        ]);
+    }
     //trang san pham
     public function page_product($id){
         if($id == 0){
@@ -154,6 +167,39 @@ class HomeController extends Controller
     public function page_checkout(){
         Session::forget('home');
         return view('client.page_checkout');
+    }
+
+    public function post_checkout(Request $request){
+        $cart = Session::get('cart');
+        if(count($cart->items)==0){
+            Session::put('order_Nsuccess');
+            return redirect()->back()->with('order_Nsuccess','Giỏ hàng rỗng!');
+        }else {
+            $order = new order();
+            $order->id_user  = $request->input('user_id');
+            //hoa don ban hang
+            $order->id_cate_order  = 1;
+            // 1 la cho duyet 2 la da duyet
+            $order->status_order = 0;
+            $order->discount_order = 0;
+            $order->total_price_order = $request->input('total_order');
+            $order->note_order = $request->input('ghichu');
+            $order->save();
+
+            foreach ($cart->items as $key => $value) {
+                $orderDetail = new order_detail();
+                $orderDetail->id_order = $order->id;
+                $orderDetail->id_product  = $key;
+                $orderDetail->quality_order = $value['qty'];
+                $orderDetail->unit_price_order = $value['price'];
+                $orderDetail->discount_order_detail = 0;
+                $orderDetail->save();
+            }
+            Session::forget('cart');
+            $order_success = Session::get('order_success');
+            Session::put('order_success');
+            return redirect()->route('home')->with('order_success', 'Đặt hàng thành công');
+        }
     }
 
     public function page_cate_product(){

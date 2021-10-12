@@ -14,8 +14,10 @@ Route::get('/page-product/{id}',[HomeController::class,'page_product'])->name('p
 Route::get('/page-detail-product/{id}',[HomeController::class,'page_detail_product'])->name('page_detail_product');
 
 Route::get('/page-cart',[HomeController::class,'page_cart'])->name('page_cart');
+Route::get('/page-contact',[HomeController::class,'page_contact'])->name('page_contact');
+Route::get('/page-discount',[HomeController::class,'page_discount'])->name('page_discount');
 
-Route::get('/page-checkout',[HomeController::class,'page_checkout'])->name('page_checkout');
+
 Route::get('/page-cate-product',[HomeController::class,'page_cate_product'])->name('page_cate_product');
 
 //them gio hang
@@ -23,6 +25,9 @@ Route::get('add-card/{id}',[HomeController::class,'addCard'])->name('addCard');
 Route::get('add-card-qty/{id}',[HomeController::class,'addCard_qty'])->name('addCard_qty');
 Route::get('update-cart', [HomeController::class,'updateCart'])->name('getUpdateCart');
 Route::get('delete-cart/{id}', [HomeController::class,'getDeleteCart'])->name('getDeleteCart');
+//thanh toan
+Route::get('/page-checkout',[HomeController::class,'page_checkout'])->name('page_checkout');
+Route::post('/dat-hang', [HomeController::class,'post_checkout'])->name('post_checkout');
 //---------------------------------------SERVER
 //trang chu
 Route::get('page-admin',[AdminController::class,'index'])->name('admin_home');
@@ -121,7 +126,7 @@ Route::get('list-unit',[ListController::class,'list_unit'])->name('list_unit');
 Route::get('list-invoice-caterogy',[ListController::class,'list_invoice_caterogy'])->name('list_invoice_caterogy');
 Route::get('list-order-caterogy',[ListController::class,'list_order_caterogy'])->name('list_order_caterogy');
 Route::get('list-role-access',[ListController::class,'list_role_access'])->name('list_role_access');
-Route::get('list-supplier',[ListController::class,'list_supplier'])->name('list_supplier');
+Route::get('list-5',[ListController::class,'list_supplier'])->name('list_supplier');
 Route::get('list-warehouse',[ListController::class,'list_warehouse'])->name('list_warehouse');
 Route::get('list-customer',[ListController::class,'list_customer'])->name('list_customer');
 Route::get('list-user',[ListController::class,'list_user'])->name('list_user');

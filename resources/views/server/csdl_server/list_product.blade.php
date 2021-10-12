@@ -167,7 +167,7 @@
                                                         PRODUCT0{{$products->id}}
                                                         <div class="dropdown-content">
                                                             @foreach((array)json_decode($products->image_product, true) as $image)
-                                                                <img src="{{asset('public/server/DB_image/'.$image)}}" alt="Cinque Terre" width="300" height="200">
+                                                                <img src="{{asset('public/uploads/'.$image)}}" alt="Cinque Terre" width="300" height="200">
                                                                 <div class="desc">{{$products->name_product}}</div>
                                                                 @break
                                                             @endforeach
@@ -191,7 +191,7 @@
                                                                         @csrf
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="name_product"  placeholder="{{$products->name_product}}" required>
+                                                                            <input type="text" class="form-control" id="" name="name_product"  value="{{$products->name_product}}" required>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
@@ -219,8 +219,8 @@
                                                                     <form action="{{route('post_edit_product',[$products->id,2])}}" method="post">
                                                                         @csrf
                                                                         <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="cost_price"  placeholder="{{$products->cost_price_product}} VNĐ" required>
+                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm (VNĐ)</label>
+                                                                            <input type="text" class="form-control" id="" name="cost_price"  value="{{$products->cost_price_product}}" required>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
@@ -248,8 +248,8 @@
                                                                     <form action="{{route('post_edit_product',[$products->id,3])}}" method="post">
                                                                         @csrf
                                                                         <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm bán ra</label>
-                                                                            <input type="text" class="form-control" id="" name="sale_price"  placeholder="{{$products->sale_price_product}} VNĐ" required>
+                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm bán ra(VNĐ)</label>
+                                                                            <input type="text" class="form-control" id="" name="sale_price"  value="{{$products->sale_price_product}}" required>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
@@ -268,7 +268,7 @@
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật giá khuyến mãi</h5>
+                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật khuyến mãi</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
@@ -277,8 +277,8 @@
                                                                     <form action="{{route('post_edit_product',[$products->id,4])}}" method="post">
                                                                         @csrf
                                                                         <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Phần trăm chiết khấu trên sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="salep"  placeholder="{{$products->sale}} (%)" required>
+                                                                            <label for="exampleInputEmail1">Phần trăm chiết khấu trên sản phẩm  (%)</label>
+                                                                            <input type="text" class="form-control" id="" name="salep"  value="{{$products->sale}}" required>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
@@ -307,7 +307,7 @@
                                                                         @csrf
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Tình trạng sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="stt_product"  placeholder="{{$products->status_product}}" required>
+                                                                            <input type="text" class="form-control" id="" name="stt_product"  value="{{$products->status_product}}" required>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
@@ -337,23 +337,23 @@
                                                                         @csrf
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="name_product"  placeholder="{{$products->name_product}}" required>
+                                                                            <input type="text" class="form-control" id="" name="name_product"  value="{{$products->name_product}}" required>
                                                                         </div>
                                                                         <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="cost_price"  placeholder="{{$products->cost_price_product}} VNĐ" required>
+                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm (VNĐ)</label>
+                                                                            <input type="text" class="form-control" id="" name="cost_price"  value="{{$products->cost_price_product}}" required>
                                                                         </div>
                                                                         <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Giá sản phẩm bán ra</label>
-                                                                            <input type="text" class="form-control" id="" name="sale_price"  placeholder="{{$products->sale_price_product}} VNĐ" required>
+                                                                            <label for="exampleInputEmail1">Giá sản phẩm bán ra  (%)</label>
+                                                                            <input type="text" class="form-control" id="" name="sale_price"  value="{{$products->sale_price_product}}" required>
                                                                         </div>
                                                                         <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Chiếc khấu sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="sale"  placeholder="{{$products->sale}} %" required>
+                                                                            <label for="exampleInputEmail1">Chiếc khấu sản phẩm (%)</label>
+                                                                            <input type="text" class="form-control" id="" name="sale"  value="{{$products->sale}}" required>
                                                                         </div>
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Tình trạng sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="stt_product"  placeholder="{{$products->status_product}}" required>
+                                                                            <input type="text" class="form-control" id="" name="stt_product"  value="{{$products->status_product}}" required>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>

@@ -126,11 +126,11 @@
                                     <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Khuyến mãi</a>
+                            <li><a href="{{route('page_discount')}}">Khuyến mãi</a>
 
                             </li>
                             <li><a href="./blog.html">Tin tức</a></li>
-                            <li><a href="./contact.html">Liên hệ</a></li>
+                            <li><a href="{{route('page_contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -305,10 +305,10 @@
                                     <li><a href="{{route('page_product',3)}}"><i class="fab fa-servicestack"></i> Gạo </a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Khuyến mãi</a>
+                            <li><a href="{{route('page_discount')}}">Khuyến mãi</a>
                             </li>
                             <li><a href="./blog.html">Tin tức</a></li>
-                            <li><a href="./contact.html">Liên hệ</a></li>
+                            <li><a href="{{route('page_contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>

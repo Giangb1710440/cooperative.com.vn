@@ -22,10 +22,13 @@
     <link rel="stylesheet" href="{{asset('public/client/css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('public/client/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('public/client/css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('public/fontawesome.css')}}" type="text/css">
+    <script src="{{asset('public/fontawesome_pro.js')}}"></script>
+    <script src="{{asset('public/sweetalert.js')}}"></script>
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <script src="https://kit.fontawesome.com/12bbc8e57f.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
+{{--    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>--}}
+{{--    <script src="https://kit.fontawesome.com/12bbc8e57f.js" crossorigin="anonymous"></script>--}}
+{{--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>--}}
 
 {{--    tim kiem nhanh--}}
 {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">--}}

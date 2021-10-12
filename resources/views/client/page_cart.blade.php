@@ -3,18 +3,43 @@
 @section('content')
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{asset('public/client/img/breadcrumb.jpg')}}">
+    <section class="breadcrumb-section set-bg">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Giỏ hàng</h2>
-                        <div class="breadcrumb__option">
-                            <a href="{{route('home')}}">Home</a>
-                            <span>Giỏ hàng</span>
-                        </div>
-                    </div>
-                </div>
+            <hr style="size: 1px">
+            <style>
+                div.tieude_giua
+                {
+                    color: #fff;
+                    font-size: 20px;
+                    height: 37px;
+                    line-height: 37px;
+
+                    text-transform: uppercase;
+                    border-bottom: 1px solid #61B000;
+                    margin-bottom: 5px;
+                    font-family:Tahoma, Geneva, sans-serif;
+                }
+                div.tieude_giua div {
+                    float: left;
+                    background: #61B000;
+                    padding: 0px 20px;
+                    min-width: 170px;
+                    position: relative;
+                }
+                div.tieude_giua div:before {
+                    position: absolute;
+                    right: -37px;
+                    top: 0px;
+                    height: 0;
+                    width: 0;
+                    content: '';
+                    border-top: 37px solid transparent;
+                    border-left: 37px solid #61B000;
+                }
+            </style>
+            <div class="tieude_giua">
+                <div>Giỏ hàng</div>
+
             </div>
         </div>
     </section>

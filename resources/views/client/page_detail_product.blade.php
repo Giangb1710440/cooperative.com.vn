@@ -64,14 +64,14 @@
                         <div class="product__details__pic">
                             <div class="product__details__pic__item">
                                     @foreach((array)json_decode($product_details->image_product,true) as $images)
-                                    <img class="product__details__pic__item--large"
+                                    <img width="450px" height="320px" class="product__details__pic__item--large"
                                          src="{{asset('public/uploads/'.$images)}}" alt="">
                                         @break
                                     @endforeach
                             </div>
                             <div class="product__details__pic__slider owl-carousel">
                                 @foreach((array)json_decode($product_details->image_product,true) as $images)
-                                    <img data-imgbigurl="{{asset('public/uploads/'.$images)}}"
+                                    <img width="97px" height="65px" data-imgbigurl="{{asset('public/uploads/'.$images)}}"
                                      src="{{asset('public/uploads/'.$images)}}" alt="">
                                 @endforeach
                             </div>
@@ -183,7 +183,7 @@
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="{{route('page_detail_product',$product_lqs->id)}}"><i class="far fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{route('addCard_qty',$product_lqs->id)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 @break

@@ -41,23 +41,23 @@
                         </div>
                         <div class="form-group first">
                             <label for="">Email</label>
-                            <input type="email" class="form-control" placeholder="Nguyen@gmail.com" name="email">
+                            <input type="email" class="form-control"  name="email">
                         </div>
                         <div class="form-group last mb-3">
                             <label for="">Mật khẩu</label>
-                            <input type="password" class="form-control" placeholder="Password" name="password">
+                            <input type="password" class="form-control"  name="password">
                         </div>
                         <div class="form-group last mb-3">
                             <label for="">Xác nhận mật khẩu</label>
-                            <input type="password" class="form-control" placeholder="Password" name="confirm">
+                            <input type="password" class="form-control"  name="confirm">
                         </div>
                         <div class="form-group last mb-3">
                             <label for="">Địa chỉ</label>
-                            <input type="text" class="form-control" placeholder="Bao gồm số nhà"  name="address">
+                            <input type="text" class="form-control"   name="address">
                         </div>
                         <div class="form-group last mb-3">
                             <label for="">Số điện thoại</label>
-                            <input type="text" class="form-control" placeholder="09xxxxxxx"  name="phone">
+                            <input type="text" class="form-control"  name="phone">
                         </div>
                         <div class="form-group last mb-3">
                             <label for="">Giới tính</label><br>

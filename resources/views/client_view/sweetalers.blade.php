@@ -63,6 +63,48 @@
         })
     }
 </script>
+<script>
+    var msg = '{{Session::get('order_Nsuccess')}}';
+    var exist = '{{Session::has('order_Nsuccess')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'info',
+            title: 'Giỏ hàng rỗng'
+        })
+    }
+</script>
+<script>
+    var msg = '{{Session::get('order_success')}}';
+    var exist = '{{Session::has('order_success')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Đặt hàng thành công'
+        })
+    }
+</script>
 
 <script>
     var msg = '{{Session::get('delete_cart')}}';
