@@ -21,3 +21,73 @@
         })
     }
 </script>
+<script>
+    var msg = '{{Session::get('error_login')}}';
+    var exist = '{{Session::has('error_login')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'info',
+            title: 'Hãy đăng nhập'
+        })
+    }
+</script>
+<script>
+    var msg = '{{Session::get('add_cart_success')}}';
+    var exist = '{{Session::has('add_cart_success')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Đã thêm vào giỏ hàng'
+        })
+    }
+</script>
+
+<script>
+    var msg = '{{Session::get('delete_cart')}}';
+    var exist = '{{Session::has('delete_cart')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Đã xóa sản phẩm khỏi giỏ hàng'
+        })
+    }
+    function xacnhanxoa(msg){
+        if(window.confirm(msg)){
+            return true;
+        }
+        return false;
+    }
+</script>

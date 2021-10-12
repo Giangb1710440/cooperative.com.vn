@@ -18,7 +18,11 @@ Route::get('/page-cart',[HomeController::class,'page_cart'])->name('page_cart');
 Route::get('/page-checkout',[HomeController::class,'page_checkout'])->name('page_checkout');
 Route::get('/page-cate-product',[HomeController::class,'page_cate_product'])->name('page_cate_product');
 
-
+//them gio hang
+Route::get('add-card/{id}',[HomeController::class,'addCard'])->name('addCard');
+Route::get('add-card-qty/{id}',[HomeController::class,'addCard_qty'])->name('addCard_qty');
+Route::get('update-cart', [HomeController::class,'updateCart'])->name('getUpdateCart');
+Route::get('delete-cart/{id}', [HomeController::class,'getDeleteCart'])->name('getDeleteCart');
 //---------------------------------------SERVER
 //trang chu
 Route::get('page-admin',[AdminController::class,'index'])->name('admin_home');
@@ -65,7 +69,7 @@ Route::get('page-add-detail-warehouse',[AdminController::class,'page_add_detail_
 Route::post('post_detail_warehouse',[AdminController::class,'post_detail_warehouse'])->name('post_detail_warehouse');
 
 //ajax cap nhat trong trang warehouse
-Route::get('update-cart', [AdminController::class,'getUpdateUnit'])->name('getUpdateUnit');
+Route::get('update-unit', [AdminController::class,'getUpdateUnit'])->name('getUpdateUnit');
 
 
 //---------------------------DIARY

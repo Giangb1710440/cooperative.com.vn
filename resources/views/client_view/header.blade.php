@@ -75,7 +75,7 @@
                             <img  onclick="myFunction()" class="dropbtn" src="{{asset('public/server/assets/avatars/face-1.jpg')}}" alt="...">
 
                             <div id="myDropdown" class="dropdown-content">
-                                <a href="#home"><i class="fas fa-user"></i> {{ucwords(Auth::user()->name_user)}}</a>
+                                <a href="#home"><i class="fas fa-user"></i>&nbsp{{ucwords(Auth::user()->name_user)}}</a>
                                 <a href="#about"><i class="fas fa-user"></i> Lịch sử mua</a>
                                 <a href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </div>
@@ -137,10 +137,18 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            {{--                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>--}}
-                            <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            @if(Session::has('cart'))
+                                <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>{{count($product_cart)}}</span></a></li>
+                            @else
+                                <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                            @endif
                         </ul>
-                        <div class="header__cart__price">Tạm tính: <span>150.000 VNĐ</span></div>
+                        @if(Session::has('cart'))
+                            <div class="header__cart__price">Tạm tính: <span>{{number_format($totalPrice)}} VNĐ</span></div>
+                        @else
+                            <div class="header__cart__price">Tạm tính: <span>0 VNĐ</span></div>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -191,7 +199,7 @@
                                 <div class="col-lg-3">
                                     @foreach((array)json_decode($product_sliders->image_product,true) as $image)
                                         <div class="categories__item set-bg" data-setbg="{{asset('public/uploads/'.$image)}}">
-                                            <h5><a href="#">{{$product_sliders->name_product}}</a></h5>
+                                            <h5><a href="{{route('page_detail_product',$product_sliders->id)}}">{{$product_sliders->name_product}}</a></h5>
                                         </div>
                                         @break
                                     @endforeach
@@ -243,7 +251,6 @@
                 </div>
             </div>
         </section>
-
     @endif
 @else
     <header class="header">
@@ -308,10 +315,17 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            {{--                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>--}}
-                            <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            @if(Session::has('cart'))
+                                <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>{{count($product_cart)}}</span></a></li>
+                            @else
+                                <li><a href="{{route('page_cart')}}"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                            @endif
                         </ul>
-                        <div class="header__cart__price">Tạm tính: <span>150.000 VNĐ</span></div>
+                        @if(Session::has('cart'))
+                                <div class="header__cart__price">Tạm tính: <span>{{number_format($totalPrice)}} VNĐ</span></div>
+                        @else
+                            <div class="header__cart__price">Tạm tính: <span>0 VNĐ</span></div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -362,7 +376,7 @@
                                 <div class="col-lg-3">
                                     @foreach((array)json_decode($product_sliders->image_product, true) as $image)
                                         <div class="categories__item set-bg" data-setbg="{{asset('public/uploads/'.$image)}}">
-                                            <h5><a href="#">{{$product_sliders->name_product}}</a></h5>
+                                            <h5><a href="{{route('page_detail_product',$product_sliders->id)}}">{{$product_sliders->name_product}}</a></h5>
                                         </div>
                                         @break
                                     @endforeach

@@ -29,14 +29,14 @@
                             <div class="featured__item__pic set-bg" data-setbg="{{asset('public/uploads/'.$images)}}">
                                 <ul class="featured__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="far fa-eye"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="{{route('page_detail_product',$product_flus->id)}}"><i class="far fa-eye"></i></a></li>
+                                    <li><a href="{{route('addCard_qty',$product_flus->id)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             @break
                         @endforeach
                         <div class="featured__item__text">
-                            <h6><a href="#">{{$product_flus->name_product}}</a></h6>
+                            <h6><a href="{{route('page_detail_product',$product_flus->id)}}">{{$product_flus->name_product}}</a></h6>
                             <h5>{{number_format($product_flus->sale_price_product)}} VNĐ</h5>
                         </div>
                     </div>
@@ -49,14 +49,14 @@
                         <div class="featured__item__pic set-bg" data-setbg="{{asset('public/uploads/'.$images)}}">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="far fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="{{route('page_detail_product',$product_ves->id)}}"><i class="far fa-eye"></i></a></li>
+                                <li><a href="{{route('addCard_qty',$product_ves->id)}}"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         @break
                     @endforeach
                     <div class="featured__item__text">
-                        <h6><a href="#">{{$product_ves->name_product}}</a></h6>
+                        <h6><a href="{{route('page_detail_product',$product_ves->id)}}">{{$product_ves->name_product}}</a></h6>
                         <h5>{{number_format($product_ves->sale_price_product)}} VNĐ</h5>
                     </div>
                 </div>

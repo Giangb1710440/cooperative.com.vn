@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\giohang;
 use App\Models\product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Http\Request;
@@ -83,6 +85,70 @@ class HomeController extends Controller
     public  function page_cart(){
         Session::forget('home');
         return view('client.page_cart');
+    }
+
+//    Chuc nang gio hang
+    public function addCard($id, Request $request){
+        if (Auth::check()){
+            $product = product::find($id);
+            $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, không thi null
+            $qty_p=$request->input('qty_product');
+            $cart = new giohang($oldCart);
+            $cart->add($product, $id, $qty_p);
+            $request->session()->put('cart', $cart);
+            session()->put('add_cart_success');
+            return redirect()->back()->with(
+                'add_cart_success',
+                'Đã thêm vào giỏ hàng'
+            );
+        }else{
+            $register_success = Session::get('error_login');
+            Session::put('error_login');
+            return redirect()->back()->with('error_login', 'Hãy đăng nhập');
+        }
+    }
+    //    Chuc nang gio hang
+    public function addCard_qty($id){
+        if (Auth::check()){
+            $product = product::find($id);
+            $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, không thi null
+            $cart = new giohang($oldCart);
+            $cart->add($product, $id,1);
+            session()->put('cart', $cart);
+            session()->put('add_cart_success');
+            return redirect()->back()->with(
+                'add_cart_success',
+                'Đã thêm vào giỏ hàng'
+            );
+        }else{
+            $register_success = Session::get('error_login');
+            Session::put('error_login');
+            return redirect()->back()->with('error_login', 'Hãy đăng nhập');
+        }
+    }
+
+    public function updateCart(Request $request){
+        if($request->id and $request->quantity){
+            $oldCart = Session::has('cart')?Session::get('cart'):null;
+            $cart = new giohang($oldCart);
+            $cart->update_cart($request->id,$request->quantity);
+            session()->put('cart', $cart);
+        }
+    }
+
+    public function getDeleteCart($id){
+        $oldCart = Session::has('cart')?Session::get('cart'):null;
+        $cart = new giohang($oldCart);
+        $cart->removeItem($id);
+        if(count($cart->items) > 0){
+            Session::put('cart', $cart);
+        }else{
+            Session::forget('cart');
+        }
+        $delete_cart = Session::get('delete_cart');
+        Session::put('delete_cart');
+
+        return redirect()->back()->with('delete_cart', 'Đã xóa sản phẩm ra khỏi giỏ hàng');
     }
 
     public function page_checkout(){

@@ -1,5 +1,9 @@
 @extends('client_view.master')
-@section('title','Sản phẩm')
+@if(Session::has('tieude'))
+    @section('title',Session::get('tieude'))
+@else
+    @section('title','Sản phẩm')
+@endif
 @section('content')
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg">
@@ -103,7 +107,7 @@
                                                     <ul class="product__item__pic__hover">
                                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                         <li><a href="{{route('page_detail_product',$product_sales->id)}}"><i class="far fa-eye"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                        <li><a href="{{route('addCard_qty',$product_sales->id)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                                     </ul>
                                                 </div>
                                                 @break
@@ -188,14 +192,14 @@
                                 <div class="product__item__pic set-bg" data-setbg="{{asset('public/uploads/'.$images)}}">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="far fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{route('page_detail_product',$products->id)}}"><i class="far fa-eye"></i></a></li>
+                                        <li><a href="{{route('addCard_qty',$products->id)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 @break
                             @endforeach
                             <div class="product__item__text">
-                                <h6><a href="#">{{$products->name_product}}</a></h6>
+                                <h6><a href="{{route('page_detail_product',$products->id)}}">{{$products->name_product}}</a></h6>
                                 <h5>{{number_format($products->sale_price_product)}} VNĐ</h5>
                             </div>
                         </div>
