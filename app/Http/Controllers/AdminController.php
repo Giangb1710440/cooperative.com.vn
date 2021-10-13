@@ -19,6 +19,7 @@ use App\Models\tdsb;
 use App\Models\technique;
 use App\Models\thuhoach;
 use App\Models\unit;
+use App\Models\User;
 use App\Models\warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -213,6 +214,7 @@ class AdminController extends Controller
         }
 
     }
+    //them quyen
     public function post_add_role_access(Request $res){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
@@ -232,6 +234,24 @@ class AdminController extends Controller
 
     }
 
+    //cap nhat quyen user
+    public function post_edit_role_user($id,Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $user_edit=User::find($id);
+                $user_edit->role_id = $res->input('role_user');
+                $user_edit->save();
+                $register_success = Session::get('success_edit_role_user');
+                Session()->put('success_edit_role_user');
+                return redirect()->back()->with('success_edit_role_user', 'Thêm thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
     //them chuc vu
     public function page_add_position(){
         if (Auth::check()){
@@ -245,6 +265,8 @@ class AdminController extends Controller
         }
 
     }
+
+    //them chuc vu
     public function post_add_position(Request $res){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
@@ -263,6 +285,23 @@ class AdminController extends Controller
         }
 
     }
+    //edit chuc vu
+    public function post_edit_position($id,Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $edit_position_user = User::find($id);
+                $edit_position_user->id_position = $res->input('position_user');
+                $edit_position_user->save();
+                $register_success = Session::get('edit_position_success');
+                Session()->put('edit_position_success');
+                return redirect()->back()->with('edit_position_success', 'Thêm thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
 
     //them loai don hang
     public function page_add_caterogy_order(){
@@ -277,14 +316,16 @@ class AdminController extends Controller
         }
 
     }
+
+    //them loai don hang
     public function post_add_caterogy_order(Request $res){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');
             }else{
                 $cate_order = new order_caterogy();
-                $cate_order->name_cate_order=$res->input('name_caterogy_order');
-                $cate_order->description_cate_order=$res->input('description_caterogy_order');
+                $cate_order->name_cate_order = $res->input('name_caterogy_invoice');
+                $cate_order->description_cate_order = $res->input('description_caterogy_invoice');
                 $cate_order->save();
                 $register_success = Session::get('add_cate_order_success');
                 Session()->put('add_cate_order_success');
@@ -294,6 +335,41 @@ class AdminController extends Controller
             return redirect()->route('login');
         }
 
+    }
+    //xoa loai don hang
+    public function post_delete_caterogy_order($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                order_caterogy::find($id)->delete();
+                $register_success = Session::get('success_delete_order_cate');
+                Session()->put('success_delete_order_cate');
+                return redirect()->back()->with('success_delete_order_cate', 'Thêm thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+
+
+    public function post_edit_invoice_cate($id, Request $res){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $edit_order = order_caterogy::find($id);
+                $edit_order ->name_cate_order = $res->input('name_cate_invoice');
+                $edit_order ->description_cate_order = $res->input('description_invoice');
+                $edit_order->save();
+                $register_success = Session::get('success_edit_order_cate');
+                Session()->put('success_edit_order_cate');
+                return redirect()->back()->with('success_edit_order_cate', 'Thêm thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
     }
 
     //them kho hang
@@ -733,6 +809,7 @@ class AdminController extends Controller
                     $thuhoach->sl_thuhoach   = $request->input('sl_thuhoach');
                     $thuhoach->sl_banra   = $request->input('sl_banra');
                     $thuhoach->giaban   = $request->input('giabanra');
+                    $thuhoach->gd_sd   = 0;
                     $thuhoach->save();
                     $register_success = Session::get('success_add_detail_diary');
                     Session()->put('success_add_detail_diary');

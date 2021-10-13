@@ -4169,7 +4169,7 @@ a.close.disabled {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 120%;
   pointer-events: auto;
   background-color: #ffffff;
   background-clip: padding-box;
@@ -5774,7 +5774,8 @@ button.bg-dark:focus {
 
 .pl-5,
 .px-5 {
-  padding-left: 3rem !important; }
+  /*padding-left: 3rem !important; */
+}
 
 .m-n1 {
   margin: -0.25rem !important; }
@@ -7343,7 +7344,7 @@ body {
   -ms-text-size-adjust: 100%; }
 
 a {
-  color: #1b68ff; }
+  color: #0a0c0d; }
 
 .h1, .h2, .h3,
 h1, h2, h3 {
@@ -8124,7 +8125,7 @@ svg.navbar-brand-img {
 
 /* custom modal */
 .modal.fade.modal-slide .modal-dialog {
-  background: #ffffff; }
+  background: seagreen; }
 
 .modal.fade.modal-full.show {
   background: rgba(248, 249, 250, 0.9); }

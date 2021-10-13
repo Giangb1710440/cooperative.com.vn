@@ -75,8 +75,11 @@
                             <input type="file" class="form-control" name="image" placeholder="images">
                         </div>
                         <div class="d-flex mb-5 align-items-center">
+                            <label class="control control--checkbox mb-0"><span class="caption"><a href="{{route('login')}}">Bạn đã có tài khoản ?</a></span>
+                            </label>
                             <span class="ml-auto"><a href="{{route('home')}}" class="forgot-pass"><i class="fa fa-home"></i> Trang chủ</a></span>
                         </div>
+
                         <input type="submit" value="Đăng ký" class="btn btn-block btn-primary">
                     </form>
                 </div>

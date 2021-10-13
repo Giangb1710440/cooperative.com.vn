@@ -54,95 +54,6 @@
 {{--        </ul>--}}
 
         <p class="text-muted nav-heading mt-4 mb-1">
-            <span><i class="fas fa-cogs"></i> &nbsp Quản trị</span>
-        </p>
-        <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-                <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-plus"></i>
-                    <span class="ml-3 item-text">Thêm mới dữ liệu</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_product')}}"><span class="ml-1 item-text">Thêm loại sản phẩm</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_product')}}"><span class="ml-1 item-text">Thêm sản phẩm</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('add_user')}}"><span class="ml-1 item-text">Thêm thành viên</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_unit')}}"><span class="ml-1 item-text">Thêm đơn vị</span></a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_order')}}"><span class="ml-1 item-text">Thêm loại hóa đơn</span></a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_role_access')}}"><span class="ml-1 item-text">Thêm quyền user</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_position')}}"><span class="ml-1 item-text">Thêm chức vụ</span></a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a href="#tablesqtdl" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-database"></i>
-                    <span class="ml-3 item-text">Quản trị dữ liệu</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="tablesqtdl">
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">CSDL nhà cung cấp</span></a>--}}
-{{--                    </li>--}}
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_warehouse')}}"><span class="ml-1 item-text">CSDL kho hàng </span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_unit')}}"><span class="ml-1 item-text">CSDL đơn vị</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_caterogy_product')}}"><span class="ml-1 item-text">CSDL loại sản phẩm</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_invoice_caterogy')}}"><span class="ml-1 item-text">CSDL loại hóa đơn</span></a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_order_caterogy')}}"><span class="ml-1 item-text">CSDL loại đơn hàng</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_position')}}"><span class="ml-1 item-text">CSDL chức vụ</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_role_access')}}"><span class="ml-1 item-text">CSDL quyền user</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_product')}}"><span class="ml-1 item-text">CSDL sản phẩm</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-cog"></i>
-                    <span class="ml-3 item-text">Cấu hình</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="forms">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_elements.html"><span class="ml-1 item-text">Thiết lập ban đầu</span></a>
-                    </li>
-                </ul>
-            </li>
-
-        </ul>
-
-        <p class="text-muted nav-heading mt-4 mb-1">
             <span><i class="fas fa-list-alt"></i> Danh mục</span>
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -152,12 +63,9 @@
                     <span class="ml-3 item-text">Bán hàng</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="ui-elementsbh">
+
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_product')}}"><span class="ml-1 item-text">Đơn hàng mới</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_product')}}"><span class="ml-1 item-text">Quản lý đơn hàng</span>
+                        <a class="nav-link pl-3" href="{{route('list_order')}}"><span class="ml-1 item-text">Quản lý đơn hàng</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -173,10 +81,10 @@
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="tables">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">Quản lý kho hàng</span></a>
+                        <a class="nav-link pl-3" href="{{route('list_warehouse')}}"><span class="ml-1 item-text">Quản lý kho hàng</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_warehouse')}}"><span class="ml-1 item-text">Thêm kho</span></a>
+                        <a class="nav-link pl-3" href="{{route('page_add_detail_warehouse')}}"><span class="ml-1 item-text">Thêm kho</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_detail_warehouse')}}"><span class="ml-1 item-text">Khởi tạo kho hàng</span></a>
@@ -239,6 +147,99 @@
                 </a>
             </li>
         </ul>
+
+        <p class="text-muted nav-heading mt-4 mb-1">
+            <span><i class="fas fa-cogs"></i> &nbsp Quản trị</span>
+        </p>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item dropdown">
+                <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-plus"></i>
+                    <span class="ml-3 item-text">Thêm mới dữ liệu</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_product')}}"><span class="ml-1 item-text">Thêm loại sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_product')}}"><span class="ml-1 item-text">Thêm sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('add_user')}}"><span class="ml-1 item-text">Thêm thành viên</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_unit')}}"><span class="ml-1 item-text">Thêm đơn vị</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_caterogy_order')}}"><span class="ml-1 item-text">Thêm loại hóa đơn</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_role_access')}}"><span class="ml-1 item-text">Thêm quyền user</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('page_add_position')}}"><span class="ml-1 item-text">Thêm chức vụ</span></a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#tablesqtdl" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-database"></i>
+                    <span class="ml-3 item-text">Quản trị dữ liệu</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="tablesqtdl">
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link pl-3" href="{{route('list_supplier')}}"><span class="ml-1 item-text">CSDL nhà cung cấp</span></a>--}}
+                    {{--                    </li>--}}
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_warehouse')}}"><span class="ml-1 item-text">CSDL kho hàng </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_unit')}}"><span class="ml-1 item-text">CSDL đơn vị</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_caterogy_product')}}"><span class="ml-1 item-text">CSDL loại sản phẩm</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_invoice_caterogy')}}"><span class="ml-1 item-text">CSDL loại hóa đơn</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_order_caterogy')}}"><span class="ml-1 item-text">CSDL loại đơn hàng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_position')}}"><span class="ml-1 item-text">CSDL chức vụ</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_role_access')}}"><span class="ml-1 item-text">CSDL quyền user</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_product')}}"><span class="ml-1 item-text">CSDL sản phẩm</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span class="ml-3 item-text">Quản lý thành viên</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="forms">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="./form_elements.html"><span class="ml-1 item-text">Thêm mới thành viên</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('list_user')}}"><span class="ml-1 item-text">Quản lý thành viên</span></a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
         <p class="text-muted nav-heading mt-4 mb-1">
             <span><i class="fas fa-scroll"></i> Báo cáo</span>
         </p>

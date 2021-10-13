@@ -30,33 +30,33 @@
                             <div class="row mt-1 align-items-center">
                                 <div class="col-12 col-lg-4 text-left pl-4">
                                     <p class="mb-1 small text-muted">KPI</p>
-                                    <span class="h3">120.xxx VNĐ</span>
-                                    <span class="small text-muted">+20%</span>
+                                    <span class="h3"></span>
+                                    <span class="small text-muted"></span>
                                     <span class="fe fe-arrow-up text-success fe-12"></span>
 
                                 </div>
                                 <div class="col-6 col-lg-2 text-center py-4">
                                     <p class="mb-1 small text-muted">Hôm nay</p>
-                                    <span class="h3">12.xxx VNĐ</span><br />
-                                    <span class="small text-muted">+20%</span>
+                                    <span class="h3"></span><br />
+                                    <span class="small text-muted"></span>
                                     <span class="fe fe-arrow-up text-success fe-12"></span>
                                 </div>
                                 <div class="col-6 col-lg-2 text-center py-4 mb-2">
                                     <p class="mb-1 small text-muted">Mục tiêu</p>
-                                    <span class="h3">260.xxx VNĐ</span><br />
-                                    <span class="small text-muted">+6%</span>
+                                    <span class="h3"></span><br />
+                                    <span class="small text-muted"></span>
                                     <span class="fe fe-arrow-up text-success fe-12"></span>
                                 </div>
                                 <div class="col-6 col-lg-2 text-center py-4">
                                     <p class="mb-1 small text-muted">Đã hoàn thành</p>
-                                    <span class="h3">16%</span><br />
+                                    <span class="h3"></span><br />
 
                                     <span class="fe fe-arrow-up text-success fe-12"></span>
                                 </div>
                                 <div class="col-6 col-lg-2 text-center py-4">
                                     <p class="mb-1 small text-muted">Doanh thu</p>
-                                    <span class="h3">6%</span><br />
-                                    <span class="small text-muted">-2%</span>
+                                    <span class="h3"></span><br />
+                                    <span class="small text-muted"></span>
                                     <span class="fe fe-arrow-down text-danger fe-12"></span>
                                 </div>
                             </div>
@@ -72,4 +72,25 @@
     </div> <!-- .container-fluid -->
     @include('server_view.paner')
 </main>
+    <script>
+        var msg = '{{Session::get('no_role')}}';
+        var exist = '{{Session::has('no_role')}}';
+        if (exist) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1200,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'Bạn không có quyền'
+            })
+        }
+    </script>
 @endsection

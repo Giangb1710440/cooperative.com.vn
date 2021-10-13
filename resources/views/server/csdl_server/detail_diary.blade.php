@@ -18,7 +18,7 @@
 
                             </div>
                             <div class="col-auto">
-                                <button type="button" title="" class="btn btn-secondary">Xuất file ".docx"</button>
+                                <button type="button" title="" class="btn btn-secondary">Xuất file</button>
                             </div>
                         </div>
                         <div class="card shadow">
@@ -71,7 +71,15 @@
                                         </p>
                                     </div>
                                     <div class="col-md-5">
-                                        <img src="{{asset('public/server/DB_image/BUOIDAXANH.jpg')}}" alt="">
+                                        @foreach($product as $products)
+                                            @if($products->id == $detail_diarys->id_product )
+                                                @foreach((array)json_decode($products->image_product,true) as $image)
+                                                    <img width="270px" height="200px" src="{{asset('public/uploads/'.$image)}}" alt="">
+                                                    @break
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+
                                     </div>
 
                                     <div style="padding-top: 15px" class="col-md-12">
@@ -128,8 +136,8 @@
                                                                 @endforeach
                                                                 <td>{{date('d-m-Y', strtotime($detail_gdsts->time_st))}}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#varyModal" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
-                                                                    <div class="modal fade" id="varyModal" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#edit_gdst{{$detail_gdsts->id}}" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
+                                                                    <div class="modal fade" id="edit_gdst{{$detail_gdsts->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog" role="document">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header">
@@ -174,7 +182,31 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <a type="button" class="btn mb-2 btn-danger" onclick="xacnhanxoa()" href="{{route('page_delete_gdst',$detail_gdsts->id)}}"><i class="fas fa-trash-alt"></i> Xóa</a>
+                                                                    <button type="button" class="btn mb-2 btn-danger" data-toggle="modal" title="Xóa" data-target="#gdst{{$detail_gdsts->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                                    <div class="modal fade" id="gdst{{$detail_gdsts->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form>
+                                                                                        <div class="form-group">
+                                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan sẽ mất và không thể khôi phục được nữa</label>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+
+                                                                                    <a href="{{route('page_delete_gdst',$detail_gdsts->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         @endif
@@ -245,8 +277,8 @@
                                                                 <td>{{$bonphans->loaiphan}}</td>
                                                                 <td>{{$bonphans->luongbon}}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#edit_bonphan" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
-                                                                    <div class="modal fade" id="edit_bonphan" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#edit_bonphan{{$bonphans->id}}" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
+                                                                    <div class="modal fade" id="edit_bonphan{{$bonphans->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog" role="document">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header">
@@ -279,7 +311,32 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <a type="button" class="btn mb-2 btn-danger" onclick="xacnhanxoa()" href="{{route('page_delete_bp',$bonphans->id)}}">Xóa</a>
+
+                                                                    <button type="button" class="btn mb-2 btn-danger" data-toggle="modal" title="Xóa" data-target="#bonphan{{$bonphans->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                                    <div class="modal fade" id="bonphan{{$bonphans->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form>
+                                                                                        <div class="form-group">
+                                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan sẽ mất và không thể khôi phục được nữa</label>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+
+                                                                                    <a href="{{route('page_delete_bp',$bonphans->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -348,8 +405,8 @@
                                                                 <td>{{$phunthuocs->loaithuoc}}</td>
                                                                 <td>{{$phunthuocs->luongphun}}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#edit_phunthuoc" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
-                                                                    <div class="modal fade" id="edit_phunthuoc" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#edit_phunthuoc{{$phunthuocs->id}}" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
+                                                                    <div class="modal fade" id="edit_phunthuoc{{$phunthuocs->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog" role="document">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header">
@@ -382,7 +439,32 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <a type="button" class="btn mb-2 btn-danger" onclick="xacnhanxoa()" href="{{route('page_delete_pt',$phunthuocs->id)}}">Xóa</a>
+
+                                                                    <button type="button" class="btn mb-2 btn-danger" data-toggle="modal" title="Xóa" data-target="#phunthuoc{{$phunthuocs->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                                    <div class="modal fade" id="phunthuoc{{$phunthuocs->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form>
+                                                                                        <div class="form-group">
+                                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan sẽ mất và không thể khôi phục được nữa</label>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+
+                                                                                    <a href="{{route('page_delete_pt',$phunthuocs->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -454,8 +536,8 @@
                                                             <td>{{$thsbs->trieutrung}}</td>
                                                             <td>{{$thsbs->anhhuong}}</td>
                                                             <td>
-                                                                <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#edit_thsb" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
-                                                                <div class="modal fade" id="edit_thsb" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#edit_thsb{{$thsbs->id}}" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
+                                                                <div class="modal fade" id="edit_thsb{{$thsbs->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
@@ -494,7 +576,32 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <a type="button" class="btn mb-2 btn-danger" onclick="xacnhanxoa()" href="{{route('page_delete_thsb',$thsbs->id)}}">Xóa</a>
+
+                                                                <button type="button" class="btn mb-2 btn-danger" data-toggle="modal" title="Xóa" data-target="#thsb{{$thsbs->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                                <div class="modal fade" id="thsb{{$thsbs->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form>
+                                                                                    <div class="form-group">
+                                                                                        <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan sẽ mất và không thể khôi phục được nữa</label>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+
+                                                                                <a href="{{route('page_delete_thsb',$thsbs->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -564,7 +671,7 @@
                                                                 <td>{{$thuhoachs->sl_banra}}</td>
                                                                 <td>{{$thuhoachs->giaban}}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#thuhoachxs" data-whatever="@mdo"><i class="fas fa-edit"></i> Sửa</button>
+                                                                    <button type="button" class="btn mb-2 btn-info" data-toggle="modal" data-target="#thuhoachxs" data-whatever="@mdo"><i class="fas fa-edit"></i></button>
                                                                     <div class="modal fade" id="thuhoachxs" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog" role="document">
                                                                             <div class="modal-content">
@@ -602,7 +709,31 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <a type="button" class="btn mb-2 btn-danger" onclick="xacnhanxoa()" href="{{route('page_delete_th',$thuhoachs->id)}}">Xóa</a>
+                                                                    <button type="button" class="btn mb-2 btn-danger" data-toggle="modal" title="Xóa" data-target="#thuhoach{{$thuhoachs->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                                    <div class="modal fade" id="thuhoach{{$thuhoachs->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form>
+                                                                                        <div class="form-group">
+                                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan sẽ mất và không thể khôi phục được nữa</label>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+
+                                                                                    <a href="{{route('page_delete_th',$thuhoachs->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -657,129 +788,7 @@
                 </div> <!-- /.col-12 -->
             </div> <!-- .row -->
         </div> <!-- .container-fluid -->
-        <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="defaultModalLabel">Notifications</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="list-group list-group-flush my-n3">
-                            <div class="list-group-item bg-transparent">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="fe fe-box fe-24"></span>
-                                    </div>
-                                    <div class="col">
-                                        <small><strong>Package has uploaded successfull</strong></small>
-                                        <div class="my-0 text-muted small">Package is zipped and uploaded</div>
-                                        <small class="badge badge-pill badge-light text-muted">1m ago</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item bg-transparent">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="fe fe-download fe-24"></span>
-                                    </div>
-                                    <div class="col">
-                                        <small><strong>Widgets are updated successfull</strong></small>
-                                        <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
-                                        <small class="badge badge-pill badge-light text-muted">2m ago</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item bg-transparent">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="fe fe-inbox fe-24"></span>
-                                    </div>
-                                    <div class="col">
-                                        <small><strong>Notifications have been sent</strong></small>
-                                        <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
-                                        <small class="badge badge-pill badge-light text-muted">30m ago</small>
-                                    </div>
-                                </div> <!-- / .row -->
-                            </div>
-                            <div class="list-group-item bg-transparent">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="fe fe-link fe-24"></span>
-                                    </div>
-                                    <div class="col">
-                                        <small><strong>Link was attached to menu</strong></small>
-                                        <div class="my-0 text-muted small">New layout has been attached to the menu</div>
-                                        <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                                    </div>
-                                </div>
-                            </div> <!-- / .row -->
-                        </div> <!-- / .list-group -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear All</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="defaultModalLabel">Shortcuts</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body px-5">
-                        <div class="row align-items-center">
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-success justify-content-center">
-                                    <i class="fe fe-cpu fe-32 align-self-center text-white"></i>
-                                </div>
-                                <p>Control area</p>
-                            </div>
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i class="fe fe-activity fe-32 align-self-center text-white"></i>
-                                </div>
-                                <p>Activity</p>
-                            </div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i class="fe fe-droplet fe-32 align-self-center text-white"></i>
-                                </div>
-                                <p>Droplet</p>
-                            </div>
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i class="fe fe-upload-cloud fe-32 align-self-center text-white"></i>
-                                </div>
-                                <p>Upload</p>
-                            </div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i class="fe fe-users fe-32 align-self-center text-white"></i>
-                                </div>
-                                <p>Users</p>
-                            </div>
-                            <div class="col-6 text-center">
-                                <div class="squircle bg-primary justify-content-center">
-                                    <i class="fe fe-settings fe-32 align-self-center text-white"></i>
-                                </div>
-                                <p>Settings</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('server_view.paner')
     </main> <!-- main -->
     <script>
         var msg = '{{Session::get('success_add_detail_diary')}}';

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\order_caterogy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ListController extends Controller
@@ -14,10 +16,44 @@ class ListController extends Controller
         ]);
     }
     public function list_position (){
-        $position = DB::table('positions')->get();
-        return view('server.csdl_server.list_position')->with([
-            'position'=>$position
-        ]);
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $user = DB::table('users')->get();
+                $position = DB::table('positions')->get();
+                return view('server.csdl_server.list_position')->with([
+                    'position'=>$position,
+                    'user'=>$user
+                ]);
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //quan ly don hang
+    public function list_order(){
+
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $user = DB::table('users')->get();
+                $order =DB::table('orders')->get();
+                $product = DB::table('products')->get();
+                $detail_order = DB::table('order_details')->get();
+                $unit = DB::table('units')->get();
+                return view('server.csdl_server.list_order')->with([
+                    'order'=>$order,
+                    'user'=>$user,
+                    'product'=>$product,
+                    'unit'=>$unit,
+                    'detail_order'=>$detail_order
+                ]);
+            }
+        }else{
+            return redirect()->route('login');
+        }
     }
     public function list_unit (){
         $list_unit = DB::table('units')->get();
@@ -38,10 +74,21 @@ class ListController extends Controller
         ]);
     }
     public function list_role_access (){
-        $list_role_access = DB::table('role_accesss')->get();
-        return view('server.csdl_server.list_role_access')->with([
-            'list_role_access'=>$list_role_access
-        ]);
+
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $list_role_access = DB::table('role_accesss')->get();
+                $user = DB::table('users')->get();
+                return view('server.csdl_server.list_role_access')->with([
+                    'list_role_access'=>$list_role_access,
+                    'user'=>$user
+                ]);
+            }
+        }else{
+            return redirect()->route('login');
+        }
     }
 
     public function list_supplier(){

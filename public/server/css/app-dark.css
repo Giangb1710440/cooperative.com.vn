@@ -4171,7 +4171,7 @@ a.close.disabled {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 120%;
   pointer-events: auto;
   background-color: #495057;
   background-clip: padding-box;
@@ -4672,7 +4672,7 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #1b68ff !important; }
+   }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
@@ -5776,8 +5776,8 @@ button.bg-dark:focus {
 
 .pl-5,
 .px-5 {
-  padding-left: 3rem !important; }
-
+    /*padding-left: 3rem !important; }*/
+}
 .m-n1 {
   margin: -0.25rem !important; }
 
@@ -7345,7 +7345,7 @@ body {
   -ms-text-size-adjust: 100%; }
 
 a {
-  color: #1b68ff; }
+  color: #0a0c0d; }
 
 .h1, .h2, .h3,
 h1, h2, h3 {

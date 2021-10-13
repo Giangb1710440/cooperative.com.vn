@@ -143,14 +143,14 @@
                                     <div class="product__details__tab__desc">
                                         <h6>Mô tả sản phẩm</h6>
                                         <p>{{$product_details->description_product}}</p>
+
                                     </div>
                                 </div>
 
                                 <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                    <div class="product__details__tab__desc">
-                                        <h6>Đánh giá</h6>
-                                        <p>Phần đánh giá.</p>
-                                    </div>
+                                    <div id="fb-root"></div>
+                                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="K5JNo5F2"></script>
+                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#http://localhost/cooperative.com.vn/page-detail-product/{{$product_details->id}}" data-width="500" data-numposts="1"></div>
                                 </div>
                             </div>
                         </div>

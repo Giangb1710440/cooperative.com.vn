@@ -25,7 +25,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="avatar avatar-sm mt-2">
-                <img src="{{asset('public/server/avatar/'.Auth::User()->image_user)}}" alt="..." class="avatar-img rounded-circle">
+                <img src="{{asset('public/uploads/admin/'.Auth::User()->image_user)}}" alt="..." class="avatar-img rounded-circle">
 
               </span>
             </a>

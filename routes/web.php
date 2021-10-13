@@ -60,9 +60,13 @@ Route::post('post-add-role-access',[AdminController::class,'post_add_role_access
 //them moi chuc vu
 Route::get('page-add-position',[AdminController::class,'page_add_position'])->name('page_add_position');
 Route::post('post-add-position',[AdminController::class,'post_add_position'])->name('post_add_position');
+Route::post('post-edit-position/{id}',[AdminController::class,'post_edit_position'])->name('post_edit_position');
 //them loai don hang
 Route::get('page-add-caterogy-order',[AdminController::class,'page_add_caterogy_order'])->name('page_add_caterogy_order');
 Route::post('post-add-caterogy-order',[AdminController::class,'post_add_caterogy_order'])->name('post_add_caterogy_order');
+Route::get('post-delete-caterogy-order/{id}',[AdminController::class,'post_delete_caterogy_order'])->name('post_delete_caterogy_order');
+Route::post('post-edit-caterogy-order/{id}',[AdminController::class,'post_edit_invoice_cate'])->name('post_edit_invoice_cate');
+
 //them kho hang
 Route::get('page-add-warehouse',[AdminController::class,'page_add_warehouse'])->name('page_add_warehouse');
 Route::post('post-add-warehouse',[AdminController::class,'post_add_warehouse'])->name('post_add_warehouse');
@@ -115,7 +119,8 @@ Route::get('page-delete-thsb/{id}',[AdminController::class,'page_delete_thsb'])-
 Route::get('page-delete-th/{id}',[AdminController::class,'page_delete_th'])->name('page_delete_th');
 Route::get('page-delete-diary/{id}',[AdminController::class,'post_delete_diary'])->name('post_delete_diary');
 
-
+//edit quyen user
+Route::post('post-edit-role-user/{id}',[AdminController::class,'post_edit_role_user'])->name('post_edit_role_user');
 
 
 
@@ -132,6 +137,9 @@ Route::get('list-customer',[ListController::class,'list_customer'])->name('list_
 Route::get('list-user',[ListController::class,'list_user'])->name('list_user');
 Route::get('list-product',[ListController::class,'list_product'])->name('list_product');
 Route::get('detail-diary/{id}',[ListController::class,'detail_diary'])->name('detail_diary');
+
+//quan ly don hang
+Route::get('list-order',[ListController::class,'list_order'])->name('list_order');
 
 
 

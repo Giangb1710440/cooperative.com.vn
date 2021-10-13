@@ -12,7 +12,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('public/client/login/css/bootstrap.min.css')}}">
-
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://kit.fontawesome.com/12bbc8e57f.js" crossorigin="anonymous"></script>
     <!-- Style -->
     <link rel="stylesheet" href="{{asset('public/client/login/css/style.css')}}">
 {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
@@ -47,11 +48,12 @@
                                 <input type="checkbox" checked="checked"/>
                                 <div class="control__indicator"></div>
                             </label>
-                            <span class="ml-auto"><a href="#" class="forgot-pass">Đổi mật khẩu</a></span>
+                            <span class="ml-auto"><a href="{{route('home')}}" class="forgot-pass"><i class="fas fa-home"></i> Trở lại trang chủ</a></span>
                         </div>
 
                         <input type="submit" value="Đăng nhập" class="btn btn-block btn-primary">
                     </form>
+
                 </div>
             </div>
         </div>
