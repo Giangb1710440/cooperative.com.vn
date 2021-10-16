@@ -64,17 +64,17 @@
                         <div class="product__details__pic">
                             <div class="product__details__pic__item">
                                     @foreach((array)json_decode($product_details->image_product,true) as $images)
-                                    <img width="450px" height="320px" class="product__details__pic__item--large"
+                                    <img width="450px" height="340px" class="product__details__pic__item--large"
                                          src="{{asset('public/uploads/'.$images)}}" alt="">
                                         @break
                                     @endforeach
                             </div>
-                            <div class="product__details__pic__slider owl-carousel">
-                                @foreach((array)json_decode($product_details->image_product,true) as $images)
-                                    <img width="97px" height="65px" data-imgbigurl="{{asset('public/uploads/'.$images)}}"
-                                     src="{{asset('public/uploads/'.$images)}}" alt="">
-                                @endforeach
-                            </div>
+{{--                            <div class="product__details__pic__slider owl-carousel">--}}
+{{--                                @foreach((array)json_decode($product_details->image_product,true) as $images)--}}
+{{--                                    <img width="97px" height="65px" data-imgbigurl="{{asset('public/uploads/'.$images)}}"--}}
+{{--                                     src="{{asset('public/uploads/'.$images)}}" alt="">--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -90,8 +90,15 @@
                                     <i class="fa fa-star-half-o"></i>
                                     <span>(18 đánh giá)</span>
                                 </div>
-                                <div class="product__details__price">{{number_format($product_details->sale_price_product)}} VNĐ</div>
-
+                                    @if($product_details->sale == 0)
+                                        <div class="product__details__price">{{number_format($product_details->sale_price_product)}} VNĐ</div>
+                                    @else
+                                        <div style="text-align: left" class="product__discount__item__text">
+                                            <div style="font-size: 30px;color: #dd2222;font-weight: 600;margin-bottom: 15px;" class="product__item__price">{{number_format(ceil($product_details->sale_price_product -($product_details->sale_price_product*($product_details->sale/100))))}} VNĐ
+                                                <span style="font-size: 20px">{{number_format($product_details->sale_price_product)}} VNĐ</span>
+                                            </div>
+                                        </div>
+                                    @endif
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
@@ -150,7 +157,7 @@
                                 <div class="tab-pane" id="tabs-3" role="tabpanel">
                                     <div id="fb-root"></div>
                                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="K5JNo5F2"></script>
-                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#http://localhost/cooperative.com.vn/page-detail-product/{{$product_details->id}}" data-width="500" data-numposts="1"></div>
+                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#http://localhost/cooperative.com.vn/page-detail-product/{{$product_details->id}}" data-width="500" data-numposts="0"></div>
                                 </div>
                             </div>
                         </div>

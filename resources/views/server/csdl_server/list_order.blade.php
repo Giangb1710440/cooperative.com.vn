@@ -205,32 +205,32 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#varyModal{{$orders->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
-{{--                                                    <div class="modal fade" id="varyModal{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">--}}
-{{--                                                        <div class="modal-dialog" role="document">--}}
-{{--                                                            <div class="modal-content">--}}
-{{--                                                                <div class="modal-header">--}}
-{{--                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>--}}
-{{--                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                        <span aria-hidden="true">&times;</span>--}}
-{{--                                                                    </button>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="modal-body">--}}
-{{--                                                                    <form>--}}
-{{--                                                                        <div class="form-group">--}}
-{{--                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan đến sản phẩm--}}
-{{--                                                                                sẽ biến mất và không thể khôi phục được nửa</label>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    </form>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="modal-footer">--}}
-{{--                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>--}}
+                                                    <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#delete_order{{$orders->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                    <div class="modal fade" id="delete_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form>
+                                                                        <div class="form-group">
+                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan
+                                                                                sẽ biến mất và không thể khôi phục được nữa</label>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
 
-{{--                                                                    <a href="{{route('post_delete_product',$products->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
+                                                                    <a href="{{route('post_delete_order',$orders->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -364,5 +364,62 @@
         })
     }
 </script>
+<script>
+    var msg = '{{Session::get('success_delete_order')}}';
+    var exist = '{{Session::has('success_delete_order')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1200,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'error',
+            title: 'Đã xóa'
+        })
+    }
+</script>
+
+{{--<script>--}}
+{{--    function update_status_order(e) {--}}
+{{--        var ele = e.split(",");--}}
+{{--        var ktra = document.getElementById('stt_order').value;--}}
+{{--        if(ktra > 0 && ktra < 100){--}}
+{{--            $.ajax({--}}
+{{--                method: "get",--}}
+{{--                url: '{{ route('getUpdateSttOrder') }}',--}}
+{{--                data: {_token: '{{ csrf_token() }}',--}}
+{{--                    id: ele[0],--}}
+{{--                    quantity: ele[1]},--}}
+{{--                success: function (result) {--}}
+{{--                    const Toast = Swal.mixin({--}}
+{{--                        toast: true,--}}
+{{--                        position: 'top-end',--}}
+{{--                        showConfirmButton: false,--}}
+{{--                        timer: 600,--}}
+{{--                        timerProgressBar: true,--}}
+{{--                        didOpen: (toast) => {--}}
+{{--                            toast.addEventListener('mouseenter', Swal.stopTimer)--}}
+{{--                            toast.addEventListener('mouseleave', Swal.resumeTimer)--}}
+{{--                        }--}}
+{{--                    })--}}
+{{--                    Toast.fire({--}}
+{{--                        icon: 'success',--}}
+{{--                        title: 'Đã cập'--}}
+{{--                    });--}}
+{{--                    window.setTimeout(function(){--}}
+{{--                        window.location.reload();--}}
+{{--                    } ,600);--}}
+{{--                }--}}
+{{--            });--}}
+{{--        }--}}
+{{--    }--}}
+{{--</script>--}}
 </body>
 </html>

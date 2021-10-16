@@ -129,7 +129,7 @@
                             <li><a href="{{route('page_discount')}}">Khuyến mãi</a>
 
                             </li>
-                            <li><a href="./blog.html">Tin tức</a></li>
+                            <li><a href="{{route('page_news')}}">Tin tức</a></li>
                             <li><a href="{{route('page_contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>
@@ -307,7 +307,7 @@
                             </li>
                             <li><a href="{{route('page_discount')}}">Khuyến mãi</a>
                             </li>
-                            <li><a href="./blog.html">Tin tức</a></li>
+                            <li><a href="{{route('page_news')}}">Tin tức</a></li>
                             <li><a href="{{route('page_contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>

@@ -38,6 +38,12 @@ class HomeController extends Controller
             'product'=>$product
         ]);
     }
+
+    protected function page_news(){
+        Session::forget('home');
+        return view('client.page_blog');
+    }
+
     //trang san pham
     public function page_product($id){
         if($id == 0){

@@ -86,36 +86,36 @@
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_detail_warehouse')}}"><span class="ml-1 item-text">Thêm kho</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_detail_warehouse')}}"><span class="ml-1 item-text">Khởi tạo kho hàng</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Nhập hàng</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Kiểm kho</span></a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href="{{route('page_add_detail_warehouse')}}"><span class="ml-1 item-text">Khởi tạo kho hàng</span></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Nhập hàng</span></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Kiểm kho</span></a>--}}
+{{--                    </li>--}}
                 </ul>
             </li>
 
-            <li class="nav-item dropdown">
-                <a href="#ketoan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-money-bill-wave-alt"></i>
-                    <span class="ml-3 item-text">Kế toán</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="ketoan">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Hóa đơn bán hàng</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Hóa đơn nhập hàng </span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Báo cáo doanh thu</span></a>
-                    </li>
+{{--            <li class="nav-item dropdown">--}}
+{{--                <a href="#ketoan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">--}}
+{{--                    <i class="fas fa-money-bill-wave-alt"></i>--}}
+{{--                    <span class="ml-3 item-text">Kế toán</span>--}}
+{{--                </a>--}}
+{{--                <ul class="collapse list-unstyled pl-4 w-100" id="ketoan">--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Hóa đơn bán hàng</span></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Hóa đơn nhập hàng </span></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Báo cáo doanh thu</span></a>--}}
+{{--                    </li>--}}
 
-                </ul>
-            </li>
+{{--                </ul>--}}
+{{--            </li>--}}
 
         </ul>
         <p class="text-muted nav-heading mt-4 mb-1">
@@ -166,9 +166,9 @@
                         <a class="nav-link pl-3" href="{{route('page_add_product')}}"><span class="ml-1 item-text">Thêm sản phẩm</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('add_user')}}"><span class="ml-1 item-text">Thêm thành viên</span></a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href="{{route('add_user')}}"><span class="ml-1 item-text">Thêm thành viên</span></a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_unit')}}"><span class="ml-1 item-text">Thêm đơn vị</span></a>
                     </li>
@@ -224,61 +224,53 @@
                 </ul>
             </li>
             <li class="nav-item dropdown">
-                <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <a href="{{route('list_user')}}"  class="dropdown-toggle nav-link">
                     <i class="fas fa-cog"></i>
                     <span class="ml-3 item-text">Quản lý thành viên</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="forms">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_elements.html"><span class="ml-1 item-text">Thêm mới thành viên</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_user')}}"><span class="ml-1 item-text">Quản lý thành viên</span></a>
-                    </li>
-                </ul>
             </li>
 
         </ul>
 
-        <p class="text-muted nav-heading mt-4 mb-1">
-            <span><i class="fas fa-scroll"></i> Báo cáo</span>
-        </p>
-        <ul class="navbar-nav flex-fill w-100 mb-2">
+{{--        <p class="text-muted nav-heading mt-4 mb-1">--}}
+{{--            <span><i class="fas fa-scroll"></i> Báo cáo</span>--}}
+{{--        </p>--}}
+{{--        <ul class="navbar-nav flex-fill w-100 mb-2">--}}
 
-            <li class="nav-item dropdown">
-                <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="ml-3 item-text">Biểu đồ</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="contact">
-                    <a class="nav-link pl-3" href="./contacts-list.html"><span class="ml-1">Biểu đồ doanh thu</span></a>
-                    <a class="nav-link pl-3" href="./contacts-new.html"><span class="ml-1">Biểu đồ thu chi</span></a>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-chart-area"></i>
-                    <span class="ml-3 item-text">Bán hàng</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="profile">
-                    <a class="nav-link pl-3" href="./profile.html"><span class="ml-1">Doanh số bán</span></a>
-                    <a class="nav-link pl-3" href="./profile-settings.html"><span class="ml-1">Khoản thu</span></a>
-                    <a class="nav-link pl-3" href="./profile-security.html"><span class="ml-1">Danh sách đơn hàng</span></a>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#fileman" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fas fa-chart-area"></i>
-                    <span class="ml-3 item-text">Kho hàng</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="fileman">
-                    <a class="nav-link pl-3" href="./files-list.html"><span class="ml-1">Báo cáo nhập hàng</span></a>
-                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">Báo cáo kho hàng</span></a>
-                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">khoản chi</span></a>
-                </ul>
-            </li>
+{{--            <li class="nav-item dropdown">--}}
+{{--                <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">--}}
+{{--                    <i class="fas fa-chart-line"></i>--}}
+{{--                    <span class="ml-3 item-text">Biểu đồ</span>--}}
+{{--                </a>--}}
+{{--                <ul class="collapse list-unstyled pl-4 w-100" id="contact">--}}
+{{--                    <a class="nav-link pl-3" href="./contacts-list.html"><span class="ml-1">Biểu đồ doanh thu</span></a>--}}
+{{--                    <a class="nav-link pl-3" href="./contacts-new.html"><span class="ml-1">Biểu đồ thu chi</span></a>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item dropdown">--}}
+{{--                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">--}}
+{{--                    <i class="fas fa-chart-area"></i>--}}
+{{--                    <span class="ml-3 item-text">Bán hàng</span>--}}
+{{--                </a>--}}
+{{--                <ul class="collapse list-unstyled pl-4 w-100" id="profile">--}}
+{{--                    <a class="nav-link pl-3" href="./profile.html"><span class="ml-1">Doanh số bán</span></a>--}}
+{{--                    <a class="nav-link pl-3" href="./profile-settings.html"><span class="ml-1">Khoản thu</span></a>--}}
+{{--                    <a class="nav-link pl-3" href="./profile-security.html"><span class="ml-1">Danh sách đơn hàng</span></a>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item dropdown">--}}
+{{--                <a href="#fileman" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">--}}
+{{--                    <i class="fas fa-chart-area"></i>--}}
+{{--                    <span class="ml-3 item-text">Kho hàng</span>--}}
+{{--                </a>--}}
+{{--                <ul class="collapse list-unstyled pl-4 w-100" id="fileman">--}}
+{{--                    <a class="nav-link pl-3" href="./files-list.html"><span class="ml-1">Báo cáo nhập hàng</span></a>--}}
+{{--                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">Báo cáo kho hàng</span></a>--}}
+{{--                    <a class="nav-link pl-3" href="./files-grid.html"><span class="ml-1">khoản chi</span></a>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
 
-        </ul>
+{{--        </ul>--}}
 
 
 {{--        quan tri--}}

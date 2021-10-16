@@ -36,11 +36,11 @@
                         @csrf
                         <div class="form-group first">
                             <label for="username">Email</label>
-                            <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username" name="email">
+                            <input type="text" class="form-control" placeholder="" id="username" name="email">
                         </div>
                         <div class="form-group last mb-3">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" placeholder="Your Password" id="password" name="password">
+                            <input type="password" class="form-control" placeholder="" id="password" name="password">
                         </div>
 
                         <div class="d-flex mb-5 align-items-center">

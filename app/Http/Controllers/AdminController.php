@@ -8,6 +8,7 @@ use App\Models\detail_warehouse;
 use App\Models\farmer_diary;
 use App\Models\gdst;
 use App\Models\invoice_caterogy;
+use App\Models\order;
 use App\Models\order_caterogy;
 use App\Models\phunthuoc;
 use App\Models\position;
@@ -963,6 +964,12 @@ class AdminController extends Controller
         return redirect()->back()->with('success_delete_diary', 'Thêm thành công');
     }
 
-
+//xoa don hang
+    public function post_delete_order($id){
+        order::find($id)->delete();
+        $register_success = Session::get('success_delete_order');
+        Session()->put('success_delete_order');
+        return redirect()->back()->with('success_delete_order', 'Xóa thành công');
+    }
 
 }

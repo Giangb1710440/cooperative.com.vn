@@ -17,6 +17,7 @@ Route::get('/page-cart',[HomeController::class,'page_cart'])->name('page_cart');
 Route::get('/page-contact',[HomeController::class,'page_contact'])->name('page_contact');
 Route::get('/page-discount',[HomeController::class,'page_discount'])->name('page_discount');
 
+Route::get('page-news',[HomeController::class,'page_news'])->name('page_news');
 
 Route::get('/page-cate-product',[HomeController::class,'page_cate_product'])->name('page_cate_product');
 
@@ -140,6 +141,7 @@ Route::get('detail-diary/{id}',[ListController::class,'detail_diary'])->name('de
 
 //quan ly don hang
 Route::get('list-order',[ListController::class,'list_order'])->name('list_order');
+Route::get('post-delete-order/{id}',[AdminController::class,'post_delete_order'])->name('post_delete_order');
 
 
 

@@ -64,7 +64,7 @@
                                             @if(Session::has('id_product_warehouse'))
                                                 @foreach($unit as $units)
                                                     @if(Session::get('id_product_warehouse')->id_unit == $units->id)
-                                                        <div class="col-md-1 mb-3">
+                                                        <div class="col-md-2 mb-3">
                                                             <label for="validationCustom01">Đơn Vị</label>
                                                             <input type="text" class="form-control" id="unit_product" name="unit_product" value="{{$units->name_unit}}" required disabled>
                                                         </div>

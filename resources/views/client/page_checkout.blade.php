@@ -101,7 +101,7 @@
                                             <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
                                             <ul>
                                                 @foreach($product_cart as $product)
-                                                    <li>{{$product['item']['name_product']}} <span>{{number_format($product['item']['sale_price_product']*$product['qty'])}} VNĐ</span></li>
+                                                    <li>{{$product['item']['name_product']}} <span>{{number_format($product['price'])}} VNĐ</span></li>
                                                 @endforeach
                                             </ul>
                                             <div class="checkout__order__subtotal">Giảm giá <span>0 VNĐ</span></div>

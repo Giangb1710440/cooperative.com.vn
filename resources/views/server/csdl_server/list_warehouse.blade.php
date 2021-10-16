@@ -86,7 +86,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    IDS0{{$warehousess->id}}
+                                                    WAREHOUSE-{{$warehousess->id}}
                                                 </td>
                                                 <td>
                                                     <p class="mb-0 text-muted"><a href="#" class="text-muted">{{$warehousess->address_warehouse}}</a></p>

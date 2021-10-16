@@ -76,7 +76,7 @@
                                                 <h5>{{$product['item']['name_product']}}</h5>
                                             </td>
                                             <td class="shoping__cart__price">
-                                                {{number_format($product['item']['sale_price_product'])}} VNĐ
+                                                {{number_format($product['item']['sale_price_product']*((100-$product['item']['sale'])/100))}} VNĐ
                                             </td>
                                             <td class="shoping__cart__price">
                                                 @foreach($unit as $units)
@@ -91,7 +91,7 @@
                                                        onchange="update_cart({{ $product['item']['id']}} + ',' + this.value)">
                                             </td>
                                             <td class="shoping__cart__total">
-                                                {{number_format($product['item']['sale_price_product']*$product['qty'])}} VNĐ
+                                                {{number_format($product['price'])}} VNĐ
                                             </td>
                                             <td class="shoping__cart__item__close">
                                                 <a onclick="return   xacnhanxoa('Bạn chắc chắn xóa')"

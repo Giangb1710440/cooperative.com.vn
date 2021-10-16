@@ -30,10 +30,11 @@ class giohang extends Model
             }
         }
         $giohang['qty'] += $qty_p;
-        $giohang['price']  += $item->sale_price_product * $qty_p;
+
+        $giohang['price']  += $qty_p *$item->sale_price_product *((100-$item->sale)/100);
         $this->items[$id] = $giohang;
         $this->totalQty++;
-        $this->totalPrice += $item->sale_price_product * $qty_p;
+        $this->totalPrice += $item->sale_price_product * $qty_p*((100-$item->sale)/100);
     }
 
     // update cart
@@ -42,10 +43,10 @@ class giohang extends Model
 
         if( $present_qty > $newQty){
             $this->items[$id]['qty'] = $newQty;
-            $this->items[$id]['price'] = $this->items[$id]['item']['sale_price_product'] * $newQty;
+            $this->items[$id]['price'] = $this->items[$id]['item']['sale_price_product']*((100-$this->items[$id]['item']['sale'])/100) * $newQty;
             $cut = $present_qty - $newQty; //chenh lech so luong
             $this->totalQty -= $cut;
-            $this->totalPrice -= $this->items[$id]['item']['sale_price_product'] * $cut;
+            $this->totalPrice -= $this->items[$id]['item']['sale_price_product']*((100-$this->items[$id]['item']['sale'])/100) * $cut;
 
             if($this->items[$id]['qty']<=0){
                 unset($this->items[$id]);
@@ -54,10 +55,10 @@ class giohang extends Model
 
         if($present_qty < $newQty){
             $this->items[$id]['qty'] = $newQty;
-            $this->items[$id]['price'] = $this->items[$id]['item']['sale_price_product'] * $newQty;
+            $this->items[$id]['price'] = $this->items[$id]['item']['sale_price_product']*((100-$this->items[$id]['item']['sale'])/100) * $newQty;
             $add = $newQty - $present_qty;
             $this->totalQty += $add;
-            $this->totalPrice += $this->items[$id]['item']['sale_price_product'] * $add;
+            $this->totalPrice += $this->items[$id]['item']['sale_price_product']*((100-$this->items[$id]['item']['sale'])/100) * $add;
             if($this->items[$id]['qty']<=0){
                 unset($this->items[$id]);
             }
