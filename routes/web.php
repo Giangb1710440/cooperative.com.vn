@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VnpayController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -29,6 +30,11 @@ Route::get('delete-cart/{id}', [HomeController::class,'getDeleteCart'])->name('g
 //thanh toan
 Route::get('/page-checkout',[HomeController::class,'page_checkout'])->name('page_checkout');
 Route::post('/dat-hang', [HomeController::class,'post_checkout'])->name('post_checkout');
+
+//thanh toan vnpay
+
+//Route::post('page-vnpay-checkout',[VnpayController::class,'create_vnpay'])->name('create_vnpay');
+Route::get('return-vnpay',[VnpayController::class,'return_vnpay'])->name('return_checkout_vnpay');
 //---------------------------------------SERVER
 //trang chu
 Route::get('page-admin',[AdminController::class,'index'])->name('admin_home');

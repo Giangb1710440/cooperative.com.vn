@@ -177,34 +177,94 @@ class HomeController extends Controller
 
     public function post_checkout(Request $request){
         $cart = Session::get('cart');
-        if(count($cart->items)==0){
-            Session::put('order_Nsuccess');
-            return redirect()->back()->with('order_Nsuccess','Giỏ hàng rỗng!');
-        }else {
-            $order = new order();
-            $order->id_user  = $request->input('user_id');
-            //hoa don ban hang
-            $order->id_cate_order  = 1;
-            // 1 la cho duyet 2 la da duyet
-            $order->status_order = 0;
-            $order->discount_order = 0;
-            $order->total_price_order = $request->input('total_order');
-            $order->note_order = $request->input('ghichu');
-            $order->save();
+        if (Auth::check()){
+            if(count($cart->items)==0){
+                Session::put('order_Nsuccess');
+                return redirect()->back()->with('order_Nsuccess','Giỏ hàng rỗng!');
+            }else {
+                if ($request->input('bank_code') == "0"){
+                    $order = new order();
+                    $order->id_user  = $request->input('user_id');
+                    //hoa don ban hang
+                    $order->id_cate_order  = 1;
+                    // 1 la cho duyet 2 la da duyet
+                    $order->status_order = 0;
+                    $order->discount_order = 0;
+                    $order->total_price_order = $request->input('total_order');
+                    $order->note_order = $request->input('ghichu');
+                    $order->save();
 
-            foreach ($cart->items as $key => $value) {
-                $orderDetail = new order_detail();
-                $orderDetail->id_order = $order->id;
-                $orderDetail->id_product  = $key;
-                $orderDetail->quality_order = $value['qty'];
-                $orderDetail->unit_price_order = $value['price'];
-                $orderDetail->discount_order_detail = 0;
-                $orderDetail->save();
+                    foreach ($cart->items as $key => $value) {
+                        $orderDetail = new order_detail();
+                        $orderDetail->id_order = $order->id;
+                        $orderDetail->id_product  = $key;
+                        $orderDetail->quality_order = $value['qty'];
+                        $orderDetail->unit_price_order = $value['price'];
+                        $orderDetail->discount_order_detail = 0;
+                        $orderDetail->save();
+                    }
+                    Session::forget('cart');
+                    $order_success = Session::get('order_success');
+                    Session::put('order_success');
+                    return redirect()->route('home')->with('order_success', 'Đặt hàng thành công');
+                }else{
+                    $vnp_TmnCode = "UDOPNWS1"; //Mã website tại VNPAY
+                    $vnp_HashSecret = "EBAHADUGCOEWYXCMYZRMTMLSHGKNRPBN"; //Chuỗi bí mật
+                    $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+                    $vnp_Returnurl = "http://localhost/cooperative.com.vn/return-vnpay";
+                    $vnp_TxnRef = date("YmdHis"); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+                    $vnp_OrderInfo = $request->input('note_vnpay');//noi dung thanh toan
+                    $vnp_OrderType = 200000; //ma loai san pham thanh toan
+                    $vnp_Amount = $cart->totalPrice * 100;
+
+                    $vnp_BankCode = $request->input('bank_code');
+                    $vnp_Locale = 'vn';
+                    $vnp_IpAddr = request()->ip();
+
+                    $inputData = array(
+                        "vnp_Version" => "2.0.0",
+                        "vnp_TmnCode" => $vnp_TmnCode,
+                        "vnp_Amount" => $vnp_Amount,
+                        "vnp_Command" => "pay",
+                        "vnp_CreateDate" => date('YmdHis'),
+                        "vnp_CurrCode" => "VND",
+                        "vnp_IpAddr" => $vnp_IpAddr,
+                        "vnp_Locale" => $vnp_Locale,
+                        "vnp_OrderInfo" => $vnp_OrderInfo,
+                        "vnp_OrderType" => $vnp_OrderType,
+                        "vnp_ReturnUrl" => $vnp_Returnurl,
+                        "vnp_TxnRef" => $vnp_TxnRef,
+                    );
+
+                    if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+                        $inputData['vnp_BankCode'] = $vnp_BankCode;
+                    }
+                    ksort($inputData);
+                    $query = "";
+                    $i = 0;
+                    $hashdata = "";
+                    foreach ($inputData as $key => $value) {
+                        if ($i == 1) {
+                            $hashdata .= '&' . $key . "=" . $value;
+                        } else {
+                            $hashdata .= $key . "=" . $value;
+                            $i = 1;
+                        }
+                        $query .= urlencode($key) . "=" . urlencode($value) . '&';
+                    }
+
+                    $vnp_Url = $vnp_Url."?".$query;
+                    if (isset($vnp_HashSecret)) {
+                        // $vnpSecureHash = md5($vnp_HashSecret . $hashdata);
+                        $vnpSecureHash = hash('sha256', $vnp_HashSecret . $hashdata);
+                        $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
+                    }
+                    return redirect($vnp_Url);
+                }
             }
-            Session::forget('cart');
-            $order_success = Session::get('order_success');
-            Session::put('order_success');
-            return redirect()->route('home')->with('order_success', 'Đặt hàng thành công');
+        }else{
+            Session::put('error_login');
+            return redirect()->back()->with('error_login','hay dang nhap!');
         }
     }
 
