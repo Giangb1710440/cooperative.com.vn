@@ -21,6 +21,29 @@
         })
     }
 </script>
+
+<script>
+    var msg = '{{Session::get('non_qty')}}';
+    var exist = '{{Session::has('non_qty')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'info',
+            title: 'Số lượng không cho phép'
+        })
+    }
+</script>
+
 <script>
     var msg = '{{Session::get('error_login')}}';
     var exist = '{{Session::has('error_login')}}';

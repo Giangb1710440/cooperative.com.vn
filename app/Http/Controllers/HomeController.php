@@ -110,8 +110,26 @@ class HomeController extends Controller
     public function addCard($id, Request $request){
         if (Auth::check()){
             $product = product::find($id);
-            $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, không thi null
+            $oldCart = Session('cart') ? Session::get('cart') : null; // neu co session cart thi lay cart, không thi null
             $qty_p=$request->input('qty_product');
+            //kiem tra neu ton tai
+            if ($oldCart){
+                if(array_key_exists($id, $oldCart->items)){
+                    $temp_qty=$oldCart->items[$id]['qty'] + $qty_p;
+                }else{
+                    $temp_qty = $qty_p;
+                }
+            }else{
+                $temp_qty=$qty_p;
+            }
+
+            if ($temp_qty > 1000){
+                Session::put('non_qty');
+                return redirect()->back()->with(
+                    'non_qty',
+                    'So luong khong hop le'
+                );
+            }
             $cart = new giohang($oldCart);
             $cart->add($product, $id, $qty_p);
             $request->session()->put('cart', $cart);
@@ -120,6 +138,8 @@ class HomeController extends Controller
                 'add_cart_success',
                 'Đã thêm vào giỏ hàng'
             );
+
+
         }else{
             $register_success = Session::get('error_login');
             Session::put('error_login');
@@ -130,9 +150,27 @@ class HomeController extends Controller
     public function addCard_qty($id){
         if (Auth::check()){
             $product = product::find($id);
-            $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, không thi null
+            $oldCart = Session('cart') ? Session::get('cart') : null; // neu co session cart thi lay cart, không thi null
+
+            if ($oldCart){
+                if(array_key_exists($id, $oldCart->items)){
+                    $temp_qty=$oldCart->items[$id]['qty']+1;
+                }else{
+                    $temp_qty = 1;
+                }
+            }else{
+                $temp_qty=0;
+            }
+
+            if ($temp_qty > 1000){
+                Session::put('non_qty');
+                return redirect()->back()->with(
+                    'non_qty',
+                    'So luong khong hop le'
+                );
+            }
             $cart = new giohang($oldCart);
-            $cart->add($product, $id,1);
+            $cart->add($product, $id, 1);
             session()->put('cart', $cart);
             session()->put('add_cart_success');
             return redirect()->back()->with(
@@ -145,9 +183,9 @@ class HomeController extends Controller
             return redirect()->back()->with('error_login', 'Hãy đăng nhập');
         }
     }
-
     public function updateCart(Request $request){
         if($request->id and $request->quantity){
+            $qty_product = $request->quantity;
             $oldCart = Session::has('cart')?Session::get('cart'):null;
             $cart = new giohang($oldCart);
             $cart->update_cart($request->id,$request->quantity);
@@ -199,8 +237,8 @@ class HomeController extends Controller
                         $orderDetail->id_order = $order->id;
                         $orderDetail->id_product  = $key;
                         $orderDetail->quality_order = $value['qty'];
-                        $orderDetail->unit_price_order = $value['price'];
-                        $orderDetail->discount_order_detail = 0;
+                        $orderDetail->unit_price_order = $value['item']['sale_price_product']*((100-$value['item']['sale'])/100);
+                        $orderDetail->discount_order_detail = $value['discount'];
                         $orderDetail->save();
                     }
                     Session::forget('cart');
@@ -215,7 +253,7 @@ class HomeController extends Controller
                     $vnp_TxnRef = date("YmdHis"); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
                     $vnp_OrderInfo = $request->input('note_vnpay');//noi dung thanh toan
                     $vnp_OrderType = 200000; //ma loai san pham thanh toan
-                    $vnp_Amount = $cart->totalPrice * 100;
+                    $vnp_Amount =  $request->input('total_order_vnpay')* 100;
 
                     $vnp_BankCode = $request->input('bank_code');
                     $vnp_Locale = 'vn';
@@ -259,6 +297,7 @@ class HomeController extends Controller
                         $vnpSecureHash = hash('sha256', $vnp_HashSecret . $hashdata);
                         $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
                     }
+                    Session::put('total_vnpay',$request->input('total_order_vnpay'));
                     return redirect($vnp_Url);
                 }
             }

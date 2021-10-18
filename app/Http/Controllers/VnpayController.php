@@ -95,7 +95,7 @@ class VnpayController extends Controller
             // 1 la cho duyet 2 la da duyet
             $order->status_order = 1;
             $order->discount_order = 0;
-            $order->total_price_order = $cart->totalPrice;
+            $order->total_price_order = $request->input('vnp_Amount')/100;
             $order->note_order = "DATHANHTOANVNPAY";
             $order->save();
 
@@ -104,8 +104,8 @@ class VnpayController extends Controller
                 $orderDetail->id_order = $order->id;
                 $orderDetail->id_product  = $key;
                 $orderDetail->quality_order = $value['qty'];
-                $orderDetail->unit_price_order = $value['price'];
-                $orderDetail->discount_order_detail = 0;
+                $orderDetail->unit_price_order = $value['item']['sale_price_product']*((100-$value['item']['sale'])/100);
+                $orderDetail->discount_order_detail = $value['discount'];
                 $orderDetail->save();
             }
             Session::forget('cart');

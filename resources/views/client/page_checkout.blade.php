@@ -103,15 +103,21 @@
                                                     <h4>Đơn hàng của bạn</h4>
                                                     <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
                                                     <ul>
+                                                        <?php
+                                                        $total_cart = 0;
+                                                        ?>
                                                         @foreach($product_cart as $product)
-                                                            <li>{{$product['item']['name_product']}} <span>{{number_format($product['price'])}} VNĐ</span></li>
+                                                            <li>{{$product['item']['name_product']}} <span>{{number_format($product['price']*((100-$product['discount'])/100))}} VNĐ</span></li>
+                                                                <?php
+                                                                $total_cart += $product['price']*((100- $product['discount'])/100);
+                                                                ?>
                                                         @endforeach
                                                     </ul>
                                                     <div class="checkout__order__subtotal">Giảm giá <span>0 VNĐ</span></div>
-                                                    <div class="checkout__order__total">Tổng đơn hàng <span>{{number_format($totalPrice)}} VNĐ</span></div>
+                                                    <div class="checkout__order__total">Tổng đơn hàng <span>{{number_format($total_cart)}} VNĐ</span></div>
 
                                                     <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
-                                                    <input type="hidden" value="{{$totalPrice}}" name="total_order">
+                                                    <input type="hidden" value="{{$total_cart}}" name="total_order">
                                                     <button type="submit" class="site-btn">Đặt hàng</button>
                                                 </div>
                                             </div>
@@ -197,15 +203,16 @@
                                                     <h4>Đơn hàng của bạn</h4>
                                                     <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
                                                     <ul>
+
                                                         @foreach($product_cart as $product)
-                                                            <li>{{$product['item']['name_product']}} <span>{{number_format($product['price'])}} VNĐ</span></li>
+                                                            <li>{{$product['item']['name_product']}} <span>{{number_format($product['price']*((100-$product['discount'])/100))}} VNĐ</span></li>
                                                         @endforeach
                                                     </ul>
                                                     <div class="checkout__order__subtotal">Giảm giá <span>0 VNĐ</span></div>
-                                                    <div class="checkout__order__total">Tổng đơn hàng <span>{{number_format($totalPrice)}} VNĐ</span></div>
+                                                    <div class="checkout__order__total">Tổng đơn hàng <span>{{number_format($total_cart)}} VNĐ</span></div>
 
                                                     <input type="hidden" value="{{ Auth::user()->id }}" name="user_vnpay">
-                                                    <input type="hidden" value="{{$totalPrice}}" name="total_order_vnpay">
+                                                    <input type="hidden" value="{{$total_cart}}" name="total_order_vnpay">
                                                     <button type="submit" class="site-btn">Thanh toán</button>
 
                                                 </div>

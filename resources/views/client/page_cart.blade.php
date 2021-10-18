@@ -51,6 +51,13 @@
         <div class="container">
             @if(Auth::check())
                 @if(Session::has('cart'))
+                    <style>
+                        marquee{
+                            background-color: coral;
+                            font-size: 20px;
+                        }
+                    </style>
+                    <marquee direction="right">Từ 1000KG giảm 45% - Từ 200KG giảm 30% - Từ 50KG giảm 20% - Từ 20KG giảm 10% </marquee>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="shoping__cart__table">
@@ -59,6 +66,7 @@
                                     <tr>
                                         <th class="shoping__product">Sản phẩm</th>
                                         <th>Giá</th>
+                                        <th>Chiết khấu</th>
                                         <th>Đơn vị</th>
                                         <th>Số lượng</th>
                                         <th>Thành tiền</th>
@@ -66,7 +74,10 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($product_cart as $product)
+                                    <?php
+                                    $total_cart = 0;
+                                    ?>
+                                    @foreach($product_cart as $key => $product)
                                         <tr>
                                             <td class="shoping__cart__item">
                                                 @foreach((array)json_decode($product['item']['image_product'],true) as $images)
@@ -78,6 +89,7 @@
                                             <td class="shoping__cart__price">
                                                 {{number_format($product['item']['sale_price_product']*((100-$product['item']['sale'])/100))}} VNĐ
                                             </td>
+                                            <td class="shoping__cart__price">{{$product['discount']}} %</td>
                                             <td class="shoping__cart__price">
                                                 @foreach($unit as $units)
                                                     @if($units->id == $product['item']['id_unit'])
@@ -85,13 +97,13 @@
                                                     @endif
                                                 @endforeach
                                             </td>
-                                            <td>
+                                            <td class="shoping__cart__price">
                                                 <input style="max-width: 60px" type="number" id="txt_solg" name="txt_solg"
                                                        value="{{$product['qty']}}"
                                                        onchange="update_cart({{ $product['item']['id']}} + ',' + this.value)">
                                             </td>
                                             <td class="shoping__cart__total">
-                                                {{number_format($product['price'])}} VNĐ
+                                                {{number_format($product['price']*((100-$product['discount'])/100))}} VNĐ
                                             </td>
                                             <td class="shoping__cart__item__close">
                                                 <a onclick="return   xacnhanxoa('Bạn chắc chắn xóa')"
@@ -102,6 +114,9 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        <?php
+                                            $total_cart += $product['price']*((100 - $product['discount'])/100);
+                                        ?>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -112,8 +127,8 @@
                         <div class="col-lg-12">
                             <div class="shoping__cart__btns">
                                 <a href="{{route('page_product',0)}}" class="primary-btn cart-btn">Tiếp tục mua hàng</a>
-
                             </div>
+
                         </div>
                         <div class="col-lg-6">
                             <div class="shoping__continue">
@@ -126,12 +141,13 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-6">
                             <div class="shoping__checkout">
                                 <h5>Tổng tiền</h5>
                                 <ul>
                                     <li> Chiết khấu<span>0 VNĐ</span></li>
-                                    <li>Thành tiền <span>{{number_format($totalPrice)}} VNĐ</span></li>
+                                    <li>Thành tiền <span>{{number_format($total_cart)}} VNĐ</span></li>
                                 </ul>
                                 <a href="{{route('page_checkout')}}" class="primary-btn">Đặt hàng</a>
                             </div>
@@ -144,7 +160,6 @@
                                 <thead>
                                 <tr>
                                     <th class="shoping__product" colspan="5">Chưa có sản phẩm trong giỏ hàng</th>
-
                                 </tr>
                                 </thead>
                             </table>
@@ -170,8 +185,8 @@
     <script>
         function update_cart(e) {
             var ele = e.split(",");
-            var ktra = document.getElementById('txt_solg').value;
-            if(ktra > 0 && ktra < 100){
+            var ktra = document.getElementById("txt_solg").value;
+            if(ele[1] > 0 && ele[1] < 1001){
                 $.ajax({
                     method: "get",
                     url: '{{ route('getUpdateCart') }}',
@@ -216,10 +231,12 @@
                     icon: 'info',
                     title: 'Số lượng không hợp lệ'
                 });
-                document.getElementById('txt_solg').value = 1;
+                window.setTimeout(function(){
+                    window.location.reload();
+                } ,600);
+                // document.getElementById("txt_solg").value = 1;
             }
         }
     </script>
-
     <!-- Shoping Cart Section End -->
 @endsection

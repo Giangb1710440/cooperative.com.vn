@@ -441,6 +441,7 @@ class AdminController extends Controller
     }
 
     public function post_add_product(Request $res){
+        $loinhuan = 40/100;
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');

@@ -22,7 +22,7 @@ class giohang extends Model
     }
 
     public function add($item, $id, $qty_p){
-        $giohang = ['qty'=>0, 'price' => 0, 'item' => $item];
+        $giohang = ['qty'=>0, 'price' => 0, 'item' => $item,'discount'=>0];
 
         if($this->items){
             if(array_key_exists($id, $this->items)){
@@ -31,15 +31,37 @@ class giohang extends Model
         }
         $giohang['qty'] += $qty_p;
 
+        if ($giohang['qty'] <20){
+            $giohang['discount']=0;
+        }elseif(19 < $giohang['qty'] && $giohang['qty'] < 50 ){
+            $giohang['discount']=5;
+        }elseif(49 < $giohang['qty'] && $giohang['qty'] < 200 ){
+            $giohang['discount']=10;
+        }elseif(199 < $giohang['qty'] && $giohang['qty'] < 1001){
+            $giohang['discount']=20;
+        }
+
         $giohang['price']  += $qty_p *$item->sale_price_product *((100-$item->sale)/100);
         $this->items[$id] = $giohang;
         $this->totalQty++;
         $this->totalPrice += $item->sale_price_product * $qty_p*((100-$item->sale)/100);
+
     }
 
     // update cart
     public function update_cart($id,$newQty){
+
         $present_qty = $this->items[$id]['qty'];
+
+        if ($newQty < 20){
+            $this->items[$id]['discount']=0;
+        }elseif(19 < $newQty && $newQty < 50 ){
+            $this->items[$id]['discount']=5;
+        }elseif(49 < $newQty && $newQty < 200 ){
+            $this->items[$id]['discount']=10;
+        }elseif(199 < $newQty && $newQty < 1001){
+            $this->items[$id]['discount']=20;
+        }
 
         if( $present_qty > $newQty){
             $this->items[$id]['qty'] = $newQty;
