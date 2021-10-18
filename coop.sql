@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 16, 2021 lúc 12:47 PM
+-- Thời gian đã tạo: Th10 18, 2021 lúc 04:55 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 7.3.31
 
@@ -198,8 +198,18 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `id_user`, `id_cate_order`, `status_order`, `discount_order`, `total_price_order`, `note_order`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, '0', 0, 90000, 'Ghi chú trống', '2021-10-14 21:55:48', '2021-10-14 21:55:48'),
-(2, 5, 1, '0', 0, 92400, 'Ghi chú trống', '2021-10-16 03:34:14', '2021-10-16 03:34:14');
+(3, 5, 1, '0', 0, 20000, 'Ghi chú trống', '2021-10-16 19:16:55', '2021-10-16 19:16:55'),
+(4, 5, 1, '0', 0, 14700, 'Ghi chú trống', '2021-10-16 19:18:21', '2021-10-16 19:18:21'),
+(5, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:20:59', '2021-10-16 19:20:59'),
+(6, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:21:35', '2021-10-16 19:21:35'),
+(7, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:21:53', '2021-10-16 19:21:53'),
+(8, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:22:30', '2021-10-16 19:22:30'),
+(9, 5, 1, '1', 0, 51250, 'DATHANHTOANVNPAY', '2021-10-16 19:41:38', '2021-10-16 19:41:38'),
+(10, 5, 1, '1', 0, 51250, 'DATHANHTOANVNPAY', '2021-10-16 19:42:47', '2021-10-16 19:42:47'),
+(11, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:43:20', '2021-10-16 19:43:20'),
+(12, 5, 1, '1', 0, 126550, 'DATHANHTOANVNPAY', '2021-10-16 20:12:07', '2021-10-16 20:12:07'),
+(13, 3, 1, '1', 0, 45000, 'DATHANHTOANVNPAY', '2021-10-17 03:24:21', '2021-10-17 03:24:21'),
+(27, 3, 1, '1', 0, 2047500, 'DATHANHTOANVNPAY', '2021-10-18 07:52:24', '2021-10-18 07:52:24');
 
 -- --------------------------------------------------------
 
@@ -245,9 +255,22 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`id`, `id_order`, `id_product`, `quality_order`, `unit_price_order`, `discount_order_detail`, `created_at`, `updated_at`) VALUES
-(1, 1, 16, 2, 90000, 0, '2021-10-14 21:55:48', '2021-10-14 21:55:48'),
-(2, 2, 21, 2, 63000, 0, '2021-10-16 03:34:14', '2021-10-16 03:34:14'),
-(3, 2, 17, 2, 29400, 0, '2021-10-16 03:34:14', '2021-10-16 03:34:14');
+(4, 3, 31, 1, 20000, 0, '2021-10-16 19:16:56', '2021-10-16 19:16:56'),
+(5, 4, 17, 1, 14700, 0, '2021-10-16 19:18:21', '2021-10-16 19:18:21'),
+(6, 5, 16, 1, 45000, 0, '2021-10-16 19:21:00', '2021-10-16 19:21:00'),
+(7, 6, 16, 1, 45000, 0, '2021-10-16 19:21:35', '2021-10-16 19:21:35'),
+(8, 7, 16, 1, 45000, 0, '2021-10-16 19:21:53', '2021-10-16 19:21:53'),
+(9, 8, 16, 1, 45000, 0, '2021-10-16 19:22:30', '2021-10-16 19:22:30'),
+(10, 9, 17, 1, 14700, 0, '2021-10-16 19:41:38', '2021-10-16 19:41:38'),
+(11, 9, 14, 1, 36550, 0, '2021-10-16 19:41:38', '2021-10-16 19:41:38'),
+(12, 10, 17, 1, 14700, 0, '2021-10-16 19:42:47', '2021-10-16 19:42:47'),
+(13, 10, 14, 1, 36550, 0, '2021-10-16 19:42:47', '2021-10-16 19:42:47'),
+(14, 11, 16, 1, 45000, 0, '2021-10-16 19:43:20', '2021-10-16 19:43:20'),
+(15, 12, 16, 2, 90000, 0, '2021-10-16 20:12:07', '2021-10-16 20:12:07'),
+(16, 12, 14, 1, 36550, 0, '2021-10-16 20:12:07', '2021-10-16 20:12:07'),
+(17, 13, 16, 1, 45000, 0, '2021-10-17 03:24:21', '2021-10-17 03:24:21'),
+(30, 27, 18, 20, 22500, 5, '2021-10-18 07:52:24', '2021-10-18 07:52:24'),
+(31, 27, 9, 100, 18000, 10, '2021-10-18 07:52:24', '2021-10-18 07:52:24');
 
 -- --------------------------------------------------------
 
@@ -366,7 +389,8 @@ INSERT INTO `products` (`id`, `id_cate_product`, `id_unit`, `name_product`, `des
 (30, 2, 1, 'ĐẬU BẮP', 'Sản phẩm được cung cấp tại hợp tác xã nông nghiệp Goscooperative', 'Mới thêm', '[\"DAUBAP.jpg\"]', 24000, 30000, 0, '2021-10-15 18:29:00', '2021-10-15 18:29:00'),
 (31, 2, 1, 'CHANH TƯƠI', 'Sản phẩm được cung cấp tại hợp tác xã nông nghiệp Goscooperative', 'Mới thêm', '[\"CHANHTUOI.jpg\"]', 14000, 20000, 0, '2021-10-15 18:29:52', '2021-10-15 18:29:52'),
 (32, 2, 1, 'CÀ RỐT', 'Sản phẩm được cung cấp tại hợp tác xã nông nghiệp Goscooperative', 'Mới thêm', '[\"CAROT.jpg\"]', 18000, 22000, 0, '2021-10-15 18:30:37', '2021-10-15 18:30:37'),
-(33, 2, 1, 'CỦ CẢI TRẮNG', 'Sản phẩm được cung cấp tại hợp tác xã nông nghiệp Goscooperative', 'Mới thêm', '[\"CUCAITRANG.jpg\"]', 13000, 20000, 0, '2021-10-15 19:22:03', '2021-10-15 19:22:03');
+(33, 2, 1, 'CỦ CẢI TRẮNG', 'Sản phẩm được cung cấp tại hợp tác xã nông nghiệp Goscooperative', 'Mới thêm', '[\"CUCAITRANG.jpg\"]', 13000, 20000, 0, '2021-10-15 19:22:03', '2021-10-15 19:22:03'),
+(34, 1, 1, 'MĂNG CỤT BẢO LỘC', 'Sản phẩm được cung cấp bởi GOS-COOPERATIVE', 'Mới thêm', '[\"bonbon.jpg\"]', 20000, 28000, 0, '2021-10-17 11:40:02', '2021-10-17 11:40:02');
 
 -- --------------------------------------------------------
 
@@ -526,7 +550,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `id_position`, `name_user`, `email`, `email_verified_at`, `password`, `address_user`, `phone_user`, `sex_user`, `birthday_user`, `image_user`, `remember_token`, `created_at`, `updated_at`) VALUES
 (3, 1, 1, 'Nguyen ha giang', 'giang@gmail.com', NULL, '$2y$10$uNKbB.MLOCYR07uNBt19K.ykNf.1tatfn7u8kLn5RJK7nsANp3hFO', 'can tho', '0939337416', 'Nam', '1999-09-13', 'images.PNG', NULL, '2021-09-13 11:53:14', '2021-09-13 11:53:14'),
-(5, 3, 1, 'giangphpsmart', 'thuan@gmail.com', NULL, '$2y$10$3gAUg.nCv.HfQ5SvkslccOd7SyO6tUgfD2Dv.0DQaFWg.uWJ39iky', '3/2 ninh kieu can tho', '0939337416', 'Nam', '1999-09-13', 'girl.PNG', NULL, '2021-09-13 15:38:55', '2021-09-13 15:38:55');
+(5, 3, 1, 'Nguyễn Hà Giang', 'gianggiang@gmail.com', NULL, '$2y$10$3gAUg.nCv.HfQ5SvkslccOd7SyO6tUgfD2Dv.0DQaFWg.uWJ39iky', 'Ninh kiều, Cần Thơ', '0939337416', 'Nam', '1999-09-13', 'girl.PNG', NULL, '2021-09-13 15:38:55', '2021-09-13 15:38:55');
 
 -- --------------------------------------------------------
 
@@ -765,7 +789,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `order_caterogys`
@@ -777,7 +801,7 @@ ALTER TABLE `order_caterogys`
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -801,7 +825,7 @@ ALTER TABLE `positions`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `product_caterogys`
