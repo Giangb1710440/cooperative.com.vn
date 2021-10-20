@@ -46,14 +46,17 @@
                                             <th><strong>Mã đơn hàng</strong></th>
                                             <th><strong>Tên khách hàng</strong></th>
                                             <th><strong>Tổng tiền (VNĐ)</strong></th>
-                                            <th><strong>Ghi chú</strong></th>
-                                            <th><strong>Tình trạng đơn hàng</strong></th>
+{{--                                            <th><strong>Ghi chú</strong></th>--}}
+                                            <th><strong>Thanh toán</strong></th>
+                                            <th><strong>Trạng thái</strong></th>
+                                            <th><strong>Cập nhật</strong></th>
+
                                             <th><strong>Tùy chọn</strong></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($order as $orders)
-                                            <tr>
+                                            <tr class="accordion-toggle collapsed" id="c-2474" data-toggle="collapse" data-parent="#c-2474" href="#collap-{{$orders->id}}">
                                                 <td>
                                                     <i class="fas fa-paperclip"></i>
                                                 </td>
@@ -72,24 +75,54 @@
                                                     {{number_format($orders->total_price_order)}}
                                                 </td>
 
+{{--                                                <td>--}}
+{{--                                                    {{$orders->note_order}}--}}
+{{--                                                </td>--}}
                                                 <td>
-                                                    {{$orders->note_order}}
+                                                    @if($orders->status_checkout == 0)
+                                                        Chưa thanh toán
+                                                    @elseif($orders->status_checkout == 1)
+                                                        <h6 style="color:#34ce57;">Đã thanh toán</h6>
+                                                    @elseif($orders->status_checkout == 2)
+                                                        Đã hoàn tiền
+                                                    @endif
                                                 </td>
 
                                                 <td>
                                                     @if($orders->status_order == 0)
-                                                        Chờ duyệt
+                                                        Chờ xác nhận
                                                     @elseif($orders->status_order == 1)
-                                                        Đã nhận đơn
+
+                                                        <h6 style="color:cornflowerblue;">Đã nhận đơn</h6>
                                                     @elseif($orders->status_order == 2)
-                                                        Đã nhận hàng
-                                                    @elseif($orders->status_order == 3)
-                                                        Đã hủy đơn
+                                                        <h6 style="color:#34ce57;">Đã giao hàng</h6>
+                                                    @elseif($orders->status_order == -1)
+                                                        <h6 style="color:red;">Đã hủy đơn</h6>
+
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($orders->status_order == 0)
+                                                        <button style="background-color: #6c757d">
+                                                            <a style="color: white " type="button" href="{{route('getUpdate_status_order',$orders->id)}}">Xác nhận đơn</a>
+                                                        </button>
+{{--                                                        <a style="color: white " type="button" href="{{route('getUpdate_status_order',$orders->id)}}">Xác nhận đơn</a>--}}
+                                                        <input type="hidden" name="status_order_detail" id="status_order_detail" value="{{$orders->id}}">
+                                                    @elseif($orders->status_order == 1)
+                                                        <button style="background-color: #34ce57">
+                                                            <a style="color: white " type="button" href="{{route('getUpdate_status_order',$orders->id)}}">Xác nhận giao hàng</a>
+                                                        </button>
+{{--                                                        <a style="color: #34ce57 " type="button" href="{{route('getUpdate_status_order',$orders->id)}}">Đã giao hàng</a>--}}
+                                                        <input type="hidden" name="status_order_detail" id="status_order_detail" value="{{$orders->id}}">
+                                                    @elseif($orders->status_order == 2)
+                                                        <i style="color: #2bbb8b" class="fas fa-check-circle"></i>
+                                                    @elseif($orders->status_order == -1)
+                                                        <i style="color: red" class="fas fa-times"></i>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     {{--                                                    <a href="{{route('detail_diary',$products->id)}}" type="button" class="btn mb-2 btn-outline-secondary"> </a>--}}
-                                                    <a href="" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" data-target="#detail_order{{$orders->id}}" data-whatever="@mdo"><i class="far fa-eye"></i></a>
+                                                    <a href="" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" data-target="#detail_order{{$orders->id}}" data-whatever="@mdo"><i class="fas fa-print"></i></a>
                                                     <div class="modal fade" id="detail_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -205,34 +238,36 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#delete_order{{$orders->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
-                                                    <div class="modal fade" id="delete_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form>
-                                                                        <div class="form-group">
-                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan
-                                                                                sẽ biến mất và không thể khôi phục được nữa</label>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+                                                    @if($orders->status_order == 0)
+                                                        <button style="background-color: red;color: white" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#delete_order{{$orders->id}}" data-whatever="@mdo">Hủy</button>
+                                                        <div class="modal fade" id="delete_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <label for="recipient-name" class="col-form-label">Đồng ý hủy đơn hàng ORDER{{$orders->id}}</label>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
 
-                                                                    <a href="{{route('post_delete_order',$orders->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                        <a href="{{route('post_delete_order',$orders->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Hủy đơn</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </td>
                                             </tr>
+
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -262,8 +297,8 @@
         {
             autoWidth: true,
             "lengthMenu": [
-                [16, 32, 64, -1],
-                [16, 32, 64, "All"]
+                [6, 12, 24, -1],
+                [6, 12, 24, "All"]
             ]
         });
 </script>
@@ -279,6 +314,27 @@
     }
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
+</script>
+<script>
+    var msg = '{{Session::get('success_edit_order')}}';
+    var exist = '{{Session::has('success_edit_order')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1200,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Đã cập nhật'
+        })
+    }
 </script>
 <script>
     var msg = '{{Session::get('no_add_product')}}';
@@ -343,6 +399,7 @@
         })
     }
 </script>
+
 <script>
     var msg = '{{Session::get('add_product')}}';
     var exist = '{{Session::has('add_product')}}';
@@ -381,7 +438,7 @@
         })
         Toast.fire({
             icon: 'error',
-            title: 'Đã xóa'
+            title: 'Đã hủy đơn'
         })
     }
 </script>

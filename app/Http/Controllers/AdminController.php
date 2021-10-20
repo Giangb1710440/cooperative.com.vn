@@ -88,6 +88,23 @@ class AdminController extends Controller
             return redirect()->route('login');
         }
     }
+    public function post_edit_catep($id,Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $edit_catep = product_caterogy::find($id);
+                $edit_catep->name_cate_product = $request->input('catep_name');
+                $edit_catep->description_cate_product = $request->input('description_catep_name');
+                $edit_catep->save();
+                $register_success = Session::get('success_edit_catep');
+                Session()->put('success_edit_catep');
+                return redirect()->back()->with('success_edit_catep', 'xoa thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
 
     //them moi don vi
     public function page_add_unit(){
@@ -131,6 +148,24 @@ class AdminController extends Controller
                 $register_success = Session::get('success_delete_unit');
                 Session()->put('success_delete_unit');
                 return redirect()->back()->with('success_delete_unit', 'xoa thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+    public function post_edit_unit($id,Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $edit_unit = unit::find($id);
+                $edit_unit->name_unit = $request->input('name_unit');
+                $edit_unit->description_unit = $request->input('description_unit');
+                $edit_unit->save();
+                $register_success = Session::get('success_edit_unit');
+                Session()->put('success_edit_unit');
+                return redirect()->back()->with('success_edit_unit', 'Thêm thành công');
             }
         }else{
             return redirect()->route('login');
@@ -346,7 +381,7 @@ class AdminController extends Controller
                 order_caterogy::find($id)->delete();
                 $register_success = Session::get('success_delete_order_cate');
                 Session()->put('success_delete_order_cate');
-                return redirect()->back()->with('success_delete_order_cate', 'Thêm thành công');
+                return redirect()->back()->with('success_delete_order_cate', 'xóa công');
             }
         }else{
             return redirect()->route('login');
@@ -967,10 +1002,46 @@ class AdminController extends Controller
 
 //xoa don hang
     public function post_delete_order($id){
-        order::find($id)->delete();
-        $register_success = Session::get('success_delete_order');
-        Session()->put('success_delete_order');
-        return redirect()->back()->with('success_delete_order', 'Xóa thành công');
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $order_status = order::find($id);
+
+                $order_status->status_order = -1;
+                if ($order_status->status_checkout == 1){
+                    $order_status->status_checkout = 2;
+                }
+                $order_status->save();
+                $register_success = Session::get('success_delete_order');
+                Session()->put('success_delete_order');
+                return redirect()->back()->with('success_delete_order', 'Xóa thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+
+    }
+    //cap nhat tinh trang don hang
+    public function getUpdate_status_order($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                    $order_status = order::find($id);
+                    if($order_status->status_order+1 == 2){
+                        $order_status->status_checkout = 1;
+                    }
+                    $order_status->status_order = $order_status->status_order+1;
+                    $order_status->save();
+                    Session()->put('success_edit_order');
+                    return redirect()->back()->with('success_edit_order', 'Xóa thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
     }
 
 }

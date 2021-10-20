@@ -12,7 +12,7 @@ $font-family-sans-serif: 'Roboto', sans-serif;
 
 body {
 	font-family: $font-family-sans-serif;
-	background-color: #fff;
+	background-color: #f8fafb;
 }
 p {
 	color: darken(#ccc, 10%);
@@ -35,34 +35,63 @@ h2 {
 	font-size: 20px;
 }
 
-.half {
-	&, & .container > .row {
-		height: 100vh;
-		min-height: 700px;
-	}
-	
+.content {
 	.bg {
 		@include media-breakpoint-down(md) {
-			height: 200px;
+			height: 500px;
 		}
-	}
-	.contents {
-		background: #f6f7fc;
 	}
 	.contents, .bg {
 		width: 50%;
 		@include media-breakpoint-down(lg) {
 			width: 100%;
 		}
+		.form-group	{
+			position: relative;
+			label {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				transition: .3s all ease;
+			}
+			
+			input {
+				background: transparent;
+				border-bottom: 1px solid #ccc;
+			}
+
+			&.first {
+				border-top-left-radius: 7px;
+				border-top-right-radius: 7px;
+			}
+			&.last {
+				// border-bottom: 1px solid #efefef;
+				border-bottom-left-radius: 7px;
+				border-bottom-right-radius: 7px;
+			}
+			label {
+				font-size: 12px;
+				display: block;
+				margin-bottom: 0;
+				color: darken(#ccc, 10%);
+			}
+			&.focus {
+				background: $white;
+			}
+			&.field--not-empty {
+				label {
+					margin-top: -25px;
+				}
+			}
+		}
 		.form-control {
 			border: none;
-			box-shadow: 0 1px 2px 0 rgba($black, .1);
-			border-radius: 4px;
-			height: 54px;
-			background: $white;
+			padding: 0;
+			font-size: 20px;
+			border-radius: 0;
 			&:active, &:focus {
 				outline: none;
-				box-shadow: 0 1px 2px 0 rgba($black, .1);
+				box-shadow: none;
 			}
 		}
 	}
@@ -83,6 +112,49 @@ h2 {
 		position: relative;
 		top: 2px;
 		font-size: 14px;
+	}
+}
+
+.social-login {
+	a {
+		
+		text-decoration: none;
+		
+		position: relative;
+		text-align: center;
+		color: $white;
+		margin-bottom: 10px;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		display: inline-block;
+		span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		&:hover {
+			color: $white;
+		}
+		&.facebook {
+			background: #3b5998;
+			&:hover {
+				background: darken(#3b5998, 5%);
+			}
+		}
+		&.twitter {
+			background: #1da1f2;
+			&:hover {
+				background: darken(#1da1f2, 5%);
+			}
+		}
+		&.google {
+			background: #ea4335;
+			&:hover {
+				background: darken(#ea4335, 5%);
+			}
+		}
 	}
 }
 

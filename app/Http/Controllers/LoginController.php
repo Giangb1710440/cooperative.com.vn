@@ -20,6 +20,9 @@ class LoginController extends Controller
         $password = $res->input('password');
         $confirm = $res->input('confirm');
 
+        if (User::where('email', '=', $res->input('email'))->count() > 0) {
+            return redirect()->back()->with('error_email', 'trung email');
+        }
         if (strcasecmp($password, $confirm) != 0) {
             $register_success = Session::get('noconfirm');
             Session::put('noconfirm');
@@ -27,7 +30,7 @@ class LoginController extends Controller
         } else {
             //image
             $user = new User;
-            $user->role_id = 1;
+            $user->role_id = 3;
             $user->id_position = 1;
             $user->name_user = $res->input('name');
             $user->email = $res->input('email');

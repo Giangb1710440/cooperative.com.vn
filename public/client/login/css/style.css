@@ -1,6 +1,6 @@
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #fff; }
+  background-color: #f8fafb; }
 
 p {
   color: #b3b3b3;
@@ -18,56 +18,108 @@ a {
     text-decoration: none !important; }
 
 .content {
-  padding: 7rem 0; }
+  padding: 2rem 0; }
 
 h2 {
   font-size: 20px; }
 
-.half, .half .container > .row {
-  height: 100vh;
-  min-height: 700px; }
-
 @media (max-width: 991.98px) {
-  .half .bg {
-    height: 200px; } }
+  .content .bg {
+    height: 500px; } }
 
-.half .contents {
-  background: #f6f7fc; }
-
-.half .contents, .half .bg {
+.content .contents, .content .bg {
   width: 50%; }
   @media (max-width: 1199.98px) {
-    .half .contents, .half .bg {
+    .content .contents, .content .bg {
       width: 100%; } }
-  .half .contents .form-control, .half .bg .form-control {
+  .content .contents .form-group, .content .bg .form-group {
+    position: relative; }
+    .content .contents .form-group label, .content .bg .form-group label {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease; }
+    .content .contents .form-group input, .content .bg .form-group input {
+      background: transparent;
+      border-bottom: 1px solid #ccc; }
+    .content .contents .form-group.first, .content .bg .form-group.first {
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px; }
+    .content .contents .form-group.last, .content .bg .form-group.last {
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px; }
+    .content .contents .form-group label, .content .bg .form-group label {
+      font-size: 15px;
+      display: block;
+      margin-bottom: 0;
+      color: #757575; }
+    .content .contents .form-group.focus, .content .bg .form-group.focus {
+      background: #fff; }
+    .content .contents .form-group.field--not-empty label, .content .bg .form-group.field--not-empty label {
+      margin-top: -25px; }
+  .content .contents .form-control, .content .bg .form-control {
     border: none;
-    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    height: 54px;
-    background: #fff; }
-    .half .contents .form-control:active, .half .contents .form-control:focus, .half .bg .form-control:active, .half .bg .form-control:focus {
+    padding: 0;
+    font-size: 20px;
+    border-radius: 0; }
+    .content .contents .form-control:active, .content .contents .form-control:focus, .content .bg .form-control:active, .content .bg .form-control:focus {
       outline: none;
-      -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1); }
+      -webkit-box-shadow: none;
+      box-shadow: none; }
 
-.half .bg {
+.content .bg {
   background-size: cover;
   background-position: center; }
 
-.half a {
+.content a {
   color: #888;
   text-decoration: underline; }
 
-.half .btn {
+.content .btn {
   height: 54px;
   padding-left: 30px;
   padding-right: 30px; }
 
-.half .forgot-pass {
+.content .forgot-pass {
   position: relative;
   top: 2px;
   font-size: 14px; }
+
+.social-login a {
+  text-decoration: none;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: inline-block; }
+  .social-login a span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  .social-login a:hover {
+    color: #fff; }
+  .social-login a.facebook {
+    background: #3b5998; }
+    .social-login a.facebook:hover {
+      background: #344e86; }
+  .social-login a.twitter {
+    background: #1da1f2; }
+    .social-login a.twitter:hover {
+      background: #0d95e8; }
+  .social-login a.google {
+    background: #ea4335; }
+    .social-login a.google:hover {
+      background: #e82e1e; }
 
 .control {
   display: block;
@@ -103,11 +155,11 @@ h2 {
   background: #ccc; }
 
 .control input:checked ~ .control__indicator {
-  background: #fb771a; }
+  background: #38d39f; }
 
 .control:hover input:not([disabled]):checked ~ .control__indicator,
 .control input:checked:focus ~ .control__indicator {
-  background: #fb8633; }
+  background: #4dd8a9; }
 
 .control input:disabled ~ .control__indicator {
   background: #e6e6e6;

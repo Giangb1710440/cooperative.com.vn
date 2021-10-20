@@ -138,8 +138,6 @@ class HomeController extends Controller
                 'add_cart_success',
                 'Đã thêm vào giỏ hàng'
             );
-
-
         }else{
             $register_success = Session::get('error_login');
             Session::put('error_login');

@@ -1,14 +1,14 @@
 $(function() {
+	'use strict';
 
-    $('.btn-link[aria-expanded="true"]').closest('.accordion-item').addClass('active');
-  $('.collapse').on('show.bs.collapse', function () {
-	  $(this).closest('.accordion-item').addClass('active');
+	
+  $('.form-control').on('input', function() {
+	  var $field = $(this).closest('.form-group');
+	  if (this.value) {
+	    $field.addClass('field--not-empty');
+	  } else {
+	    $field.removeClass('field--not-empty');
+	  }
 	});
-
-  $('.collapse').on('hidden.bs.collapse', function () {
-	  $(this).closest('.accordion-item').removeClass('active');
-	});
-
-    
 
 });

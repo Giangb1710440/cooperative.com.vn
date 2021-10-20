@@ -12,58 +12,80 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('public/client/login/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <script src="https://kit.fontawesome.com/12bbc8e57f.js" crossorigin="anonymous"></script>
+
     <!-- Style -->
     <link rel="stylesheet" href="{{asset('public/client/login/css/style.css')}}">
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
-{{--    --}}
+    <link rel="stylesheet" href="{{asset('public/fontawesome.css')}}" type="text/css">
+    <script src="{{asset('public/fontawesome_pro.js')}}"></script>
+    <script src="{{asset('public/sweetalert.js')}}"></script>
     <title>Đăng nhập</title>
 </head>
 <body>
 
 
-<div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('{{asset('public/client/login/images/8-1.gif')}}');"></div>
-    <div class="contents order-2 order-md-1">
 
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-7">
-                    <h3>Đăng nhập <strong></strong></h3>
-                    <p class="mb-4">Sau khi dăng nhập, bạn sẽ được hệ thống cung cấp các chức năng dựa trên quyền àm user của bạn được đăng ký.</p>
-                    <form action="{{route('post_login')}}" method="post">
-                        @csrf
-                        <div class="form-group first">
-                            <label for="username">Email</label>
-                            <input type="text" class="form-control" placeholder="" id="username" name="email">
-                        </div>
-                        <div class="form-group last mb-3">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" placeholder="" id="password" name="password">
-                        </div>
-
-                        <div class="d-flex mb-5 align-items-center">
-                            <label class="control control--checkbox mb-0"><span class="caption">Ghi nhớ mật khẩu</span>
-                                <input type="checkbox" checked="checked"/>
-                                <div class="control__indicator"></div>
-                            </label>
-                            <span class="ml-auto"><a href="{{route('home')}}" class="forgot-pass"><i class="fas fa-home"></i> Trở lại trang chủ</a></span>
-                        </div>
-
-                        <input type="submit" value="Đăng nhập" class="btn btn-block btn-primary">
-                    </form>
-
-                </div>
+<div class="content" style="padding: 7rem 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="{{asset('public/client/login/images/undraw_file_sync_ot38.svg')}}" alt="Image" class="img-fluid">
             </div>
+            <div class="col-md-6 contents">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <h3>ĐĂNG NHẬP <strong>GOSCOOPERATIVE</strong></h3>
+                            <p class="mb-4"><a style="color: coral" href="{{route('home')}}"><i class="fas fa-home"></i> Quay lại trang chủ</a></p>
+                        </div>
+                        <form action="{{route('post_login')}}" method="post">
+                            @csrf
+                            <div class="form-group first">
+                                <label for="username">Email</label>
+                                <input type="text" class="form-control" id="username" name="email">
+                            </div>
+                            <div class="form-group last mb-4">
+                                <label for="password">Mật khẩu</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="d-flex mb-5 align-items-center">
+                                <label class="control control--checkbox mb-0"><span class="caption">Ghi nhớ mật khẩu</span>
+                                    <input type="checkbox" checked="checked"/>
+                                    <div class="control__indicator"></div>
+                                </label>
+                                <span class="ml-auto"><a href="{{route('page_sign_up')}}" class="forgot-pass">Bạn chưa có tài khoản ? </a></span>
+                            </div>
+
+                            <input type="submit" value="Đăng nhập" class="btn text-white btn-block btn-primary">
+{{--                            <input type="submit" value="Trang chủ" onclick="history.back()" class="btn text-white btn-block btn-primary">--}}
+{{--                            <a href="{{route('home')}}" type="button"  class="btn text-white btn-block btn-primary">Trang chủ</a>--}}
+                            <span class="d-block text-left my-4 text-muted"> Đăng nhập với </span>
+
+                            <div class="social-login">
+                                <a href="#" class="facebook">
+                                    <span class="icon-facebook mr-3"></span>
+                                </a>
+                                <a href="#" class="twitter">
+                                    <span class="icon-twitter mr-3"></span>
+                                </a>
+                                <a href="#" class="google">
+                                    <span class="icon-google mr-3"></span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>
+
+
 <script src="{{asset('public/client/login/js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('public/client/login/js/popper.min.js')}}"></script>
 <script src="{{asset('public/client/login/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('public/client/login/js/main.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
 <script>
     var msg = '{{Session::get('signup_success')}}';
     var exist = '{{Session::has('signup_success')}}';
@@ -79,7 +101,6 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-
         Toast.fire({
             icon: 'success',
             title: 'Đăng ký thành công'
@@ -101,13 +122,12 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-
         Toast.fire({
             icon: 'warning',
-            title: 'Sai email hoặc mật khẩu'
+            title: 'Sai Email hoặc mật khẩu'
         })
     }
-
 </script>
+
 </body>
 </html>

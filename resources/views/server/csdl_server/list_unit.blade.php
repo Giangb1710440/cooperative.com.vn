@@ -113,11 +113,11 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="" method="post">
+                                                                    <form action="{{route('post_edit_unit',$list_units->id)}}" method="post">
                                                                         @csrf
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Tên đơn vị</label>
-                                                                            <input type="text" class="form-control" id="" name="time_bonphan" value="{{$list_units->name_unit}}"  required>
+                                                                            <input type="text" class="form-control" id="" name="name_unit" value="{{$list_units->name_unit}}"  required>
                                                                         </div>
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Mô tả</label>
@@ -187,6 +187,27 @@
             Toast.fire({
                 icon: 'success',
                 title: 'Đã thêm'
+            })
+        }
+    </script>
+    <script>
+        var msg = '{{Session::get('success_edit_unit')}}';
+        var exist = '{{Session::has('success_edit_unit')}}';
+        if (exist) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1200,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Đã cập nhật'
             })
         }
     </script>

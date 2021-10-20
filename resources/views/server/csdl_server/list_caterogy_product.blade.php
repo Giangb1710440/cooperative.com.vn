@@ -41,26 +41,6 @@
                             <br>
                             <div class="card shadow">
                                 <div class="card-body">
-                                    <div class="toolbar">
-                                        <form class="form">
-                                            <div class="form-row">
-                                                <div class="form-group col-auto mr-auto">
-                                                    <label class="my-1 mr-2 sr-only" for="inlineFormCustomSelectPref1">Show</label>
-                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelectPref1">
-                                                        <option value="">...</option>
-                                                        <option value="1" selected>12</option>
-                                                        <option value="2">32</option>
-                                                        <option value="3">64</option>
-                                                        <option value="3">128</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-auto">
-                                                    <label for="search" class="sr-only">Tìm kiếm</label>
-                                                    <input type="text" class="form-control" id="search1" value="" placeholder="Tìm kiêm">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
                                     <!-- table -->
                                     <table class="table table-borderless table-hover">
                                         <thead>
@@ -137,15 +117,15 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="" method="post">
+                                                                    <form action="{{route('post_edit_catep',$cate_products->id)}}" method="post">
                                                                         @csrf
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Tên loại sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="time_bonphan" value="{{$cate_products->name_cate_product}}"  required>
+                                                                            <input type="text" class="form-control" id="" name="catep_name" value="{{$cate_products->name_cate_product}}"  required>
                                                                         </div>
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Mô tả</label>
-                                                                            <textarea class="form-control" id="validationTextarea" name="description_unit" required>{{$cate_products->description_cate_product}}</textarea>
+                                                                            <textarea class="form-control" id="validationTextarea" name="description_catep_name" required>{{$cate_products->description_cate_product}}</textarea>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
@@ -219,6 +199,27 @@
             Toast.fire({
                 icon: 'success',
                 title: 'Đã thêm'
+            })
+        }
+    </script>
+    <script>
+        var msg = '{{Session::get('success_edit_catep')}}';
+        var exist = '{{Session::has('success_edit_catep')}}';
+        if (exist) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1200,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Đã cập nhật'
             })
         }
     </script>

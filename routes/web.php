@@ -42,12 +42,14 @@ Route::get('page-admin',[AdminController::class,'index'])->name('admin_home');
 //them loai san pham
 Route::get('page-add-caterogy-product',[AdminController::class,'page_add_caterogy_product'])->name('page_add_caterogy_product');
 Route::post('post-add-caterogy-product',[AdminController::class,'post_add_caterogy_product'])->name('post_add_caterogy_product');
-Route::get('post-add-caterogyp/{id}',[AdminController::class,'post_delete_catep'])->name('post_delete_catep');
+Route::get('post-delete-caterogy-product/{id}',[AdminController::class,'post_delete_catep'])->name('post_delete_catep');
+Route::post('post-edit-caterogy-product/{id}',[AdminController::class,'post_edit_catep'])->name('post_edit_catep');
 
 //them don vi tinh
 Route::get('page-add-unit',[AdminController::class,'page_add_unit'])->name('page_add_unit');
 Route::post('post-add-unit',[AdminController::class,'post_add_unit'])->name('post_add_unit');
 Route::get('post-delete-unit/{id}',[AdminController::class,'post_delete_unit'])->name('post_delete_unit');
+Route::post('post-edit-unit/{id}',[AdminController::class,'post_edit_unit'])->name('post_edit_unit');
 
                                                 //them san pham
 Route::get('page-add-product',[AdminController::class,'page_add_product'])->name('page_add_product');
@@ -148,6 +150,7 @@ Route::get('detail-diary/{id}',[ListController::class,'detail_diary'])->name('de
 //quan ly don hang
 Route::get('list-order',[ListController::class,'list_order'])->name('list_order');
 Route::get('post-delete-order/{id}',[AdminController::class,'post_delete_order'])->name('post_delete_order');
+Route::get('post-edit-status-order/{id}',[AdminController::class,'getUpdate_status_order'])->name('getUpdate_status_order');
 
 
 

@@ -72,7 +72,7 @@
                             .show {display: block;}
                         </style>
                         <div class="dropdown">
-                            <img onclick="myFunction()" class="dropbtn" src="{{asset('public/uploads/admin/admin13.jpg')}}" alt="...">
+                            <img onclick="myFunction()" class="dropbtn" src="{{asset('public/uploads/admin/'.Auth::user()->image_user)}}" alt="...">
 
                             <div id="myDropdown" class="dropdown-content">
                                 <a href="#home"><i class="fas fa-user"></i>&nbsp{{ucwords(Auth::user()->name_user)}}</a>

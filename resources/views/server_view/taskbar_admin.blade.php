@@ -68,9 +68,6 @@
                         <a class="nav-link pl-3" href="{{route('list_order')}}"><span class="ml-1 item-text">Quản lý đơn hàng</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('add_user')}}"><span class="ml-1 item-text">Đơn hàng cần duyệt</span></a>
-                    </li>
                 </ul>
             </li>
 
@@ -209,9 +206,9 @@
                         <a class="nav-link pl-3" href="{{route('list_invoice_caterogy')}}"><span class="ml-1 item-text">CSDL loại hóa đơn</span></a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_order_caterogy')}}"><span class="ml-1 item-text">CSDL loại đơn hàng</span></a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link pl-3" href="{{route('list_order_caterogy')}}"><span class="ml-1 item-text">CSDL loại đơn hàng</span></a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('list_position')}}"><span class="ml-1 item-text">CSDL chức vụ</span></a>
                     </li>
