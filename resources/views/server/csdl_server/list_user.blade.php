@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-auto">
 
-                            <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i>Thêm mới thành viên</button>
+                            <a href="{{route('page_sign_up')}}" type="button" class="btn btn-primary" ><i class="fas fa-plus"></i>Thêm mới thành viên</a>
                         </div>
                     </div>
                     <div class="row">
@@ -43,7 +43,7 @@
                                                         <span class="text-muted sr-only">Tùy chọn</span>
                                                     </button>
                                                     <div class="dropdown-menu m-2">
-                                                        <a class="dropdown-item" href="#"><i class="fe fe-meh fe-12 mr-4"></i>Cập nhật thông tin</a>
+                                                        <a class="dropdown-item" href="{{route('profile_user_admin')}}"><i class="fe fe-meh fe-12 mr-4"></i>Cập nhật thông tin</a>
 
                                                         <a class="dropdown-item" href="#"><i class="fe fe-delete fe-12 mr-4"></i>Xóa thành viên</a>
                                                     </div>
@@ -54,8 +54,7 @@
                                 </div>
                             </div> <!-- .col -->
                         @endforeach
-                        <div class="col-md-9">
-                        </div> <!-- .col -->
+                        <!-- .col -->
                     </div> <!-- .row -->
                     <nav aria-label="Table Paging" class="my-3">
                         <ul class="pagination justify-content-end mb-0">
@@ -71,4 +70,5 @@
         </div> <!-- .container-fluid -->
         @include('server_view.paner')
     </main> <!-- main -->
+
 @endsection

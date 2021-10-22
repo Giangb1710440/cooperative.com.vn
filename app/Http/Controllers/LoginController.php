@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class LoginController extends Controller
@@ -112,5 +113,23 @@ class LoginController extends Controller
             ->get();
 
         return response()->json($filter_data);
+    }
+
+    public function profile_user_admin(){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $role= DB::table('role_accesss')->get();
+                $user = DB::table('users')->where('id','=','5')->get();
+                return view('auth.page_user_admin')->with([
+                    'role'=>$role,
+                    'user'=>$user
+                ]);
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
     }
 }

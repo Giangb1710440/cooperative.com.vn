@@ -122,14 +122,14 @@
             <li class="nav-item dropdown">
                 <a href="#nknh_kt" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fas fa-plus"></i>
-                    <span class="ml-3 item-text">Khởi tạo nhật ký</span>
+                    <span class="ml-3 item-text">Quản lý dữ liệu nhật ký</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="nknh_kt">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_technique')}}"><span class="ml-1 item-text">Thêm kỹ thuật canh tác</span></a>
+                        <a class="nav-link pl-3" href="{{route('page_add_technique')}}"><span class="ml-1 item-text">Quản lý thuật canh tác</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_gdst')}}"><span class="ml-1 item-text">Thêm giai đoạn sinh trưởng</span></a>
+                        <a class="nav-link pl-3" href="{{route('page_add_gdst')}}"><span class="ml-1 item-text">Quản lý đoạn sinh trưởng</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('page_add_diary')}}"><span class="ml-1 item-text">Khởi tạo nhật ký nông hộ</span></a>

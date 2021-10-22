@@ -671,7 +671,10 @@ class AdminController extends Controller
 
     //them moi ki thuat canh tac
     public function page_add_technique(){
-        return view('server.diary.page_add_technique');
+        $technique = DB::table('techniques')->get();
+        return view('server.diary.page_add_technique')->with([
+            'technique'=>$technique
+        ]);
     }
     public function post_add_technique(Request $res){
         if (Auth::check()){
@@ -691,10 +694,49 @@ class AdminController extends Controller
             return redirect()->route('login');
         }
     }
+    //xoa ky thuat canh tac
+    public function post_delete_technique($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                    $delete_technique = technique::find($id)->delete();
 
+                    $register_success = Session::get('success_delete_technique');
+                    Session()->put('success_delete_technique');
+                    return redirect()->back()->with('success_delete_technique', 'xoa thành công');
+                }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //cap nhat ky thuat canh tac
+
+    public function post_edit_technique($id,Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $edit_technique = technique::find($id);
+                $edit_technique->name_technique = $request->input('name_technique');
+                $edit_technique->description_technique = $request->input('descript_technique');
+                $edit_technique->save();
+                $register_success = Session::get('success_edit_technique');
+                Session()->put('success_edit_technique');
+                return redirect()->back()->with('success_edit_technique', 'edity thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
     //them moi giai doan san xuat
     public function page_add_gdst(){
-        return view('server.diary.page_add_gdst');
+        $gdst = DB::table('gdsts')->get();
+        return view('server.diary.page_add_gdst')->with([
+            'gdst'=>$gdst
+        ]);
     }
     public function post_add_gdst(Request $res){
         $gdst = new gdst();
@@ -704,6 +746,40 @@ class AdminController extends Controller
         $register_success = Session::get('success_add_gdst');
         Session()->put('success_add_gdst');
         return redirect()->back()->with('success_add_gdst', 'Thêm thành công');
+    }
+    //xoa gdst
+    public function post_delete_gdst($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                gdst::find($id)->delete();
+                $register_success = Session::get('success_delete_technique');
+                Session()->put('success_delete_technique');
+                return redirect()->back()->with('success_delete_technique', 'xoa thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    public function post_edit_edit_csdl($id,Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $edit_gdst = gdst::find($id);
+                $edit_gdst->name_gdst=$request->input('name_gdst');
+                $edit_gdst->description_gdst=$request->input('descript_gdst');
+                $edit_gdst->save();
+                $register_success = Session::get('success_edit_technique');
+                Session()->put('success_edit_technique');
+                return redirect()->back()->with('success_edit_technique', 'edit thành công');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
     }
 
     //them moi diary

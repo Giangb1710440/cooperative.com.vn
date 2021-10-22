@@ -94,10 +94,14 @@ Route::get('update-unit', [AdminController::class,'getUpdateUnit'])->name('getUp
 //them moi ky thuat canh tac
 Route::get('page-add-technique',[AdminController::class,'page_add_technique'])->name('page_add_technique');
 Route::post('post-add-technique',[AdminController::class,'post_add_technique'])->name('post_add_technique');
+Route::get('post-delete-technique/{id}',[AdminController::class,'post_delete_technique'])->name('post_delete_technique');
+Route::post('post-edit-technique/{id}',[AdminController::class,'post_edit_technique'])->name('post_edit_technique');
 
 //them  giai doan san xuat
 Route::get('page-add-gdst',[AdminController::class,'page_add_gdst'])->name('page_add_gdst');
 Route::post('post_add-gdst',[AdminController::class,'post_add_gdst'])->name('post_add_gdst');
+Route::get('post-delete-gdst/{id}',[AdminController::class,'post_delete_gdst'])->name('post_delete_gdst');
+Route::post('post-edit-gdst-csdl/{id}',[AdminController::class,'post_edit_edit_csdl'])->name('post_edit_edit_csdl');
 
 //them moi diary
 Route::get('page-add-diary',[AdminController::class,'page_add_diary'])->name('page_add_diary');
@@ -175,3 +179,6 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/typeahead_autocomplete', [LoginController::class, 'index']);
 
 Route::get('/typeahead_autocomplete/action', [LoginController::class, 'action'])->name('typeahead_autocomplete.action');
+
+//quan ly nguoi dung
+Route::get('profile-user-page-admin',[LoginController::class,'profile_user_admin'])->name('profile_user_admin');
