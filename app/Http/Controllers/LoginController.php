@@ -115,13 +115,13 @@ class LoginController extends Controller
         return response()->json($filter_data);
     }
 
-    public function profile_user_admin(){
+    public function profile_user_admin($id){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');
             }else{
                 $role= DB::table('role_accesss')->get();
-                $user = DB::table('users')->where('id','=','5')->get();
+                $user = DB::table('users')->where('id','=',$id)->get();
                 return view('auth.page_user_admin')->with([
                     'role'=>$role,
                     'user'=>$user
@@ -130,6 +130,56 @@ class LoginController extends Controller
 
         }else{
             return redirect()->route('login');
+        }
+    }
+    public function post_edit_profile($id, Request $request){
+        $user = User::find($id);
+        $old_password = $user->password;
+        if($request->input('new_password')){
+            if ($request->input('password')){
+                if (password_verify($request->input('password'),$old_password)){
+                    if($request->input('new_password') == $request->input('confifm_password')){
+                        $user->password = bcrypt($request->input('confifm_password'));
+                    }else{
+                        Session()->put('no_confirm_pass');
+                        return redirect()->back()->with('no_confirm_pass', 'xac nhan mk sai');
+                    }
+                }else{
+                    Session()->put('no_confirm_old');
+                    return redirect()->back()->with('no_confirm_old', 'xac nhan mk cu sai');
+                }
+            }else{
+                    Session()->put('no_old_passwd');
+                    return redirect()->back()->with('no_old_passwd', ' chua nhap mk cu');
+            }
+        }
+            $user->name_user = $request->input('name_user');
+            $user->address_user = $request->input('address_user');
+            $user->phone_user = $request->input('phone_user');
+            $user->sex_user = $request->input('sex_user');
+            $user->birthday_user = $request->input('birthday_user');
+            $user->save();
+            $register_success = Session::get('update_profile_success');
+            Session::put('update_profile_success');
+            return redirect()->back()->with('update_profile_success', 'success');
+
+    }
+
+    public function  page_profile_client($id){
+        if (Auth::check()){
+            if ($id == Auth::user()->id){
+                Session::forget('home');
+                $user = DB::table('users')->where('id','=',Auth::user()->id)->get();
+                $role =DB::table('role_accesss')->get();
+                return view('client.page_profile_client')->with([
+                    'user' => $user,
+                    'role'=> $role
+                ]);
+            }else{
+                return redirect()->route('login')->with('update_profile_success', 'success');
+            }
+        }else{
+            return redirect()->route('login')->with('update_profile_success', 'success');
         }
     }
 }

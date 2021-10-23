@@ -1,5 +1,5 @@
 @extends('server_view.master_admin')
-@section('title','Thêm nhật ký trồng cây')
+@section('title','Khởi tạo nhật ký nông hộ')
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">

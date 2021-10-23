@@ -403,7 +403,6 @@
                 </div> <!-- .col-12 -->
             </div> <!-- .row -->
         </div> <!-- .container-fluid -->
-
         @include('server_view.paner')
     </main> <!-- main -->
 </div> <!-- .wrapper -->
@@ -423,8 +422,8 @@
         {
             autoWidth: true,
             "lengthMenu": [
-                [16, 32, 64, -1],
-                [16, 32, 64, "All"]
+                [6, 12, 24, -1],
+                [6, 12, 24, "All"]
             ]
         });
 </script>

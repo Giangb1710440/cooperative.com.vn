@@ -75,7 +75,7 @@
                             <img onclick="myFunction()" class="dropbtn" src="{{asset('public/uploads/admin/'.Auth::user()->image_user)}}" alt="...">
 
                             <div id="myDropdown" class="dropdown-content">
-                                <a href="#home"><i class="fas fa-user"></i>&nbsp{{ucwords(Auth::user()->name_user)}}</a>
+                                <a href="{{route('page_profile_client',Auth::user()->id)}}"><i class="fas fa-user"></i>&nbsp{{ucwords(Auth::user()->name_user)}}</a>
                                 <a href="#about"><i class="fas fa-user"></i> Lịch sử mua</a>
                                 <a href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </div>

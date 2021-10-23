@@ -26,14 +26,12 @@
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="avatar avatar-sm mt-2">
                 <img src="{{asset('public/uploads/admin/'.Auth::User()->image_user)}}" alt="..." class="avatar-img rounded-circle">
-
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">{{Auth::User()->name_user}}</a>
                 <hr>
-                <a class="dropdown-item" href="#">Trang cá nhân</a>
-                <a class="dropdown-item" href="#">Thiết lập</a>
+                <a class="dropdown-item" href="{{route('profile_user_admin',Auth::user()->id)}}">Trang cá nhân</a>
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             </div>
         </li>

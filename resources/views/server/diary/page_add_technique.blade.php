@@ -1,5 +1,5 @@
 @extends('server_view.master_admin')
-@section('title','Thêm mới kỹ thuật canh tác')
+@section('title','Quản lý kỹ thuật canh tác')
 @section('content')
 
     <main role="main" class="main-content">

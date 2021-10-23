@@ -22,6 +22,8 @@ Route::get('page-news',[HomeController::class,'page_news'])->name('page_news');
 
 Route::get('/page-cate-product',[HomeController::class,'page_cate_product'])->name('page_cate_product');
 
+
+Route::get('page-profile-client/{id}',[LoginController::class,'page_profile_client'])->name('page_profile_client');
 //them gio hang
 Route::get('add-card/{id}',[HomeController::class,'addCard'])->name('addCard');
 Route::get('add-card-qty/{id}',[HomeController::class,'addCard_qty'])->name('addCard_qty');
@@ -181,4 +183,5 @@ Route::get('/typeahead_autocomplete', [LoginController::class, 'index']);
 Route::get('/typeahead_autocomplete/action', [LoginController::class, 'action'])->name('typeahead_autocomplete.action');
 
 //quan ly nguoi dung
-Route::get('profile-user-page-admin',[LoginController::class,'profile_user_admin'])->name('profile_user_admin');
+Route::get('profile-user-page-admin/{id}',[LoginController::class,'profile_user_admin'])->name('profile_user_admin');
+Route::post('post-edit-profile/{id}',[LoginController::class,'post_edit_profile'])->name('post_edit_profile');

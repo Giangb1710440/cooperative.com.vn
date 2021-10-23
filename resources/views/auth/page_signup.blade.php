@@ -69,9 +69,9 @@
                             </div>
                             <div class="form-group last mb-3">
                                 <span  for="">Giới tính: &nbsp;</span>
-                                <input type="radio" class=""  value="Nam" name="sex">Nam
-                                <input style="margin-left: 20px" type="radio" class=""  value="Nữ" name="sex"> Nữ
-                                <input style="margin-left: 20px" type="radio" class=""  value="Khác" name="sex"> Khác
+                                <input type="radio" class=""  value="0" name="sex">Nam
+                                <input style="margin-left: 20px" type="radio" class=""  value="1" name="sex"> Nữ
+                                <input style="margin-left: 20px" type="radio" class=""  value="2" name="sex"> Khác
                             </div>
                             <div class="form-group last mb-3">
 

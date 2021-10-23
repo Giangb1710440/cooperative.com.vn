@@ -43,7 +43,7 @@
                                                         <span class="text-muted sr-only">Tùy chọn</span>
                                                     </button>
                                                     <div class="dropdown-menu m-2">
-                                                        <a class="dropdown-item" href="{{route('profile_user_admin')}}"><i class="fe fe-meh fe-12 mr-4"></i>Cập nhật thông tin</a>
+                                                        <a class="dropdown-item" href="{{route('profile_user_admin',$users->id)}}"><i class="fe fe-meh fe-12 mr-4"></i>Cập nhật thông tin</a>
 
                                                         <a class="dropdown-item" href="#"><i class="fe fe-delete fe-12 mr-4"></i>Xóa thành viên</a>
                                                     </div>

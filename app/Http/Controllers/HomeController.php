@@ -308,4 +308,6 @@ class HomeController extends Controller
     public function page_cate_product(){
         return view('client.page_cate_product');
     }
+
+
 }
