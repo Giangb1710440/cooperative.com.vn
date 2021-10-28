@@ -7378,11 +7378,12 @@ button:focus {
 .dropdown-toggle::after {
   display: inline-block;
   font-family: "feather";
-  content: "\e92e";
+  /*content: "\e92e";*/
   font-size: 0.75rem; }
 
 .dropdown-toggle.more-vertical::after {
-  content: "\e9a5"; }
+  /*content: "\e9a5"; */
+}
 
 .dropdown-toggle.more-horizontal::after {
   content: "\e9a4"; }

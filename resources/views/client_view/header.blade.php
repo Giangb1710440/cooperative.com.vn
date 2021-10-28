@@ -1,7 +1,4 @@
-<!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
+
 @if(Auth::check())
     <header class="header">
         <div class="header__top" style="background-color: rgba(97, 173, 4, 0.89);">

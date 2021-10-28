@@ -33,13 +33,12 @@ class ListController extends Controller
     }
     //quan ly don hang
     public function list_order(){
-
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');
             }else{
                 $user = DB::table('users')->get();
-                $order =DB::table('orders')->get();
+                $order =DB::table('orders')->latest()->get();
                 $product = DB::table('products')->get();
                 $detail_order = DB::table('order_details')->get();
                 $unit = DB::table('units')->get();

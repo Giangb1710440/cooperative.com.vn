@@ -22,13 +22,13 @@
     <!-- Date Range Picker CSS -->
     <link rel="stylesheet" href="{{asset('public/server/css/daterangepicker.css')}}">
     <!-- App CSS -->
-    <link rel="stylesheet" href="{{asset('public/server/css/app-light.css')}}" id="lightTheme" disabled>
-    <link rel="stylesheet" href="{{asset('public/server/css/app-dark.css')}}" id="darkTheme">
+    <link rel="stylesheet" href="{{asset('public/server/css/app-light.css')}}" id="lightTheme" >
+{{--    <link rel="stylesheet" href="{{asset('public/server/css/app-dark.css')}}" id="darkTheme" disabled>--}}
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://kit.fontawesome.com/12bbc8e57f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
 </head>
-<body class="vertical  dark  ">
+<body class="vertical  light">
 <div class="wrapper">
     @include('server_view.header_admin')
 

@@ -48,7 +48,7 @@
                                 <ul style="width: 100%;display: flex;margin-left: 15px" class="nav nav-tabs text-center" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                           aria-selected="false"><h5><b>Thông tin cá nhân</b></h5></a>
+                                           aria-selected="true"><h5><b>Thông tin cá nhân</b></h5></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
@@ -332,7 +332,7 @@
                                                                                                                             @endforeach
                                                                                                                         @endif
                                                                                                                     @endforeach
-                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order)}}</td>
+                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order*((100-$detail_orders->discount_order_detail)/100))}} (-{{$detail_orders->discount_order_detail}}%)</td>
                                                                                                                 @endif
                                                                                                             </tr>
                                                                                                         @endforeach
@@ -539,7 +539,7 @@
                                                                                                                             @endforeach
                                                                                                                         @endif
                                                                                                                     @endforeach
-                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order)}}</td>
+                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order*((100-$detail_orders->discount_order_detail)/100))}} (-{{$detail_orders->discount_order_detail}}%)</td>
                                                                                                                 @endif
                                                                                                             </tr>
                                                                                                         @endforeach
@@ -815,7 +815,7 @@
                                                                                                             @endforeach
                                                                                                         @endif
                                                                                                     @endforeach
-                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order)}}</td>
+                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order*((100-$detail_orders->discount_order_detail)/100))}} (-{{$detail_orders->discount_order_detail}}%)</td>
                                                                                                 @endif
                                                                                             </tr>
                                                                                         @endforeach

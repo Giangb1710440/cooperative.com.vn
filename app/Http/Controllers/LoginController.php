@@ -122,12 +122,13 @@ class LoginController extends Controller
             }else{
                 $role= DB::table('role_accesss')->get();
                 $user = DB::table('users')->where('id','=',$id)->get();
+                $order = DB::table('orders')->where('id_user','=',$id)->get();
                 return view('auth.page_user_admin')->with([
                     'role'=>$role,
-                    'user'=>$user
+                    'user'=>$user,
+                    'order'=>$order
                 ]);
             }
-
         }else{
             return redirect()->route('login');
         }
