@@ -92,13 +92,11 @@
                                                     @if($orders->status_order == 0)
                                                         Chờ xác nhận
                                                     @elseif($orders->status_order == 1)
-
                                                         <h6 style="color:cornflowerblue;">Đã nhận đơn</h6>
                                                     @elseif($orders->status_order == 2)
                                                         <h6 style="color:#34ce57;">Đã giao hàng</h6>
                                                     @elseif($orders->status_order == -1)
                                                         <h6 style="color:red;">Đã hủy đơn</h6>
-
                                                     @endif
                                                 </td>
                                                 <td>

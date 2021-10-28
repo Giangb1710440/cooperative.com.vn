@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="icons8-slack-64.png" style="color: yellow">
     <title>@yield('title')</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('public/server/css/simplebar.css')}}">

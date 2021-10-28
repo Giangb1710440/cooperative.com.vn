@@ -1080,10 +1080,22 @@ class AdminController extends Controller
     public function post_delete_order($id){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
-                return redirect()->route('home');
+                $check_order = order::find($id);
+                if($check_order->id_user == Auth::user()->id){
+                    $order_status = order::find($id);
+                    $order_status->status_order = -1;
+                    if ($order_status->status_checkout == 1){
+                        $order_status->status_checkout = 2;
+                    }
+                    $order_status->save();
+                    $register_success = Session::get('success_delete_order');
+                    Session()->put('success_delete_order');
+                    return redirect()->back()->with('success_delete_order', 'Xóa thành công');
+                }else{
+                    return redirect()->route('home');
+                }
             }else{
                 $order_status = order::find($id);
-
                 $order_status->status_order = -1;
                 if ($order_status->status_checkout == 1){
                     $order_status->status_checkout = 2;
@@ -1093,11 +1105,9 @@ class AdminController extends Controller
                 Session()->put('success_delete_order');
                 return redirect()->back()->with('success_delete_order', 'Xóa thành công');
             }
-
         }else{
             return redirect()->route('login');
         }
-
     }
     //cap nhat tinh trang don hang
     public function getUpdate_status_order($id){

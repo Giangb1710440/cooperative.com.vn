@@ -171,9 +171,11 @@ class LoginController extends Controller
                 Session::forget('home');
                 $user = DB::table('users')->where('id','=',Auth::user()->id)->get();
                 $role =DB::table('role_accesss')->get();
+                $order = DB::table('orders')->where('id_user','=',$id)->get();
                 return view('client.page_profile_client')->with([
                     'user' => $user,
-                    'role'=> $role
+                    'role'=> $role,
+                    'order'=>$order
                 ]);
             }else{
                 return redirect()->route('login')->with('update_profile_success', 'success');

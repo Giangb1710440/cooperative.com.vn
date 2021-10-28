@@ -44,8 +44,6 @@
             <section class="checkout spad">
                 <div class="container">
                     <div class="checkout__form">
-                        <form action="{{route('post_checkout')}}" method="post" >
-                            @csrf
                             <div class="row">
                                 <ul style="width: 100%;display: flex;margin-left: 15px" class="nav nav-tabs text-center" role="tablist">
                                     <li class="nav-item">
@@ -194,19 +192,685 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                    <div class="row">
-                                        Thông tin đơn hàng
+                                    <div class="card shadow">
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a style="color: #5d5d5d" class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Đang xử lý</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a style="color: #5d5d5d" class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Chờ nhận hàng</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a style="color: #5d5d5d" class="nav-link" id="cancel-tab" data-toggle="tab" href="#cancel" role="tab" aria-controls="cancel" aria-selected="false">Đã hủy</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <div class="card shadow">
+                                                        <div class="card-body">
+                                                            @foreach($order as $orders)
+                                                                @if($orders->status_order == 0)
+                                                                    @php($order_detail = DB::table('order_details')->where('id_order',$orders->id)->get())
+                                                                    <table class="table table-hover table-borderless border-v">
+                                                                        <thead class="thead-dark">
+                                                                        <tr>
+                                                                            {{--                                                                                <th colspan="4">{{date('d-m-Y', strtotime($orders->created_at))}}</th>--}}
+                                                                            <th colspan="4">
+                                                                                @if($orders->status_order == 0)
+                                                                                    <strong>Chờ xác nhận</strong>
+                                                                                @elseif($orders->status_order == 1)
+                                                                                    <strong style="color:cornflowerblue;">Đã nhận đơn</strong>
+                                                                                @elseif($orders->status_order == 2)
+                                                                                    <strong style="color:#34ce57;">Đã giao hàng</strong>
+                                                                                @elseif($orders->status_order == -1)
+                                                                                    <strong style="color:red;">Đã hủy đơn</strong>
+                                                                                @endif
+                                                                            </th>
+                                                                            <th colspan="2" style="margin-right: 0px">
+                                                                                @if($orders->status_checkout == 0)
+                                                                                    <strong>Chưa thanh toán</strong>
+                                                                                @elseif($orders->status_checkout == 1)
+                                                                                    <strong style="color:#34ce57;">Đã thanh toán</strong>
+                                                                                @elseif($orders->status_checkout == 2)
+                                                                                    <strong>Đã hoàn tiền</strong>
+                                                                                @endif
+                                                                            </th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr class="accordion-toggle collapsed" id="c-3599" data-toggle="collapse" data-parent="#c-3599" href="#collap-3599">
+                                                                            <td style="padding-top: 30px">Đơn hàng: {{$orders->id}}</td>
+                                                                            @foreach($order_detail as $order_details)
+                                                                                @php($product = DB::table('products')->get())
+                                                                                @foreach($product as $products)
+                                                                                    @if($products->id == $order_details->id_product)
+                                                                                        <td>
+                                                                                            @foreach((array)json_decode($products->image_product,true) as $images)
+                                                                                                <img style="height: 60px;width: 80px;" src="{{asset('public/uploads/'.$images)}}" alt="">
+                                                                                                @break
+                                                                                            @endforeach
+                                                                                        </td>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                @break
+                                                                            @endforeach
+                                                                            <td style="padding-top: 30px">{{date('d-m-Y', strtotime($orders->created_at))}}</td>
+                                                                            <td style="padding-top: 30px">{{number_format($orders->total_price_order)}} VNĐ</td>
+                                                                            <td style="padding-top: 30px">Ghi chú trống</td>
+                                                                            <td style="padding-top: 30px">
+                                                                                <a href="" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" data-target="#profiledetail_order{{$orders->id}}" data-whatever="@mdo"><i style="color: black" class="fas fa-print"></i></a>
+                                                                                <div class="modal fade" id="profiledetail_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content" style="margin-top: -28px;width: 120%">
+                                                                                            <div class="card shadow">
+                                                                                                <div class="card-body p-5">
+                                                                                                    <div class="row mb-12">
+                                                                                                        <div class="col-12 text-center mb-4">
+                                                                                                            <img width="250px" height="100px" src="{{asset('public/server/assets/avatars/GosCooperative.png')}}" class="" alt="...">
+                                                                                                            <h2 class="mb-0 text-uppercase">Hóa đơn bán hàng</h2>
+                                                                                                            <p class="text-muted"> Gos - Cooperative<br /> 13/10/2021 </p>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-md-7" style="padding-left: 20px">
+                                                                                                            <p style="margin-left: 40px" class="small text-muted text-uppercase mb-2">Đơn vị bán hàng</p>
+                                                                                                            <p style="margin-left: 40px" class="mb-4">
+                                                                                                                <strong>Gos - Cooperative</strong><br /> Hợp tác xã nông nghiệp<br /> 225/27,30/4, Ninh Kiều, Cần Thơ<br /> 0939337416<br />
+                                                                                                            </p>
+                                                                                                            <p style="margin-left: 40px">
+                                                                                                                <span class="small text-muted text-uppercase">Mã hóa đơn: #{{$orders->id}}</span><br />
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-5" style="padding-left: 50px">
+                                                                                                            <p class="small text-muted text-uppercase mb-2">Khách hàng</p>
+                                                                                                            <p class="mb-4">
+                                                                                                                @foreach($user as $users)
+                                                                                                                    @if($users->id == $orders->id_user )
+                                                                                                                        <strong>{{$users->name_user}}</strong><br />
+                                                                                                                        {{$users->address_user}}<br /> {{$users->email}}<br /> {{$users->phone_user}}<br />
+                                                                                                                    @endif
+                                                                                                                @endforeach
+                                                                                                            </p>
+                                                                                                            <p>
+                                                                                                                <small class="small text-muted text-uppercase">Ngày đặt hàng</small><br />
+                                                                                                                <strong>{{date('d-m-Y', strtotime($orders->created_at))}} </strong>
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </div> <!-- /.row -->
+                                                                                                    <table class="table table-borderless table-striped">
+                                                                                                        <thead>
+                                                                                                        <tr>
+                                                                                                            <th scope="col">#</th>
+                                                                                                            <th width="130px" scope="col">Sản phẩm</th>
+                                                                                                            <th scope="col" class="text-right">Đơn giá(VNĐ)</th>
+                                                                                                            <th scope="col" class="text-right">Số lượng</th>
+                                                                                                            <th scope="col" class="text-right">Thành tiền</th>
+                                                                                                        </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                        @php($key=0)
+                                                                                                        @php($detail_order = DB::table('order_details')->where('id_order',$orders->id)->get())
+                                                                                                        @foreach($detail_order as $detail_orders)
+                                                                                                            <tr>
+                                                                                                                @if($detail_orders->id_order == $orders->id)
+                                                                                                                    <th scope="row">{{++$key}}</th>
+                                                                                                                    <td width="130px">
+                                                                                                                        @foreach($product as $products)
+                                                                                                                            @if($products->id ==$detail_orders->id_product )
+                                                                                                                                {{$products->name_product}}
+                                                                                                                            @endif
+                                                                                                                        @endforeach
+                                                                                                                    </td>
+                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order)}}</td>
+                                                                                                                    @php($unit = DB::table('units')->get())
+                                                                                                                    @foreach($product as $products)
+                                                                                                                        @if($products->id ==$detail_orders->id_product )
+                                                                                                                            @foreach($unit as $units)
+                                                                                                                                @if($units->id == $products->id_unit  )
+                                                                                                                                    <td class="text-right">{{$detail_orders->quality_order}}{{strtoupper($units->name_unit)}}</td>
+                                                                                                                                @endif
+                                                                                                                            @endforeach
+                                                                                                                        @endif
+                                                                                                                    @endforeach
+                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order)}}</td>
+                                                                                                                @endif
+                                                                                                            </tr>
+                                                                                                        @endforeach
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <div class="row mt-5">
+                                                                                                        <div class="col-2 text-center">
+
+                                                                                                        </div>
+                                                                                                        <div class="col-md-5">
+                                                                                                            <img style="width: 50px;height: 50px" src="{{asset('public/server/assets/images/qrcode.svg')}}" class="navbar-brand-img brand-sm mx-auto my-4" alt="...">
+                                                                                                        </div>
+                                                                                                        <div class="col-md-5">
+                                                                                                            <div class="text-right mr-2">
+                                                                                                                <p class="mb-2 h6">
+                                                                                                                    <span class="text-muted">Tạm tính : </span>
+                                                                                                                    <strong>{{number_format($orders->total_price_order)}} VNĐ</strong>
+                                                                                                                </p>
+                                                                                                                <p class="mb-2 h6">
+                                                                                                                    <span class="text-muted">VAT (0%) : </span>
+                                                                                                                    <strong>0</strong>
+                                                                                                                </p>
+                                                                                                                <p class="mb-2 h6">
+                                                                                                                    <span class="text-muted">Tổng tiền : </span>
+                                                                                                                    <span>{{number_format($orders->total_price_order)}} VNĐ</span>
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div> <!-- /.row -->
+                                                                                                </div> <!-- /.card-body -->
+                                                                                            </div> <!-- /.card -->
+                                                                                            <div class="row align-items-center mb-4">
+                                                                                                <div class="col">
+
+                                                                                                </div>
+                                                                                                <div style="margin-right: 40px" class="col-auto">
+
+                                                                                                    <button type="button" class="btn btn-secondary">In hóa đơn</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @if($orders->status_order == 0)
+                                                                                    <button style="background-color: red;color: white" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Hủy đơn hàng" data-target="#profiledelete_order{{$orders->id}}" data-whatever="@mdo">Hủy đơn</button>
+                                                                                    <div class="modal fade" id="profiledelete_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <form>
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="recipient-name" class="col-form-label">Đồng ý hủy đơn hàng ORDER{{$orders->id}}</label>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+                                                                                                    <a href="{{route('post_delete_order',$orders->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Hủy đơn</a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <hr style="border-top: 1px dashed #61B000;">
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                                    <div class="card shadow">
+                                                        <div class="card-body">
+                                                            @foreach($order as $orders)
+                                                                @if($orders->status_order == 1)
+                                                                    @php($order_detail = DB::table('order_details')->where('id_order',$orders->id)->get())
+                                                                    <table class="table table-hover table-borderless border-v">
+                                                                        <thead class="thead-dark">
+                                                                        <tr>
+                                                                            {{--                                                                                <th colspan="4">{{date('d-m-Y', strtotime($orders->created_at))}}</th>--}}
+                                                                            <th colspan="4">
+                                                                                @if($orders->status_order == 0)
+                                                                                    <strong>Chờ xác nhận</strong>
+                                                                                @elseif($orders->status_order == 1)
+                                                                                    <strong style="color:cornflowerblue;">Đã nhận đơn</strong>
+                                                                                @elseif($orders->status_order == 2)
+                                                                                    <strong style="color:#34ce57;">Đã giao hàng</strong>
+                                                                                @elseif($orders->status_order == -1)
+                                                                                    <strong style="color:red;">Đã hủy đơn</strong>
+                                                                                @endif
+                                                                            </th>
+                                                                            <th colspan="2" style="margin-right: 0px">
+                                                                                @if($orders->status_checkout == 0)
+                                                                                    <strong>Chưa thanh toán</strong>
+                                                                                @elseif($orders->status_checkout == 1)
+                                                                                    <strong style="color:#34ce57;">Đã thanh toán</strong>
+                                                                                @elseif($orders->status_checkout == 2)
+                                                                                    <strong>Đã hoàn tiền</strong>
+                                                                                @endif
+                                                                            </th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                        <tr class="accordion-toggle collapsed" id="c-3599" data-toggle="collapse" data-parent="#c-3599" href="#collap-3599">
+                                                                            <td style="padding-top: 30px">Đơn hàng: {{$orders->id}}</td>
+                                                                            @foreach($order_detail as $order_details)
+                                                                                @php($product = DB::table('products')->where('id',$order_details->id_product)->get())
+                                                                                @foreach($product as $products)
+                                                                                    <td>
+                                                                                        @foreach((array)json_decode($products->image_product,true) as $images)
+                                                                                            <img style="height: 60px;width: 80px;" src="{{asset('public/uploads/'.$images)}}" alt="">
+                                                                                            @break
+                                                                                        @endforeach
+                                                                                    </td>
+                                                                                @endforeach
+                                                                                @break
+                                                                            @endforeach
+
+
+                                                                            <td style="padding-top: 30px">{{date('d-m-Y', strtotime($orders->created_at))}}</td>
+                                                                            <td style="padding-top: 30px">{{number_format($orders->total_price_order)}} VNĐ</td>
+                                                                            <td style="padding-top: 30px">Ghi chú trống</td>
+                                                                            <td style="padding-top: 30px">
+                                                                                <a href="" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" data-target="#contactdetail_order{{$orders->id}}" data-whatever="@mdo"><i style="color: black" class="fas fa-print"></i></a>
+                                                                                <div class="modal fade" id="contactdetail_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="card shadow">
+                                                                                                <div class="card-body p-5">
+                                                                                                    <div class="row mb-12">
+                                                                                                        <div class="col-12 text-center mb-4">
+                                                                                                            <img width="250px" height="100px" src="{{asset('public/server/assets/avatars/GosCooperative.png')}}" class="" alt="...">
+                                                                                                            <h2 class="mb-0 text-uppercase">Hóa đơn bán hàng</h2>
+                                                                                                            <p class="text-muted"> Gos - Cooperative<br /> 13/10/2021 </p>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-md-7" style="padding-left: 20px">
+                                                                                                            <p style="margin-left: 40px" class="small text-muted text-uppercase mb-2">Đơn vị bán hàng</p>
+                                                                                                            <p style="margin-left: 40px" class="mb-4">
+                                                                                                                <strong>Gos - Cooperative</strong><br /> Hợp tác xã nông nghiệp<br /> 225/27,30/4, Ninh Kiều, Cần Thơ<br /> 0939337416<br />
+                                                                                                            </p>
+                                                                                                            <p style="margin-left: 40px">
+                                                                                                                <span class="small text-muted text-uppercase">Mã hóa đơn: #{{$orders->id}}</span><br />
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-5" style="padding-left: 50px">
+                                                                                                            <p class="small text-muted text-uppercase mb-2">Khách hàng</p>
+                                                                                                            <p class="mb-4">
+                                                                                                                @foreach($user as $users)
+                                                                                                                    @if($users->id == $orders->id_user )
+                                                                                                                        <strong>{{$users->name_user}}</strong><br />
+                                                                                                                        {{$users->address_user}}<br /> {{$users->email}}<br /> {{$users->phone_user}}<br />
+                                                                                                                    @endif
+                                                                                                                @endforeach
+                                                                                                            </p>
+                                                                                                            <p>
+                                                                                                                <small class="small text-muted text-uppercase">Ngày đặt hàng</small><br />
+                                                                                                                <strong>{{date('d-m-Y', strtotime($orders->created_at))}} </strong>
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </div> <!-- /.row -->
+                                                                                                    <table class="table table-borderless table-striped">
+                                                                                                        <thead>
+                                                                                                        <tr>
+                                                                                                            <th scope="col">#</th>
+                                                                                                            <th width="130px" scope="col">Sản phẩm</th>
+                                                                                                            <th scope="col" class="text-right">Đơn giá(VNĐ)</th>
+                                                                                                            <th scope="col" class="text-right">Số lượng</th>
+                                                                                                            <th scope="col" class="text-right">Thành tiền</th>
+                                                                                                        </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                        @php($key=0)
+                                                                                                        @php($detail_order = DB::table('order_details')->get())
+                                                                                                        @foreach($detail_order as $detail_orders)
+                                                                                                            <tr>
+                                                                                                                @if($detail_orders ->id_order ==$orders->id)
+                                                                                                                    <th scope="row">{{++$key}}</th>
+                                                                                                                    <td width="130px">
+                                                                                                                        @foreach($product as $products)
+                                                                                                                            @if($products->id ==$detail_orders->id_product )
+                                                                                                                                {{$products->name_product}}
+                                                                                                                            @endif
+                                                                                                                        @endforeach
+                                                                                                                    </td>
+                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order)}}</td>
+                                                                                                                    @php($unit = DB::table('units')->get())
+                                                                                                                    @foreach($product as $products)
+                                                                                                                        @if($products->id ==$detail_orders->id_product )
+                                                                                                                            @foreach($unit as $units)
+                                                                                                                                @if($units->id == $products->id_unit  )
+                                                                                                                                    <td class="text-right">{{$detail_orders->quality_order}}{{strtoupper($units->name_unit)}}</td>
+                                                                                                                                @endif
+                                                                                                                            @endforeach
+                                                                                                                        @endif
+                                                                                                                    @endforeach
+                                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order)}}</td>
+                                                                                                                @endif
+                                                                                                            </tr>
+                                                                                                        @endforeach
+
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <div class="row mt-5">
+                                                                                                        <div class="col-2 text-center">
+
+                                                                                                        </div>
+                                                                                                        <div class="col-md-5">
+                                                                                                            <img style="width: 50px;height: 50px" src="{{asset('public/server/assets/images/qrcode.svg')}}" class="navbar-brand-img brand-sm mx-auto my-4" alt="...">
+                                                                                                        </div>
+                                                                                                        <div class="col-md-5">
+                                                                                                            <div class="text-right mr-2">
+                                                                                                                <p class="mb-2 h6">
+                                                                                                                    <span class="text-muted">Tạm tính : </span>
+                                                                                                                    <strong>{{number_format($orders->total_price_order)}} VNĐ</strong>
+                                                                                                                </p>
+                                                                                                                <p class="mb-2 h6">
+                                                                                                                    <span class="text-muted">VAT (0%) : </span>
+                                                                                                                    <strong>0</strong>
+                                                                                                                </p>
+                                                                                                                <p class="mb-2 h6">
+                                                                                                                    <span class="text-muted">Tổng tiền : </span>
+                                                                                                                    <span>{{number_format($orders->total_price_order)}} VNĐ</span>
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div> <!-- /.row -->
+                                                                                                </div> <!-- /.card-body -->
+                                                                                            </div> <!-- /.card -->
+                                                                                            <div class="row align-items-center mb-4">
+                                                                                                <div class="col">
+
+                                                                                                </div>
+                                                                                                <div style="margin-right: 40px" class="col-auto">
+
+                                                                                                    <button type="button" class="btn btn-secondary">In hóa đơn</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @if($orders->status_order == 0)
+                                                                                    <button style="background-color: red;color: white" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#contactdelete_order{{$orders->id}}" data-whatever="@mdo">Hủy</button>
+                                                                                    <div class="modal fade" id="contactdelete_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <form>
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="recipient-name" class="col-form-label">Đồng ý hủy đơn hàng ORDER{{$orders->id}}</label>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+
+                                                                                                    <a href="{{route('post_delete_order',$orders->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Hủy đơn</a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <hr style="border-top: 1px dashed #61B000;">
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="cancel" role="tabpanel" aria-labelledby="contact-tab">
+                                                    <div class="card shadow">
+                                                        <div class="card-body">
+                                                            @foreach($order as $orders)
+                                                                @if($orders->status_order == -1)
+                                                                    @php($order_detail = DB::table('order_details')->where('id_order',$orders->id)->get())
+                                                                    <table class="table table-hover table-borderless border-v">
+                                                                        <thead class="thead-dark">
+                                                                        <tr>
+                                                                            {{--                                                                                <th colspan="4">{{date('d-m-Y', strtotime($orders->created_at))}}</th>--}}
+                                                                            <th colspan="4">
+                                                                                @if($orders->status_order == 0)
+                                                                                    <strong>Chờ xác nhận</strong>
+                                                                                @elseif($orders->status_order == 1)
+                                                                                    <strong style="color:cornflowerblue;">Đã nhận đơn</strong>
+                                                                                @elseif($orders->status_order == 2)
+                                                                                    <strong style="color:#34ce57;">Đã giao hàng</strong>
+                                                                                @elseif($orders->status_order == -1)
+                                                                                    <strong style="color:red;">Đã hủy đơn</strong>
+                                                                                @endif
+                                                                            </th>
+                                                                            <th colspan="2" style="margin-right: 0px">
+                                                                                @if($orders->status_checkout == 0)
+                                                                                    <strong>Chưa thanh toán</strong>
+                                                                                @elseif($orders->status_checkout == 1)
+                                                                                    <strong style="color:#34ce57;">Đã thanh toán</strong>
+                                                                                @elseif($orders->status_checkout == 2)
+                                                                                    <strong>Đã hoàn tiền</strong>
+                                                                                @endif
+                                                                            </th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                        <tr class="accordion-toggle collapsed" id="c-3599" data-toggle="collapse" data-parent="#c-3599" href="#collap-3599">
+                                                                            <td style="padding-top: 30px">Đơn hàng: {{$orders->id}}</td>
+                                                                            @foreach($order_detail as $order_details)
+                                                                                @php($product = DB::table('products')->where('id',$order_details->id_product)->get())
+                                                                                @foreach($product as $products)
+                                                                                    <td>
+                                                                                        @foreach((array)json_decode($products->image_product,true) as $images)
+                                                                                            <img style="height: 60px;width: 80px;" src="{{asset('public/uploads/'.$images)}}" alt="">
+                                                                                            @break
+                                                                                        @endforeach
+                                                                                    </td>
+                                                                                @endforeach
+                                                                                @break
+                                                                            @endforeach
+                                                                            <td style="padding-top: 30px">{{date('d-m-Y', strtotime($orders->created_at))}}</td>
+                                                                            <td style="padding-top: 30px">{{number_format($orders->total_price_order)}} VNĐ</td>
+                                                                            <td style="padding-top: 30px">Ghi chú trống</td>
+                                                                            <td style="padding-top: 30px">
+                                                                                <strong style="color: red"> Đã hủy đơn</strong>
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <hr style="border-top: 1px dashed #61B000;">
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                    <div class="row">
-                                        Lịch sử đặt hàng
+                                    <div class="card shadow">
+                                        <div class="card-body">
+                                            @foreach($order as $orders)
+                                                @if($orders->status_order == 2)
+                                                    @php($order_detail = DB::table('order_details')->where('id_order',$orders->id)->get())
+                                                    <table class="table table-hover table-borderless border-v">
+                                                        <thead class="thead-dark">
+                                                        <tr>
+{{--                                                            <th colspan="4">{{date('d-m-Y', strtotime($orders->created_at))}}</th>--}}
+                                                            <th colspan="4">
+                                                                @if($orders->status_order == 0)
+                                                                    <strong>Chờ xác nhận</strong>
+                                                                @elseif($orders->status_order == 1)
+                                                                    <strong style="color:cornflowerblue;">Đã nhận đơn</strong>
+                                                                @elseif($orders->status_order == 2)
+                                                                    <strong style="color:#34ce57;">Đã giao hàng</strong>
+                                                                @elseif($orders->status_order == -1)
+                                                                    <strong style="color:red;">Đã hủy đơn</strong>
+                                                                @endif
+                                                            </th>
+                                                            <th colspan="2" style="margin-right: 0px">
+                                                                @if($orders->status_checkout == 0)
+                                                                    <strong>Chưa thanh toán</strong>
+                                                                @elseif($orders->status_checkout == 1)
+                                                                    <strong style="color:#34ce57;">Đã thanh toán</strong>
+                                                                @elseif($orders->status_checkout == 2)
+                                                                    <strong>Đã hoàn tiền</strong>
+                                                                @endif
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        <tr class="accordion-toggle collapsed" id="c-3599" data-toggle="collapse" data-parent="#c-3599" href="#collap-3599">
+                                                            <td style="padding-top: 30px">Đơn hàng: {{$orders->id}}</td>
+                                                            @foreach($order_detail as $order_details)
+                                                                @php($product = DB::table('products')->get())
+                                                                @foreach($product as $products)
+                                                                    @if($products->id == $order_details->id_product)
+                                                                        <td>
+                                                                            @foreach((array)json_decode($products->image_product,true) as $images)
+                                                                                <img style="height: 60px;width: 80px;" src="{{asset('public/uploads/'.$images)}}" alt="">
+                                                                                @break
+                                                                            @endforeach
+                                                                        </td>
+                                                                    @endif
+                                                                @endforeach
+                                                                @break
+                                                            @endforeach
+                                                            <td style="padding-top: 30px">{{date('d-m-Y', strtotime($orders->created_at))}}</td>
+                                                            <td style="padding-top: 30px">{{number_format($orders->total_price_order)}} VNĐ</td>
+                                                            <td style="padding-top: 30px">Ghi chú trống</td>
+                                                            <td style="padding-top: 30px">
+                                                                <a href="" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" data-target="#successdetail_order{{$orders->id}}" data-whatever="@mdo"><i style="color: black" class="fas fa-print"></i></a>
+                                                                <div class="modal fade" id="successdetail_order{{$orders->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content" style="width: 120%;margin-top: -28px">
+                                                                            <div class="card shadow">
+                                                                                <div class="card-body p-5">
+                                                                                    <div class="row mb-12">
+                                                                                        <div class="col-12 text-center mb-4">
+                                                                                            <img width="250px" height="100px" src="{{asset('public/server/assets/avatars/GosCooperative.png')}}" class="" alt="...">
+                                                                                            <h2 class="mb-0 text-uppercase">Hóa đơn bán hàng</h2>
+                                                                                            <p class="text-muted"> Gos - Cooperative<br /> 13/10/2021 </p>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-7" style="padding-left: 20px">
+                                                                                            <p style="margin-left: 40px" class="small text-muted text-uppercase mb-2">Đơn vị bán hàng</p>
+                                                                                            <p style="margin-left: 40px" class="mb-4">
+                                                                                                <strong>Gos - Cooperative</strong><br /> Hợp tác xã nông nghiệp<br /> 225/27,30/4, Ninh Kiều, Cần Thơ<br /> 0939337416<br />
+                                                                                            </p>
+                                                                                            <p style="margin-left: 40px">
+                                                                                                <span class="small text-muted text-uppercase">Mã hóa đơn: #{{$orders->id}}</span><br />
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="col-md-5" style="padding-left: 50px">
+                                                                                            <p class="small text-muted text-uppercase mb-2">Khách hàng</p>
+                                                                                            <p class="mb-4">
+                                                                                                @foreach($user as $users)
+                                                                                                    @if($users->id == $orders->id_user )
+                                                                                                        <strong>{{$users->name_user}}</strong><br />
+                                                                                                        {{$users->address_user}}<br /> {{$users->email}}<br /> {{$users->phone_user}}<br />
+                                                                                                    @endif
+                                                                                                @endforeach
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <small class="small text-muted text-uppercase">Ngày đặt hàng</small><br />
+                                                                                                <strong>{{date('d-m-Y', strtotime($orders->created_at))}} </strong>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div> <!-- /.row -->
+                                                                                    <table class="table table-borderless table-striped">
+                                                                                        <thead>
+                                                                                        <tr>
+                                                                                            <th scope="col">#</th>
+                                                                                            <th width="130px" scope="col">Sản phẩm</th>
+                                                                                            <th scope="col" class="text-right">Đơn giá(VNĐ)</th>
+                                                                                            <th scope="col" class="text-right">Số lượng</th>
+                                                                                            <th scope="col" class="text-right">Thành tiền</th>
+                                                                                        </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                        @php($key=0)
+                                                                                        @php($detail_order = DB::table('order_details')->get())
+                                                                                        @foreach($detail_order as $detail_orders)
+                                                                                            <tr>
+                                                                                                @if($detail_orders ->id_order ==$orders->id)
+                                                                                                    <th scope="row">{{++$key}}</th>
+                                                                                                    <td width="130px">
+                                                                                                        @foreach($product as $products)
+                                                                                                            @if($products->id ==$detail_orders->id_product )
+                                                                                                                {{$products->name_product}}
+                                                                                                            @endif
+                                                                                                        @endforeach
+                                                                                                    </td>
+                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order)}}</td>
+                                                                                                    @php($unit = DB::table('units')->get())
+                                                                                                    @foreach($product as $products)
+                                                                                                        @if($products->id ==$detail_orders->id_product )
+                                                                                                            @foreach($unit as $units)
+                                                                                                                @if($units->id == $products->id_unit  )
+                                                                                                                    <td class="text-right">{{$detail_orders->quality_order}}{{strtoupper($units->name_unit)}}</td>
+                                                                                                                @endif
+                                                                                                            @endforeach
+                                                                                                        @endif
+                                                                                                    @endforeach
+                                                                                                    <td class="text-right">{{number_format($detail_orders->unit_price_order*$detail_orders->quality_order)}}</td>
+                                                                                                @endif
+                                                                                            </tr>
+                                                                                        @endforeach
+
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <div class="row mt-5">
+                                                                                        <div class="col-2 text-center">
+
+                                                                                        </div>
+                                                                                        <div class="col-md-5">
+                                                                                            <img style="width: 50px;height: 50px" src="{{asset('public/server/assets/images/qrcode.svg')}}" class="navbar-brand-img brand-sm mx-auto my-4" alt="...">
+                                                                                        </div>
+                                                                                        <div class="col-md-5">
+                                                                                            <div class="text-right mr-2">
+                                                                                                <p class="mb-2 h6">
+                                                                                                    <span class="text-muted">Tạm tính : </span>
+                                                                                                    <strong>{{number_format($orders->total_price_order)}} VNĐ</strong>
+                                                                                                </p>
+                                                                                                <p class="mb-2 h6">
+                                                                                                    <span class="text-muted">VAT (0%) : </span>
+                                                                                                    <strong>0</strong>
+                                                                                                </p>
+                                                                                                <p class="mb-2 h6">
+                                                                                                    <span class="text-muted">Tổng tiền : </span>
+                                                                                                    <span>{{number_format($orders->total_price_order)}} VNĐ</span>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div> <!-- /.row -->
+                                                                                </div> <!-- /.card-body -->
+                                                                            </div> <!-- /.card -->
+                                                                            <div class="row align-items-center mb-4">
+                                                                                <div class="col">
+
+                                                                                </div>
+                                                                                <div style="margin-right: 40px" class="col-auto">
+
+                                                                                    <button type="button" class="btn btn-secondary">In hóa đơn</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <hr style="border-top: 1px dashed #61B000;">
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-
-                        </form>
                     </div>
                 </div>
             </section>

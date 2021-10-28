@@ -93,7 +93,8 @@ class VnpayController extends Controller
             //hoa don ban hang
             $order->id_cate_order  = 1;
             // 1 la cho duyet 2 la da duyet
-            $order->status_order = 1;
+            $order->status_order = 0;
+            $order->status_checkout = 1;
             $order->discount_order = 0;
             $order->total_price_order = $request->input('vnp_Amount')/100;
             $order->note_order = "DATHANHTOANVNPAY";
