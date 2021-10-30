@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="page-title">Thêm mới sản phẩm</h2>
-                    <p class="text-muted">Các sản phẩm được thêm vào dự trên các thuộc tính mà nhà cung cấp sản phẩm cấp cho</p>
+                    <h2 class="page-title text-center">THÊM MỚI SẢN PHẨM</h2>
+                    <p class="text-muted text-center">Các sản phẩm được thêm vào dự trên các thuộc tính mà nhà cung cấp sản phẩm cấp cho</p>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">

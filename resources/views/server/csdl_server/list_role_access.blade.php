@@ -8,8 +8,8 @@
                     <div class="row">
                         <!-- Small table -->
                         <div class="col-md-5 my-4">
-                            <h2 class="h4 mb-1">Thêm mới quyền user</h2>
-                            <p class="mb-3">Chức năng được tích hợp ngay tại trang quản lí quyền, thuận tiện cho người dùng thao tác</p>
+                            <h2 class="h4 mb-1 text-center">THÊM MỚI QUYỀN USER</h2>
+                            <p class="mb-3 text-center">Chức năng được tích hợp ngay tại trang quản lí quyền, thuận tiện cho người dùng thao tác</p>
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     <strong class="card-title">Quyền user</strong>
@@ -37,8 +37,8 @@
                             </div> <!-- /.card -->
                         </div> <!-- customized table -->
                         <div class="col-md-7 my-4">
-                            <h2 class="h4 mb-1">Danh sách quyền User</h2>
-                            <p class="mb-3">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
+                            <h2 class="h4 mb-1 text-center">DANH SÁCH QUYỀN USER</h2>
+                            <p class="mb-3 text-center">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
                             <br>
                             <div class="card shadow">
                                 <div class="card-body">

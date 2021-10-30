@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="row align-items-center my-4">
                         <div class="col text-center">
-                            <h2 class="h3 mb-0 page-title">Danh sách thành viên</h2>
+                            <h2 class="h3 mb-0 page-title  text-center">QUẢN LÝ THÀNH VIÊN</h2>
                         </div>
                         <div class="col-auto">
                             <a href="{{route('page_sign_up')}}" type="button" class="btn btn-primary" ><i class="fas fa-plus"></i>Thêm mới thành viên</a>

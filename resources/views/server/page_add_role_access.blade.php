@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="page-title">Thêm mới quyền user</h2>
-                    <p class="text-muted">Mỗi quyền sau khi thêm sẽ được gán vào mỗi user, quy định về chức năng và  quyền tương tác trong hệ thống.</p>
+                    <h2 class="page-title text-center">THÊM MỚI QUYỀN USER</h2>
+                    <p class="text-muted text-center">Mỗi quyền sau khi thêm sẽ được gán vào mỗi user, quy định về chức năng và  quyền tương tác trong hệ thống.</p>
                     <div class="row">
                         <div class="col-md-1"></div>
 

@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="page-title">Thêm mới loại hóa đơn</h2>
-                    <p class="text-muted">Loại hóa đơn được đùng dể phân biệt các loại hóa đơn khi xuất nhập hàng</p>
+                    <h2 class="page-title text-center">THÊM MỚI LOẠI HÓA ĐƠN</h2>
+                    <p class="text-muted text-center">Loại hóa đơn được đùng dể phân biệt các loại hóa đơn khi xuất nhập hàng</p>
                     <div class="row">
                         <div class="col-md-1"></div>
 

@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="page-title">Thêm mới nhật ký trồng cây</h2>
-                    <p class="text-muted">Nhật ký trồng cây ăn trái khi được khởi tạo sẽ cung cấp đầy đủ thông
+                    <h2 class="page-title text-center">KHỞI TẠO NHẬT KÝ NÔNG HỘ</h2>
+                    <p class="text-muted text-center">Nhật ký trồng cây ăn trái khi được khởi tạo sẽ cung cấp đầy đủ thông
                         tin về quá trình sinh trường phát triển của cây, dễ dàng cho việc quản lý</p>
                     <div class="row">
                         <div class="col-md-1"></div>

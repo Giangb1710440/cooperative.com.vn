@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="page-title">Thêm mới đơn vị tính</h2>
-                    <p class="text-muted">Đơn vị tính này dùng để xác định một định lượng bất kì nào đó của sản phẩm khi được thêm vào kho hàng,
+                    <h2 class="page-title text-center">THÊM MỚI ĐƠN VỊ TÍNH</h2>
+                    <p class="text-muted text-center">Đơn vị tính này dùng để xác định một định lượng bất kì nào đó của sản phẩm khi được thêm vào kho hàng,
                     phục vụ cho việc bán hàng.</p>
                     <div class="row">
                         <div class="col-md-1"></div>

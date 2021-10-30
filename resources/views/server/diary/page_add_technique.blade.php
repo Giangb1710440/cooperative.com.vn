@@ -9,10 +9,10 @@
                     <div class="row">
                         <!-- Small table -->
                         <div class="col-md-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header">
-                                    <strong class="card-title">Thêm mới kỹ thuật canh tác</strong>
-                                </div>
+                            <br>
+                            <h2 class="h4 mb-1 text-center">THÊM MỚI KỸ THUẬT CANH TÁC</h2>
+                            <br>
+                            <div class="card shadow" style="margin-top: 10px">
                                 <div class="card-body">
                                     <form class="needs-validation" action="{{route('post_add_technique')}}" method="post">
                                         @csrf
@@ -36,11 +36,9 @@
                             </div> <!-- /.card -->
                         </div> <!-- customized table -->
                         <div class="col-md-7 my-4">
-                            <h2 class="h4 mb-1">Bảng Lưu dữ liệu kỹ thuật canh tác</h2>
-                            <p class="mb-3">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
-                            <br>
+                            <h2 class="h4 mb-1 text-center">DỮ LIỆU KỸ THUẬT CANH TÁC</h2>
+                            <p class="mb-3 text-center">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
                             <div class="card shadow">
-
                                 <div class="card-body">
                                     <!-- table -->
                                     <table class="table datatables" id="dataTable-1">

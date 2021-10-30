@@ -409,51 +409,51 @@ class AdminController extends Controller
     }
 
     //them kho hang
-    public function page_add_warehouse(){
-        if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
-                return redirect()->route('home');
-            }else{
-                return view('server.page_add_warehouse');
-            }
-        }else{
-            return redirect()->route('login');
-        }
-
-    }
-    public function post_add_warehouse(Request $res){
-        if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
-                return redirect()->route('home');
-            }else{
-                $warehouse = new warehouse();
-                $warehouse->address_warehouse=$res->input('address_warehouse');
-
-                $warehouse->description_warehouse=$res->input('description_warehouse');
-                $warehouse->save();
-                $register_success = Session::get('add_warehouse_success');
-                Session()->put('add_warehouse_success');
-                return redirect()->back()->with('add_warehouse_success', 'Thêm thành công');
-            }
-        }else{
-            return redirect()->route('login');
-        }
-
-    }
-    public function post_delete_warehouse($id){
-        if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
-                return redirect()->route('home');
-            }else{
-                warehouse::find($id)->delete();
-                $register_success = Session::get('success_delete_warehouse');
-                Session()->put('success_delete_warehouse');
-                return redirect()->back()->with('success_delete_warehouse', 'Thêm thành công');
-            }
-        }else{
-            return redirect()->route('login');
-        }
-    }
+//    public function page_add_warehouse(){
+//        if (Auth::check()){
+//            if(Auth::user()->role_id !== 1){
+//                return redirect()->route('home');
+//            }else{
+//                return view('server.page_add_warehouse');
+//            }
+//        }else{
+//            return redirect()->route('login');
+//        }
+//
+//    }
+//    public function post_add_warehouse(Request $res){
+//        if (Auth::check()){
+//            if(Auth::user()->role_id !== 1){
+//                return redirect()->route('home');
+//            }else{
+//                $warehouse = new warehouse();
+//                $warehouse->address_warehouse=$res->input('address_warehouse');
+//
+//                $warehouse->description_warehouse=$res->input('description_warehouse');
+//                $warehouse->save();
+//                $register_success = Session::get('add_warehouse_success');
+//                Session()->put('add_warehouse_success');
+//                return redirect()->back()->with('add_warehouse_success', 'Thêm thành công');
+//            }
+//        }else{
+//            return redirect()->route('login');
+//        }
+//
+//    }
+//    public function post_delete_warehouse($id){
+//        if (Auth::check()){
+//            if(Auth::user()->role_id !== 1){
+//                return redirect()->route('home');
+//            }else{
+//                warehouse::find($id)->delete();
+//                $register_success = Session::get('success_delete_warehouse');
+//                Session()->put('success_delete_warehouse');
+//                return redirect()->back()->with('success_delete_warehouse', 'Thêm thành công');
+//            }
+//        }else{
+//            return redirect()->route('login');
+//        }
+//    }
 
 //-------------------------------san pham
     //them moi san pham
@@ -606,22 +606,56 @@ class AdminController extends Controller
                 return redirect()->route('home');
             }else{
                 $product = DB::table('products')->get();
-                $warehouse = DB::table('warehouses')->get();
                 $unit = DB::table('units')->get();
-                Session()->put('qty_tonkho',0);
-                return view('server.page_add_detail_warehouse')->with([
+                $warehouse = DB::table('detail_warehouses')->get();
+                    Session()->put('qty_tonkho',0);
+                return view('server.page_add_warehouse')->with([
                     'product'=>$product,
-                    'warehouse'=>$warehouse,
-                    'unit'=>$unit
-
+                    'unit'=>$unit,
+                    'warehouse'=>$warehouse
                 ]);
             }
         }else{
             return redirect()->route('login');
         }
-
     }
 
+    //xoa ton kho dua theo id
+    public function post_delete_warehouse($id){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                 warehouse::find($id)->delete();
+                $register_success = Session::get('success_delete_warehouse');
+                Session()->put('success_delete_warehouse');
+                return redirect()->back()->with('success_delete_warehouse', 'xoa thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //edit ton kho dua theo id
+    public function post_edit_warehouse($id,Request $request){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                 $edit_warehouse = warehouse::find($id);
+                 $edit_warehouse->qty_opening_stock = $request->input('start_qty');
+                 $edit_warehouse->qty_import_warehouse = $request->input('qty_import');
+
+                 $edit_warehouse->inventory_warehouse = $request->input('qty_import') + $request->input('start_qty')-$edit_warehouse->qty_export_warehouse;
+                 $edit_warehouse->save();
+                $register_success = Session::get('success_edit_warehouse');
+                Session()->put('success_edit_warehouse');
+                return redirect()->back()->with('success_edit_warehouse', 'cap nhat thành công');
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
+//post khoi tao kho hang
     public function  post_detail_warehouse(Request $res){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
@@ -634,7 +668,6 @@ class AdminController extends Controller
                 }else{
                     $detail_warehouse = new detail_warehouse();
                     $detail_warehouse-> id_product  = $res->input('id_product');
-                    $detail_warehouse-> id_warehouse  = $res->input('warehouse_product');
                     $detail_warehouse-> qty_opening_stock = $res->input('qty_khoi_tao');
                     $detail_warehouse-> qty_import_warehouse = 0;
                     $detail_warehouse-> qty_export_warehouse = 0;
@@ -651,6 +684,25 @@ class AdminController extends Controller
 
     }
 
+    //quan ly kho hang
+    public function page_list_detail_warehouse(){
+        if (Auth::check()){
+            if(Auth::user()->role_id !== 1){
+                return redirect()->route('home');
+            }else{
+                $product = DB::table('products')->get();
+                $unit = DB::table('units')->get();
+                $warehouse = DB::table('detail_warehouses')->get();
+                return view('server.csdl_server.page_list_detail_warehouse')->with([
+                    'product'=>$product,
+                    'unit'=>$unit,
+                    'warehouse'=>$warehouse
+                ]);
+            }
+        }else{
+            return redirect()->route('login');
+        }
+    }
 
     public function getUpdateUnit(Request $request){
         if (Auth::check()){
@@ -706,7 +758,6 @@ class AdminController extends Controller
                     Session()->put('success_delete_technique');
                     return redirect()->back()->with('success_delete_technique', 'xoa thành công');
                 }
-
         }else{
             return redirect()->route('login');
         }

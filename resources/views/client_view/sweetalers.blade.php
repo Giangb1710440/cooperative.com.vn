@@ -325,3 +325,24 @@
         })
     }
 </script>
+<script>
+    var msg = '{{Session::get('errors_vnpay_checkout')}}';
+    var exist = '{{Session::has('errors_vnpay_checkout')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'errors_vnpay_checkout',
+            title: 'Có lỗi trong quá trình thanh toán'
+        })
+    }
+</script>

@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="page-title">Thêm mới nhà cung cấp</h2>
-                    <p class="text-muted">Nhà cung cấp là nơi cung cấp nguyên liệu, vật liệu và các sản phẩm dùng cho việc mua bán, chế biến sản phẩm.</p>
+                    <h2 class="page-title text-center">THÊM MỚI NHÀ CUNG CẤP</h2>
+                    <p class="text-muted text-center">Nhà cung cấp là nơi cung cấp nguyên liệu, vật liệu và các sản phẩm dùng cho việc mua bán, chế biến sản phẩm.</p>
                     <div class="row">
                         <div class="col-md-1"></div>
 

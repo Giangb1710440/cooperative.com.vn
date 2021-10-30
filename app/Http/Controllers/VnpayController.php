@@ -113,8 +113,10 @@ class VnpayController extends Controller
             $order_success = Session::get('order_success');
             Session::put('order_success');
             return redirect()->route('home')->with('order_success', 'Đặt hàng thành công');
+        }else{
+            return redirect()->route('page_checkout')->with('errors_vnpay_checkout' ,'Lỗi trong quá trình thanh toán phí dịch vụ');
         }
-        return redirect()->route('checkout')->with('errors' ,'Lỗi trong quá trình thanh toán phí dịch vụ');
+
 
     }
 }

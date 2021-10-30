@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailWarehousesTable extends Migration
+class CreateTableDetailWarehousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,8 +17,6 @@ class CreateDetailWarehousesTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('id_product')->unsigned();
             $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('id_warehouse')->unsigned();
-            $table->foreign('id_warehouse')->references('id')->on('warehouses')->onDelete('cascade');
             $table->integer('qty_opening_stock');
             $table->integer('qty_import_warehouse');
             $table->integer('qty_export_warehouse');
@@ -34,6 +32,6 @@ class CreateDetailWarehousesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_warehouses');
+        Schema::dropIfExists('table_detail_warehouses');
     }
 }

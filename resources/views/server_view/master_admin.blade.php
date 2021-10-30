@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://kit.fontawesome.com/12bbc8e57f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
+
+{{--    datatable--}}
+
+
 </head>
 <body class="vertical  light">
 <div class="wrapper">
@@ -68,6 +72,7 @@
 <script src='{{asset('public/server/js/dropzone.min.js')}}'></script>
 <script src='{{asset('public/server/js/uppy.min.js')}}'></script>
 <script src='{{asset('public/server/js/quill.min.js')}}'></script>
+{{--datatable--}}
 
 
 @include('server_view.scr_server')
@@ -75,15 +80,6 @@
 <script src="{{asset('public/server/js/apps.js')}}"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag()
-    {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-56159088-1');
-</script>
 </body>
 </html>

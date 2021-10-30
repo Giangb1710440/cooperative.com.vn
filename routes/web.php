@@ -79,16 +79,25 @@ Route::get('post-delete-caterogy-order/{id}',[AdminController::class,'post_delet
 Route::post('post-edit-caterogy-order/{id}',[AdminController::class,'post_edit_invoice_cate'])->name('post_edit_invoice_cate');
 
 //them kho hang
-Route::get('page-add-warehouse',[AdminController::class,'page_add_warehouse'])->name('page_add_warehouse');
-Route::post('post-add-warehouse',[AdminController::class,'post_add_warehouse'])->name('post_add_warehouse');
-Route::get('post-delete-warehouse/{id}',[AdminController::class,'post_delete_warehouse'])->name('post_delete_warehouse');
+//Route::get('page-add-warehouse',[AdminController::class,'page_add_warehouse'])->name('page_add_warehouse');
+//Route::post('post-add-warehouse',[AdminController::class,'post_add_warehouse'])->name('post_add_warehouse');
+//Route::get('post-delete-warehouse/{id}',[AdminController::class,'post_delete_warehouse'])->name('post_delete_warehouse');
+
+
 
 
 //khoi tao kho hang
 Route::get('page-add-detail-warehouse',[AdminController::class,'page_add_detail_warehouse'])->name('page_add_detail_warehouse');
 Route::post('post_detail_warehouse',[AdminController::class,'post_detail_warehouse'])->name('post_detail_warehouse');
 
-//ajax cap nhat trong trang warehouse
+//quan ly kho hang
+
+Route::get('page-list-detail-warehouse',[AdminController::class,'page_list_detail_warehouse'])->name('page_list_detail_warehouse');
+//xoa ton kho dua theo id san pham
+Route::get('page-delete-warehouse-product/{id}',[AdminController::class,'post_delete_warehouse'])->name('post_delete_warehouse');
+//edit ton kho dau theo id san pham
+Route::post('page-edit-warehouse-product/{id}',[AdminController::class,'post_edit_warehouse'])->name('post_edit_warehouse');
+// cap nhat trong trang warehouse
 Route::get('update-unit', [AdminController::class,'getUpdateUnit'])->name('getUpdateUnit');
 
 

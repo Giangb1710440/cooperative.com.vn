@@ -8,10 +8,10 @@
                     <div class="row">
                         <!-- Small table -->
                         <div class="col-md-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header">
-                                    <strong class="card-title">Thêm mới giai đoạn sinh trưởng</strong>
-                                </div>
+                            <br>
+                            <h2 class="h4 mb-1 text-center"><strong class="card-title">THÊM MỚI GIAI ĐOẠN SINH TRƯỞNG</strong></h2>
+                            <br>
+                            <div class="card shadow mb-4" style="margin-top: 10px">
                                 <div class="card-body">
                                     <form class="needs-validation" action="{{route('post_add_gdst')}}" method="post">
                                         @csrf
@@ -35,9 +35,9 @@
                             </div> <!-- /.card -->
                         </div> <!-- customized table -->
                         <div class="col-md-7 my-4">
-                            <h2 class="h4 mb-1">Bảng Lưu dữ liệu giai đoạn sinh trưởng</h2>
-                            <p class="mb-3">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
-                            <br>
+                            <h2 class="h4 mb-1 text-center">DỮ LIỆU GIAI ĐOẠN SINH TRƯỞNG</h2>
+                            <p class="mb-3 text-center">Danh sách chỉ hiển thị với người dùng có quyền Admin</p>
+
                             <div class="card shadow">
                                 <div class="card-body">
                                     <!-- table -->

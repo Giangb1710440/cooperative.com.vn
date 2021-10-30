@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="icons8-slack-64.png" style="color: yellow">
     <title>Danh sách sản phẩm</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('public/server/css/simplebar.css')}}">
@@ -32,7 +32,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title">Dữ liệu  sản phẩm</h2>
+                    <h2 class="mb-2 page-title text-center">QUẢN LÝ SẢN PHẨM</h2>
                     <p class="card-text">
                         Nếu muốn thêm mới sản phẩm hãy
                         <a href="" data-toggle="modal" data-target="#add_product" data-whatever="@mdo">nhấp vào đây</a>

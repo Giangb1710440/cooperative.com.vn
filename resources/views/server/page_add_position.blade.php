@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="page-title">Thêm mới chức vụ cho Hợp Tác Xã</h2>
-                    <p class="text-muted">Mỗi chức vụ được thêm thể hiện mức độ quản lý, công việc của mỗi user thành viên trong hợp tác xã.</p>
+                    <h2 class="page-title text-center">THÊM MỚI CHỨC VỤ</h2>
+                    <p class="text-muted text-center">Mỗi chức vụ được thêm thể hiện mức độ quản lý, công việc của mỗi user thành viên trong hợp tác xã.</p>
                     <div class="row">
                         <div class="col-md-1"></div>
 

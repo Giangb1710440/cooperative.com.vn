@@ -5,8 +5,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-10 col-xl-8">
-                    <h2 class="h3 mb-4 page-title">Quản lý thông tin cá nhân</h2>
-
+                    <h2 class="h3 mb-4 page-title text-center">THÔNG TIN CÁ NHÂN</h2>
                         <div class="my-4">
                             <div class="row">
                                 <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
