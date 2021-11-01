@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 18, 2021 lúc 04:55 PM
+-- Thời gian đã tạo: Th10 01, 2021 lúc 03:14 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 7.3.31
 
@@ -61,7 +61,6 @@ CREATE TABLE `detail_gdsts` (
 CREATE TABLE `detail_warehouses` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_product` int(10) UNSIGNED NOT NULL,
-  `id_warehouse` int(10) UNSIGNED NOT NULL,
   `qty_opening_stock` int(11) NOT NULL,
   `qty_import_warehouse` int(11) NOT NULL,
   `qty_export_warehouse` int(11) NOT NULL,
@@ -69,6 +68,13 @@ CREATE TABLE `detail_warehouses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `detail_warehouses`
+--
+
+INSERT INTO `detail_warehouses` (`id`, `id_product`, `qty_opening_stock`, `qty_import_warehouse`, `qty_export_warehouse`, `inventory_warehouse`, `created_at`, `updated_at`) VALUES
+(1, 11, 10, 0, 0, 10, '2021-10-29 07:44:31', '2021-10-29 09:02:40');
 
 -- --------------------------------------------------------
 
@@ -132,7 +138,7 @@ CREATE TABLE `gdsts` (
 --
 
 INSERT INTO `gdsts` (`id`, `name_gdst`, `description_gdst`, `created_at`, `updated_at`) VALUES
-(2, 'đồng đồng', 'không có', '2021-09-25 23:31:27', '2021-09-25 23:31:27'),
+(2, 'đồng đồng', 'không có', '2021-09-25 23:31:27', '2021-10-22 06:30:03'),
 (3, 'Gieo hạt', 'Giai đoạn gieo hạt', '2021-09-30 05:30:20', '2021-09-30 05:30:20');
 
 -- --------------------------------------------------------
@@ -173,7 +179,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2021_09_25_225733_create_farmer_phunthuocs_table', 1),
 (20, '2021_09_25_225947_create_farmer_bonphans_table', 1),
 (21, '2021_09_25_230157_create_tdsbs_table', 1),
-(22, '2021_09_25_230315_create_thuhoachs_table', 1);
+(22, '2021_09_25_230315_create_thuhoachs_table', 1),
+(23, '2021_10_29_105237_create_table_detail_warehouses_table', 2);
 
 -- --------------------------------------------------------
 
@@ -186,6 +193,7 @@ CREATE TABLE `orders` (
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_cate_order` int(10) UNSIGNED NOT NULL,
   `status_order` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_checkout` int(11) DEFAULT NULL,
   `discount_order` int(11) NOT NULL,
   `total_price_order` bigint(20) NOT NULL,
   `note_order` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -197,19 +205,26 @@ CREATE TABLE `orders` (
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`id`, `id_user`, `id_cate_order`, `status_order`, `discount_order`, `total_price_order`, `note_order`, `created_at`, `updated_at`) VALUES
-(3, 5, 1, '0', 0, 20000, 'Ghi chú trống', '2021-10-16 19:16:55', '2021-10-16 19:16:55'),
-(4, 5, 1, '0', 0, 14700, 'Ghi chú trống', '2021-10-16 19:18:21', '2021-10-16 19:18:21'),
-(5, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:20:59', '2021-10-16 19:20:59'),
-(6, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:21:35', '2021-10-16 19:21:35'),
-(7, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:21:53', '2021-10-16 19:21:53'),
-(8, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:22:30', '2021-10-16 19:22:30'),
-(9, 5, 1, '1', 0, 51250, 'DATHANHTOANVNPAY', '2021-10-16 19:41:38', '2021-10-16 19:41:38'),
-(10, 5, 1, '1', 0, 51250, 'DATHANHTOANVNPAY', '2021-10-16 19:42:47', '2021-10-16 19:42:47'),
-(11, 5, 1, '0', 0, 45000, 'Ghi chú trống', '2021-10-16 19:43:20', '2021-10-16 19:43:20'),
-(12, 5, 1, '1', 0, 126550, 'DATHANHTOANVNPAY', '2021-10-16 20:12:07', '2021-10-16 20:12:07'),
-(13, 3, 1, '1', 0, 45000, 'DATHANHTOANVNPAY', '2021-10-17 03:24:21', '2021-10-17 03:24:21'),
-(27, 3, 1, '1', 0, 2047500, 'DATHANHTOANVNPAY', '2021-10-18 07:52:24', '2021-10-18 07:52:24');
+INSERT INTO `orders` (`id`, `id_user`, `id_cate_order`, `status_order`, `status_checkout`, `discount_order`, `total_price_order`, `note_order`, `created_at`, `updated_at`) VALUES
+(3, 5, 1, '2', 1, 0, 20000, 'Ghi chú trống', '2021-10-16 19:16:55', '2021-10-19 21:45:25'),
+(5, 5, 1, '2', 1, 0, 45000, 'Ghi chú trống', '2021-10-16 19:20:59', '2021-10-19 22:30:48'),
+(6, 5, 1, '-1', 0, 0, 45000, 'Ghi chú trống', '2021-10-16 19:21:35', '2021-10-19 22:30:53'),
+(7, 5, 1, '1', 0, 0, 45000, 'Ghi chú trống', '2021-10-16 19:21:53', '2021-10-19 22:36:11'),
+(8, 5, 1, '1', 0, 0, 45000, 'Ghi chú trống', '2021-10-16 19:22:30', '2021-10-19 22:37:40'),
+(9, 5, 1, '0', 1, 0, 51250, 'DATHANHTOANVNPAY', '2021-10-16 19:41:38', '2021-10-16 19:41:38'),
+(10, 5, 1, '0', 1, 0, 51250, 'DATHANHTOANVNPAY', '2021-10-16 19:42:47', '2021-10-16 19:42:47'),
+(11, 5, 1, '0', 0, 0, 45000, 'Ghi chú trống', '2021-10-16 19:43:20', '2021-10-16 19:43:20'),
+(12, 5, 1, '0', 1, 0, 126550, 'DATHANHTOANVNPAY', '2021-10-16 20:12:07', '2021-10-16 20:12:07'),
+(13, 3, 1, '-1', 2, 0, 45000, 'DATHANHTOANVNPAY', '2021-10-17 03:24:21', '2021-10-28 03:00:28'),
+(27, 3, 1, '0', 1, 0, 2047500, 'DATHANHTOANVNPAY', '2021-10-18 07:52:24', '2021-10-18 07:52:24'),
+(28, 3, 1, '2', 1, 0, 14400000, 'DATHANHTOANVNPAY', '2021-10-19 18:52:36', '2021-10-28 06:54:40'),
+(29, 3, 1, '-1', 0, 0, 67500, 'Ghi chú trống', '2021-10-27 00:10:54', '2021-10-28 03:00:38'),
+(31, 9, 1, '-1', 0, 0, 42000, 'Ghi chú trống', '2021-10-27 05:05:05', '2021-10-27 23:18:12'),
+(32, 9, 1, '-1', 2, 0, 36000, 'DATHANHTOANVNPAY', '2021-10-27 20:13:37', '2021-10-27 20:13:37'),
+(34, 9, 1, '2', 1, 0, 29400, 'DATHANHTOANVNPAY', '2021-10-27 20:17:36', '2021-10-27 20:17:36'),
+(35, 9, 1, '0', NULL, 0, 2047500, 'Ghi chú trống', '2021-10-28 09:05:30', '2021-10-28 09:05:30'),
+(36, 3, 1, '0', NULL, 0, 29400, 'Ghi chú trống', '2021-10-28 20:07:41', '2021-10-28 20:07:41'),
+(37, 3, 1, '0', 1, 0, 40000, 'DATHANHTOANVNPAY', '2021-10-29 21:46:59', '2021-10-29 21:46:59');
 
 -- --------------------------------------------------------
 
@@ -230,8 +245,8 @@ CREATE TABLE `order_caterogys` (
 --
 
 INSERT INTO `order_caterogys` (`id`, `name_cate_order`, `description_cate_order`, `created_at`, `updated_at`) VALUES
-(1, 'Hóa đơn xuất', 'Dùng cho hoạt động bán hàng', '2021-10-02 07:15:13', '2021-10-02 07:15:13'),
-(2, 'Hóa đơn nhập hàng', 'Dùng cho hoạt động nhập hàng', '2021-10-16 03:44:59', '2021-10-16 03:44:59');
+(1, 'Hóa đơn xuất', 'Dùng cho hoạt động bán hàng', '2021-10-02 07:15:13', '2021-10-18 20:43:17'),
+(2, 'Hóa đơn nhập hàng', 'Dùng cho hoạt động nhập hàng', '2021-10-16 03:44:59', '2021-10-19 10:14:23');
 
 -- --------------------------------------------------------
 
@@ -256,7 +271,6 @@ CREATE TABLE `order_details` (
 
 INSERT INTO `order_details` (`id`, `id_order`, `id_product`, `quality_order`, `unit_price_order`, `discount_order_detail`, `created_at`, `updated_at`) VALUES
 (4, 3, 31, 1, 20000, 0, '2021-10-16 19:16:56', '2021-10-16 19:16:56'),
-(5, 4, 17, 1, 14700, 0, '2021-10-16 19:18:21', '2021-10-16 19:18:21'),
 (6, 5, 16, 1, 45000, 0, '2021-10-16 19:21:00', '2021-10-16 19:21:00'),
 (7, 6, 16, 1, 45000, 0, '2021-10-16 19:21:35', '2021-10-16 19:21:35'),
 (8, 7, 16, 1, 45000, 0, '2021-10-16 19:21:53', '2021-10-16 19:21:53'),
@@ -270,7 +284,17 @@ INSERT INTO `order_details` (`id`, `id_order`, `id_product`, `quality_order`, `u
 (16, 12, 14, 1, 36550, 0, '2021-10-16 20:12:07', '2021-10-16 20:12:07'),
 (17, 13, 16, 1, 45000, 0, '2021-10-17 03:24:21', '2021-10-17 03:24:21'),
 (30, 27, 18, 20, 22500, 5, '2021-10-18 07:52:24', '2021-10-18 07:52:24'),
-(31, 27, 9, 100, 18000, 10, '2021-10-18 07:52:24', '2021-10-18 07:52:24');
+(31, 27, 9, 100, 18000, 10, '2021-10-18 07:52:24', '2021-10-18 07:52:24'),
+(32, 28, 9, 1000, 18000, 20, '2021-10-19 18:52:36', '2021-10-19 18:52:36'),
+(33, 29, 18, 3, 22500, 0, '2021-10-27 00:10:54', '2021-10-27 00:10:54'),
+(35, 31, 31, 1, 20000, 0, '2021-10-27 05:05:05', '2021-10-27 05:05:05'),
+(36, 31, 32, 1, 22000, 0, '2021-10-27 05:05:05', '2021-10-27 05:05:05'),
+(37, 32, 12, 2, 18000, 0, '2021-10-27 20:13:37', '2021-10-27 20:13:37'),
+(39, 34, 17, 2, 14700, 0, '2021-10-27 20:17:36', '2021-10-27 20:17:36'),
+(40, 35, 18, 20, 22500, 5, '2021-10-28 09:05:30', '2021-10-28 09:05:30'),
+(41, 35, 9, 100, 18000, 10, '2021-10-28 09:05:30', '2021-10-28 09:05:30'),
+(42, 36, 17, 2, 14700, 0, '2021-10-28 20:07:41', '2021-10-28 20:07:41'),
+(43, 37, 31, 2, 20000, 0, '2021-10-29 21:46:59', '2021-10-29 21:46:59');
 
 -- --------------------------------------------------------
 
@@ -414,7 +438,7 @@ INSERT INTO `product_caterogys` (`id`, `name_cate_product`, `description_cate_pr
 (1, 'Trái cây', 'Được nhập tại nhà các hộ dân', '2021-09-14 18:22:31', '2021-09-14 18:22:31'),
 (2, 'Rau củ', 'Bao gồm lúa gạo', '2021-09-30 06:34:47', '2021-09-30 06:34:47'),
 (3, 'Gạo', 'Thuộc nhóm lương thực', '2021-10-02 06:44:26', '2021-10-02 06:44:26'),
-(4, 'Thịt cá trứng', 'Thực phẩm tươi sống', '2021-10-02 06:53:09', '2021-10-02 06:53:09');
+(4, 'Thịt cá trứng', 'Thực phẩm tươi sống', '2021-10-02 06:53:09', '2021-10-19 09:38:07');
 
 -- --------------------------------------------------------
 
@@ -474,7 +498,7 @@ CREATE TABLE `techniques` (
 --
 
 INSERT INTO `techniques` (`id`, `name_technique`, `description_technique`, `created_at`, `updated_at`) VALUES
-(1, 'Độc canh', 'không có', '2021-09-25 23:16:59', '2021-09-25 23:16:59'),
+(1, 'Độc canh', 'không có', '2021-09-25 23:16:59', '2021-10-22 06:00:33'),
 (2, 'Luân canh', 'Hình thức canh tác xen canh', '2021-10-01 22:48:58', '2021-10-01 22:48:58');
 
 -- --------------------------------------------------------
@@ -518,7 +542,7 @@ INSERT INTO `units` (`id`, `name_unit`, `description_unit`, `created_at`, `updat
 (2, 'Bó', '1 bó khoảng nửa kí', '2021-09-14 18:38:53', '2021-09-14 18:38:53'),
 (3, 'bao', '1 bao tuowng dduwopng 50 kg', '2021-09-19 08:04:40', '2021-09-19 08:04:40'),
 (6, 'bịt', 'một bịt khoảng nửa kí', '2021-10-07 10:51:47', '2021-10-07 10:51:47'),
-(7, 'chai', 'một chai 500ml', '2021-10-07 10:58:02', '2021-10-07 10:58:02');
+(10, 'Chai', 'một chai khoảng 1000 ml', '2021-10-19 09:26:38', '2021-10-19 09:27:01');
 
 -- --------------------------------------------------------
 
@@ -549,30 +573,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `id_position`, `name_user`, `email`, `email_verified_at`, `password`, `address_user`, `phone_user`, `sex_user`, `birthday_user`, `image_user`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 1, 1, 'Nguyen ha giang', 'giang@gmail.com', NULL, '$2y$10$uNKbB.MLOCYR07uNBt19K.ykNf.1tatfn7u8kLn5RJK7nsANp3hFO', 'can tho', '0939337416', 'Nam', '1999-09-13', 'images.PNG', NULL, '2021-09-13 11:53:14', '2021-09-13 11:53:14'),
-(5, 3, 1, 'Nguyễn Hà Giang', 'gianggiang@gmail.com', NULL, '$2y$10$3gAUg.nCv.HfQ5SvkslccOd7SyO6tUgfD2Dv.0DQaFWg.uWJ39iky', 'Ninh kiều, Cần Thơ', '0939337416', 'Nam', '1999-09-13', 'girl.PNG', NULL, '2021-09-13 15:38:55', '2021-09-13 15:38:55');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `warehouses`
---
-
-CREATE TABLE `warehouses` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `address_warehouse` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description_warehouse` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `warehouses`
---
-
-INSERT INTO `warehouses` (`id`, `address_warehouse`, `description_warehouse`, `created_at`, `updated_at`) VALUES
-(3, '391, đường 30/4, ninh kiều, cần thơ', 'Kho hàng thực phẩm', '2021-10-07 11:39:57', '2021-10-07 11:39:57'),
-(4, '391, đường 30/4, ninh kiều, cần thơ', 'kho hàng tồn', '2021-10-07 11:40:26', '2021-10-07 11:40:26');
+(3, 1, 1, 'Nguyễn Hà giang', 'giang@gmail.com', NULL, '$2y$10$uNKbB.MLOCYR07uNBt19K.ykNf.1tatfn7u8kLn5RJK7nsANp3hFO', 'Ninh Kiều, Cần Thơ', '0939337416', '0', '1999-09-13', 'images.PNG', NULL, '2021-09-13 11:53:14', '2021-10-28 04:41:19'),
+(5, 3, 1, 'Nguyễn Hà Giang', 'giang123@gmail.com', NULL, '$2y$10$TQXwNek1euj63fHo4XmsSePrjt3oYtpuuv4xSIYp.3xzfnSv4Q37y', 'Ninh Kiều, Cần Thơ', '0939337416', '0', '1999-09-13', 'girl.PNG', NULL, '2021-09-13 15:38:55', '2021-10-23 04:43:22'),
+(8, 3, 2, 'Lưu Huỳnh Như', 'nhu@gmail.com', NULL, '$2y$10$uor0u1nVHm8RT637Ac2q/.Hn8WLZM.hWQdnhZy8mQ7b3R52qvTFSO', 'Cần Thơ', '0939337416', '1', '2001-12-07', 'giphy.gif', NULL, '2021-10-19 07:42:44', '2021-10-23 19:13:38'),
+(9, 3, 1, 'giang nguyen', 'thuan@gmail.com', NULL, '$2y$10$dU6bGGhiH3a8BGJlLBs8jOWFJj.F1cE4Tv2/QBvR9n2uQh46xapCy', '3/2 ninh kieu can tho', '0939337416', '0', '1999-09-13', 'giphy.gif', NULL, '2021-10-27 04:36:15', '2021-10-27 04:36:15');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -598,8 +602,7 @@ ALTER TABLE `detail_gdsts`
 --
 ALTER TABLE `detail_warehouses`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `detail_warehouses_id_product_foreign` (`id_product`),
-  ADD KEY `detail_warehouses_id_warehouse_foreign` (`id_warehouse`);
+  ADD KEY `detail_warehouses_id_product_foreign` (`id_product`);
 
 --
 -- Chỉ mục cho bảng `failed_jobs`
@@ -734,12 +737,6 @@ ALTER TABLE `users`
   ADD KEY `users_id_position_foreign` (`id_position`);
 
 --
--- Chỉ mục cho bảng `warehouses`
---
-ALTER TABLE `warehouses`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -759,7 +756,7 @@ ALTER TABLE `detail_gdsts`
 -- AUTO_INCREMENT cho bảng `detail_warehouses`
 --
 ALTER TABLE `detail_warehouses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -777,19 +774,19 @@ ALTER TABLE `farmer_diarys`
 -- AUTO_INCREMENT cho bảng `gdsts`
 --
 ALTER TABLE `gdsts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `order_caterogys`
@@ -801,7 +798,7 @@ ALTER TABLE `order_caterogys`
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -849,7 +846,7 @@ ALTER TABLE `tdsbs`
 -- AUTO_INCREMENT cho bảng `techniques`
 --
 ALTER TABLE `techniques`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `thuhoachs`
@@ -861,19 +858,13 @@ ALTER TABLE `thuhoachs`
 -- AUTO_INCREMENT cho bảng `units`
 --
 ALTER TABLE `units`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT cho bảng `warehouses`
---
-ALTER TABLE `warehouses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -896,8 +887,7 @@ ALTER TABLE `detail_gdsts`
 -- Các ràng buộc cho bảng `detail_warehouses`
 --
 ALTER TABLE `detail_warehouses`
-  ADD CONSTRAINT `detail_warehouses_id_product_foreign` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `detail_warehouses_id_warehouse_foreign` FOREIGN KEY (`id_warehouse`) REFERENCES `warehouses` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `detail_warehouses_id_product_foreign` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `farmer_diarys`

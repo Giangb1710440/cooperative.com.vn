@@ -57,7 +57,7 @@
                             font-size: 20px;
                         }
                     </style>
-                    <marquee direction="right">Từ 1000KG giảm 45% - Từ 200KG giảm 30% - Từ 50KG giảm 20% - Từ 20KG giảm 10% </marquee>
+                    <marquee direction="right">Từ 1000KG giảm 20% - Từ 200KG giảm 30% - Từ 50KG giảm 20% - Từ 20KG giảm 5% </marquee>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="shoping__cart__table">
