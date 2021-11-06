@@ -531,8 +531,8 @@
                                                     @foreach($thsb as $thsbs)
                                                         <tr>
                                                             <td>THSB0{{$thsbs->id}}</td>
-                                                            <td>{{$thsbs->date_phathien}}</td>
                                                             <td>{{$thsbs->loaibenh}}</td>
+                                                            <td>{{$thsbs->date_phathien}}</td>
                                                             <td>{{$thsbs->trieutrung}}</td>
                                                             <td>{{$thsbs->anhhuong}}</td>
                                                             <td>

@@ -176,8 +176,9 @@
                     <div class="col-lg-9">
                         <div class="hero__search">
                             <div class="hero__search__form">
-                                <form action="#">
-                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
+                                <form action="{{route('searchProduct')}}" method="get">
+                                    @csrf
+                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -229,8 +230,9 @@
                     <div class="col-lg-9">
                         <div class="hero__search">
                             <div class="hero__search__form">
-                                <form action="#">
-                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì..." />
+                                <form action="{{route('searchProduct')}}" method="get">
+                                    @csrf
+                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì..." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -353,8 +355,9 @@
                     <div class="col-lg-9">
                         <div class="hero__search">
                             <div class="hero__search__form">
-                                <form action="#">
-                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
+                                <form action="{{route('searchProduct')}}" method="get">
+                                    @csrf
+                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -406,8 +409,9 @@
                     <div class="col-lg-9">
                         <div class="hero__search">
                             <div class="hero__search__form">
-                                <form action="#">
-                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
+                                <form action="{{route('searchProduct')}}" method="get">
+                                    @csrf
+                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>

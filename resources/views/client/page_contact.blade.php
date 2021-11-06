@@ -84,20 +84,23 @@
     <!-- Contact Section End -->
 
     <!-- Map Begin -->
-    <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7857.986139148492!2d105.76985230000001!3d10.017429900000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1634055425488!5m2!1svi!2s"
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
-        <div class="map-inside">
-            <i class="icon_pin"></i>
-            <div class="inside-widget">
-                <h4>Cần thơ</h4>
-                <ul>
-                    <li>SĐT: +84 939 33 7416</li>
-                    <li>Địa chỉ: 391-30/4-Hưng Lợi-Ninh kiều-Cần Thơ</li>
-                </ul>
+    <div class="container">
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7857.986139148492!2d105.76985230000001!3d10.017429900000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1634055425488!5m2!1svi!2s"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+            <div class="map-inside">
+                <i class="icon_pin"></i>
+                <div class="inside-widget">
+                    <h4>Cần thơ</h4>
+                    <ul>
+                        <li>SĐT: +84 939 33 7416</li>
+                        <li>Địa chỉ: 391-30/4-Hưng Lợi-Ninh kiều-Cần Thơ</li>
+                    </ul>
+                </div>
             </div>
         </div>
+
     </div>
 
 

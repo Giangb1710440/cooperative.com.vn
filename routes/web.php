@@ -24,6 +24,8 @@ Route::get('/page-cate-product',[HomeController::class,'page_cate_product'])->na
 
 
 Route::get('page-profile-client/{id}',[LoginController::class,'page_profile_client'])->name('page_profile_client');
+
+Route::get('search-product', [HomeController::class,'searchProduct'])->name('searchProduct');
 //them gio hang
 Route::get('add-card/{id}',[HomeController::class,'addCard'])->name('addCard');
 Route::get('add-card-qty/{id}',[HomeController::class,'addCard_qty'])->name('addCard_qty');

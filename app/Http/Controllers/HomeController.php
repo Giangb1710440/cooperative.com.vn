@@ -309,5 +309,15 @@ class HomeController extends Controller
         return view('client.page_cate_product');
     }
 
-
+//trang tim kiem
+    public function searchProduct(Request $request){
+        $keyWord = $request->input('search_product');
+        $product = DB::table('products')->where('name_product', 'LIKE', '%'.$keyWord.'%')->paginate(8);
+        $count = DB::table('products')->where('name_product', 'LIKE', '%'.$keyWord.'%')->count();
+        return view('client.page_search')->with([
+            'product' => $product,
+            'count' => $count,
+            'keyWord'=>$keyWord
+        ]);
+    }
 }
