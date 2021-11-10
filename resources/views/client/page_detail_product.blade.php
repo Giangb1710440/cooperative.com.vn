@@ -111,7 +111,18 @@
                                 <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             </form>
                             <ul>
-                                <li><b>Tình trạng</b> <span>còn hàng</span></li>
+                                <li>
+                                    <b>Tình trạng</b>
+                                    @foreach($wareHouse as $wareHouses)
+                                        @if($wareHouses->inventory_warehouse < 1)
+                                            <span style="color: #ff6600"> Tạm hết hàng</span>
+                                        @else
+                                            <span style="color: #34ce57"> Còn hàng</span>
+                                        @endif
+                                    @endforeach
+
+
+                                </li>
                                 <li><b>Vận chuyển</b> <span>Miễn ship cho đơn trong  <samp>phạm vi 5km.</samp></span></li>
                                 <li><b>Đơn vị</b>
                                     @foreach($unit as $units)

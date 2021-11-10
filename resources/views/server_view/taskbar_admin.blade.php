@@ -57,20 +57,10 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <a href="{{route('page_list_detail_warehouse')}}" class="nav-link">
                     <i class="fas fa-warehouse"></i>
-                    <span class="ml-3 item-text">Kho Hàng</span>
+                    <span class="ml-3 item-text">Quản lý tồn kho</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_add_detail_warehouse')}}"><span class="ml-1 item-text">Khởi Tạo Tồn Kho</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_list_detail_warehouse')}}"><span class="ml-1 item-text">Quản Lý Tồn Kho</span></a>
-                    </li>
-
-                </ul>
             </li>
 
         </ul>
@@ -149,7 +139,7 @@
                     <span class="ml-3 item-text">Quản Trị Dữ Liệu</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="tablesqtdl">
-                    
+
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('list_unit')}}"><span class="ml-1 item-text">CSDL Đơn Vị</span></a>
                     </li>

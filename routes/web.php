@@ -90,7 +90,7 @@ Route::post('post-edit-caterogy-order/{id}',[AdminController::class,'post_edit_i
 
 //khoi tao kho hang
 Route::get('page-add-detail-warehouse',[AdminController::class,'page_add_detail_warehouse'])->name('page_add_detail_warehouse');
-Route::post('post_detail_warehouse',[AdminController::class,'post_detail_warehouse'])->name('post_detail_warehouse');
+Route::get('post_detail_warehouse',[AdminController::class,'post_detail_warehouse'])->name('post_detail_warehouse');
 
 //quan ly kho hang
 

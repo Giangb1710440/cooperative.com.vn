@@ -486,6 +486,7 @@ class AdminController extends Controller
                     Session()->put('no_add_product');
                     return redirect()->back()->with('no_add_product', 'Thêm không thành công');
                 }else {
+
                     $product = new product();
                     //image
                     $res->validate([
@@ -510,6 +511,20 @@ class AdminController extends Controller
                     $product->sale_price_product = $res->input('sale_price');
                     $product->sale = $res->input('khuyenmai');
                     $product->save();
+                    $number_product = product::take(1)->latest()->get();
+                    foreach ($number_product as $number_products){
+                        $x =  $number_products->id;
+                    }
+                    if (detail_warehouse::where('id_product', '=', $x)->count() <= 0) {
+                        $detail_warehouse = new detail_warehouse();
+                        $detail_warehouse-> id_product  = $x;
+                        $detail_warehouse-> qty_opening_stock = 0;
+                        $detail_warehouse-> qty_import_warehouse = 0;
+                        $detail_warehouse-> qty_export_warehouse = 0;
+                        $detail_warehouse-> inventory_warehouse = 0;
+                        $detail_warehouse->save();
+                    }
+
                     $register_success = Session::get('add_product');
                     Session()->put('add_product');
                     return redirect()->back()->with('add_product', 'Thêm thành công');
@@ -661,21 +676,32 @@ class AdminController extends Controller
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');
             }else{
-                if (detail_warehouse::where('id_product', '=',$res->input('id_product'))->count() > 0) {
-                    $register_success = Session::get('no_add_detail_warehouse');
-                    Session()->put('no_add_detail_warehouse');
-                    return redirect()->back()->with('no_add_detail_warehouse', 'Không thành công');
-                }else{
+                $product  = DB::table('products')->get();
+                foreach ($product as $products) {
+                    if (detail_warehouse::where('id_product', '=',$products->id)->count() > 0) {
+                        continue;
+                    }else{
+//                    $detail_warehouse = new detail_warehouse();
+//                    $detail_warehouse-> id_product  = $res->input('id_product');
+//                    $detail_warehouse-> qty_opening_stock = $res->input('qty_khoi_tao');
+//                    $detail_warehouse-> qty_import_warehouse = 0;
+//                    $detail_warehouse-> qty_export_warehouse = 0;
+//                    $detail_warehouse-> inventory_warehouse = $res->input('qty_ton_kho');
+//                    $detail_warehouse->save();
+//                    $register_success = Session::get('success_add_detail_warehouse');
+//                    Session()->put('success_add_detail_warehouse');
+//                    return redirect()->back()->with('success_add_detail_warehouse', 'Thêm thành công');
                     $detail_warehouse = new detail_warehouse();
-                    $detail_warehouse-> id_product  = $res->input('id_product');
-                    $detail_warehouse-> qty_opening_stock = $res->input('qty_khoi_tao');
+                    $detail_warehouse-> id_product  = $products->id;
+                    $detail_warehouse-> qty_opening_stock = 0;
                     $detail_warehouse-> qty_import_warehouse = 0;
                     $detail_warehouse-> qty_export_warehouse = 0;
-                    $detail_warehouse-> inventory_warehouse = $res->input('qty_ton_kho');
+                    $detail_warehouse-> inventory_warehouse = 0;
                     $detail_warehouse->save();
                     $register_success = Session::get('success_add_detail_warehouse');
                     Session()->put('success_add_detail_warehouse');
                     return redirect()->back()->with('success_add_detail_warehouse', 'Thêm thành công');
+                    }
                 }
             }
         }else{

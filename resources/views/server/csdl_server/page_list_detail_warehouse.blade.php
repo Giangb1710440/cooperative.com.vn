@@ -35,10 +35,15 @@
 
                     <div class="row my-4">
                         <!-- Small table -->
+
                         <div class="col-md-12">
+
+                            <a href="{{route('post_detail_warehouse')}}" type="button" class="btn mb-2 btn-outline-secondary" style="background-color: #38d39f;
+                                color: #ffffff;border-color: #38d39f">Cập nhật kho hàng</a>
                             <div class="card shadow">
                                 <div class="card-body">
                                     <!-- table -->
+
                                     <table class="table datatables" id="dataTable-1">
                                         <thead>
                                         <tr>

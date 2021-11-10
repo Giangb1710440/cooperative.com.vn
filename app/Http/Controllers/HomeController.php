@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\detail_warehouse;
 use App\Models\giohang;
 use App\Models\order;
 use App\Models\order_detail;
@@ -95,8 +96,10 @@ class HomeController extends Controller
     public function page_detail_product($id){
         Session::forget('home');
         $product_detail = DB::table('products')->where('id','=',$id)->get();
+        $wareHouse = DB::table('detail_warehouses')->where('id_product','=',$id)->get();
         return view('client.page_detail_product')->with([
-            'product_detail'=>$product_detail
+            'product_detail'=>$product_detail,
+            'wareHouse'=>$wareHouse
         ]);
     }
 
@@ -109,6 +112,7 @@ class HomeController extends Controller
 //    Chuc nang gio hang
     public function addCard($id, Request $request){
         if (Auth::check()){
+            $wareHouse_product = DB::table('detail_warehouses')->where('id_product','=',$id)->get();
             $product = product::find($id);
             $oldCart = Session('cart') ? Session::get('cart') : null; // neu co session cart thi lay cart, không thi null
             $qty_p=$request->input('qty_product');
@@ -123,7 +127,11 @@ class HomeController extends Controller
                 $temp_qty=$qty_p;
             }
 
-            if ($temp_qty > 1000){
+            foreach ($wareHouse_product as $wareHouse_products){
+                //lay ra so luong ton cua san pham
+                $qty_input = $wareHouse_products->inventory_warehouse;
+            }
+            if ($temp_qty > $qty_input){
                 Session::put('non_qty');
                 return redirect()->back()->with(
                     'non_qty',
@@ -147,6 +155,7 @@ class HomeController extends Controller
     //    Chuc nang gio hang
     public function addCard_qty($id){
         if (Auth::check()){
+            $wareHouse_product = DB::table('detail_warehouses')->where('id_product','=',$id)->get();
             $product = product::find($id);
             $oldCart = Session('cart') ? Session::get('cart') : null; // neu co session cart thi lay cart, không thi null
 
@@ -157,10 +166,15 @@ class HomeController extends Controller
                     $temp_qty = 1;
                 }
             }else{
-                $temp_qty=0;
+                $temp_qty=1;
             }
 
-            if ($temp_qty > 1000){
+            foreach ($wareHouse_product as $wareHouse_products){
+                //lay ra so luong ton cua san pham
+                $qty_input = $wareHouse_products->inventory_warehouse;
+            }
+
+            if ($temp_qty > $qty_input){
                 Session::put('non_qty');
                 return redirect()->back()->with(
                     'non_qty',
@@ -229,8 +243,15 @@ class HomeController extends Controller
                     $order->total_price_order = $request->input('total_order');
                     $order->note_order = $request->input('ghichu');
                     $order->save();
-
                     foreach ($cart->items as $key => $value) {
+                        $checkOutWarehouse = DB::table('detail_warehouses')->where('id_product','=',$key)->get();
+                        foreach ($checkOutWarehouse as $checkOutWarehouses){
+                            $id_ware = $checkOutWarehouses->id;
+                        }
+                        $warehouse_update = detail_warehouse::find($id_ware);
+                        $warehouse_update -> qty_export_warehouse += $value['qty'];
+                        $warehouse_update -> inventory_warehouse -= $value['qty'];
+                        $warehouse_update->save();
                         $orderDetail = new order_detail();
                         $orderDetail->id_order = $order->id;
                         $orderDetail->id_product  = $key;
@@ -238,6 +259,7 @@ class HomeController extends Controller
                         $orderDetail->unit_price_order = $value['item']['sale_price_product']*((100-$value['item']['sale'])/100);
                         $orderDetail->discount_order_detail = $value['discount'];
                         $orderDetail->save();
+
                     }
                     Session::forget('cart');
                     $order_success = Session::get('order_success');
