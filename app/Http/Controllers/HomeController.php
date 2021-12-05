@@ -196,12 +196,27 @@ class HomeController extends Controller
         }
     }
     public function updateCart(Request $request){
+
         if($request->id and $request->quantity){
+
+            $wareHouse_product = DB::table('detail_warehouses')->where('id_product','=', $request->id)->get();
+            foreach ($wareHouse_product as $wareHouse_products){
+                //lay ra so luong ton cua san pham
+                $qty_input = $wareHouse_products->inventory_warehouse;
+            }
+            if ($request->quantity > $qty_input){
+                Session::put('no_update_cart_success');
+                return redirect()->back()->with(
+                    'no_update_cart_success',
+                    'So luong khong hop le'
+                );
+            }
             $qty_product = $request->quantity;
             $oldCart = Session::has('cart')?Session::get('cart'):null;
             $cart = new giohang($oldCart);
             $cart->update_cart($request->id,$request->quantity);
             session()->put('cart', $cart);
+            session()->put('update_cart_success');
         }
     }
 

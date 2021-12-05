@@ -182,60 +182,24 @@
             @endif
         </div>
     </section>
+
+
     <script>
         function update_cart(e) {
             var ele = e.split(",");
             var ktra = document.getElementById("txt_solg").value;
-            if(ele[1] > 0 && ele[1] < 1001){
-                $.ajax({
-                    method: "get",
-                    url: '{{ route('getUpdateCart') }}',
-                    data: {_token: '{{ csrf_token() }}',
-                        id: ele[0],
-                        quantity: ele[1]},
-
-                    success: function (result) {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 600,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Đã cập nhật giỏ hàng'
-                        });
-                        window.setTimeout(function(){
-                            window.location.reload();
-                        } ,600);
-                    }
-                });
-            }else{
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-                Toast.fire({
-                    icon: 'info',
-                    title: 'Số lượng không hợp lệ'
-                });
-                window.setTimeout(function(){
-                    window.location.reload();
-                } ,600);
-                // document.getElementById("txt_solg").value = 1;
-            }
+            $.ajax({
+                method: "get",
+                url: '{{ route('getUpdateCart') }}',
+                data: {_token: '{{ csrf_token() }}',
+                    id: ele[0],
+                    quantity: ele[1]},
+                success: function (result) {
+                    window.setTimeout(function(){
+                        window.location.reload();
+                    } ,600);
+                }
+            });
         }
     </script>
     <!-- Shoping Cart Section End -->

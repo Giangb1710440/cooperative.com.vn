@@ -1,6 +1,7 @@
 @extends('server_view.master_admin')
 @section('title','Thông tin cá nhân')
 @section('content')
+{{--    <link rel="stylesheet" href="{{asset('public/client/css/scss_edit_profile_admin.scss')}}" type="text/css">--}}
     <main role="main" class="main-content">
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -21,13 +22,78 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     @foreach($user as $users)
-                                        <form action="{{route('post_edit_profile',$users->id)}}" method="post">
+                                    <form action="{{route('post_edit_profile',$users->id)}}" method="post">
                                         @csrf
                                         <div class="row mt-5 align-items-center">
                                             <div class="col-md-3 text-center mb-5">
-                                                <div class="avatar avatar-xl">
-                                                    <img src="{{asset('public/uploads/admin/'.$users->image_user)}}" alt="..." class="avatar-img rounded-circle">
+                                                <style>
+                                                    .profile-pic {
+                                                        color: transparent;
+                                                        transition: all 0.3s ease;
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        position: relative;
+                                                        /*transition: all 0.3s ease;*/
+                                                    }
+                                                    .profile-pic input {
+                                                        display: none;
+                                                    }
+                                                    .profile-pic img {
+                                                        position: absolute;
+                                                        object-fit: cover;
+                                                        width: 165px;
+                                                        height: 165px;
+                                                        box-shadow: 0 0 10px 0 rgba(255, 255, 255, .35);
+                                                        border-radius: 100px;
+                                                        z-index: 0;
+                                                    }
+                                                    .profile-pic .-label {
+                                                        cursor: pointer;
+                                                        height: 165px;
+                                                        width: 165px;
+                                                    }
+                                                    .profile-pic:hover .-label {
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        background-color: rgba(0, 0, 0, .8);
+                                                        z-index: 10000;
+                                                        color: #fafafa;
+                                                        transition: background-color 0.2s ease-in-out;
+                                                        border-radius: 100px;
+                                                        margin-bottom: 0;
+                                                    }
+                                                    .profile-pic span {
+                                                        display: inline-flex;
+                                                        padding: 0.2em;
+                                                        height: 2em;
+                                                    }
+                                                    /*body {*/
+                                                    /*    height: 100vh;*/
+                                                    /*    background-color: #191815;*/
+                                                    /*    display: flex;*/
+                                                    /*    justify-content: center;*/
+                                                    /*    align-items: center;*/
+                                                    /*}*/
+                                                    body a:hover {
+                                                        text-decoration: none;
+                                                    }
+
+                                                </style>
+                                                <div class="profile-pic">
+                                                    <label class="-label" for="file">
+                                                        <span class="glyphicon glyphicon-camera"></span>
+                                                        <span>Change Image</span>
+                                                    </label>
+                                                    <input id="file" name="image_account" type="file" onchange="loadFile(event)"/>
+                                                    <img src="{{asset('public/uploads/admin/'.$users->image_user)}}" id="output" width="200" />
                                                 </div>
+
+{{--                                                <div class="avatar avatar-xl">--}}
+{{--                                                    <img src="{{asset('public/uploads/admin/'.$users->image_user)}}" alt="..." class="avatar-img rounded-circle">--}}
+{{--                                                    <span></span>--}}
+{{--                                                </div>--}}
                                             </div>
                                             <div class="col">
                                                 <div class="row align-items-center">
@@ -38,14 +104,16 @@
                                                                 <p class="small mb-3"><span class="badge badge-dark">{{$roles->role_name}}</span></p>
                                                             @endif
                                                         @endforeach
-
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-md-7">
-                                                        <p class="text-muted" style="text-align: left"> Số đơn đã đặt: 15 <br>
-                                                            Số đơn đã hủy: 10 &nbsp;<i style="color: orangered" class="fas fa-info-circle" title="Báo xấu"></i> <br>
-                                                            Trạng thái: Báo xấu tài khoảng</p>
+                                                        @php($number = DB::table('orders')->where([['id_user',$users->id],['status_order',2]])->count())
+                                                        @php($number_cancel = DB::table('orders')->where([['id_user',$users->id],['status_order',-1]])->count())
+                                                        <p class="text-muted" style="text-align: left"> Số đơn đã đặt:
+                                                            {{$number}} <br>
+                                                            Số đơn đã hủy: {{$number_cancel}} &nbsp;<i style="color: orangered" class="fas fa-info-circle" title="Báo xấu"></i> <br>
+                                                            Trạng thái: Đang hoạt động <i style="color: #34ce57" class="fas fa-toggle-on"></i></p>
                                                     </div>
                                                     <div class="col">
                                                         <p class="small mb-0 text-muted">Giới tính:
@@ -55,7 +123,7 @@
                                                             @if($users->sex_user == 1)
                                                                 Nữ
                                                             @endif
-                                                            @if($users->sex_user == 1)
+                                                            @if($users->sex_user == -1)
                                                                 Khác
                                                             @endif
                                                         </p>
@@ -74,7 +142,6 @@
                                             </div>
 
                                         </div>
-
                                         <div class="form-group">
                                             <label for="inputAddress5">Address</label>
                                             <input type="text" class="form-control" id="inputAddress5" name="address_user" value="{{ucwords($users->address_user)}}">
@@ -147,7 +214,7 @@
                                             @php($order_detail = DB::table('order_details')->where('id_order',$orders->id)->get())
                                             <table class="table table-hover table-borderless border-v">
                                                 <thead class="thead-dark">
-                                                <tr>
+                                                    <tr>
                                                     {{--                                                            <th colspan="4">{{date('d-m-Y', strtotime($orders->created_at))}}</th>--}}
                                                     <th colspan="4">
                                                         @if($orders->status_order == 0)
@@ -172,7 +239,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr class="accordion-toggle collapsed" id="c-3599" data-toggle="collapse" data-parent="#c-3599" href="#collap-3599">
+                                                    <tr class="accordion-toggle collapsed" id="c-3599" data-toggle="collapse" data-parent="#c-3599" href="#collap-3599">
                                                     <td style="padding-top: 30px">Đơn hàng: {{$orders->id}}</td>
                                                     @foreach($order_detail as $order_details)
                                                         @php($product = DB::table('products')->get())
@@ -320,8 +387,6 @@
                                 </div>
                             </div>
                         </div> <!-- /.card-body -->
-
-
                 </div> <!-- /.col-12 -->
             </div> <!-- .row -->
         </div> <!-- .container-fluid -->
@@ -433,6 +498,11 @@
             })
         }
     </script>
-
+    <script>
+        var loadFile = function (event) {
+            var image = document.getElementById("output");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
 
 @endsection

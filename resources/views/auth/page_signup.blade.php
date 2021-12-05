@@ -80,7 +80,6 @@
                             </div>
                             <div class="form-group last mb-3">
                                 <span    for="">Hình ảnh</span>
-
                                 <input type="file" class="form-control" name="image" >
                             </div>
 

@@ -154,15 +154,19 @@ class LoginController extends Controller
                     return redirect()->back()->with('no_old_passwd', ' chua nhap mk cu');
             }
         }
-            $user->name_user = $request->input('name_user');
-            $user->address_user = $request->input('address_user');
-            $user->phone_user = $request->input('phone_user');
-            $user->sex_user = $request->input('sex_user');
-            $user->birthday_user = $request->input('birthday_user');
-            $user->save();
-            $register_success = Session::get('update_profile_success');
-            Session::put('update_profile_success');
-            return redirect()->back()->with('update_profile_success', 'success');
+
+        if ($request->input('image_account')){
+            $user->image_user = $request ->input('image_account');
+        }
+        $user->name_user = $request->input('name_user');
+        $user->address_user = $request->input('address_user');
+        $user->phone_user = $request->input('phone_user');
+        $user->sex_user = $request->input('sex_user');
+        $user->birthday_user = $request->input('birthday_user');
+        $user->save();
+        $register_success = Session::get('update_profile_success');
+        Session::put('update_profile_success');
+        return redirect()->back()->with('update_profile_success', 'success');
 
     }
 

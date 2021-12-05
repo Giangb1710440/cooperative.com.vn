@@ -4,12 +4,12 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="./index.html"><img src="{{asset('public/server/assets/avatars/GosCooperativehome.jpg')}}" alt=""></a>
+                        <a href="{{route('home')}}"><img src="{{asset('public/server/assets/avatars/GosCooperativehome.jpg')}}" alt=""></a>
                     </div>
                     <ul>
                         <li>Address: 332 - Tân phú A - Tân Bình -Phụng Hiệp -Hậu Giang</li>
                         <li>Phone: +84 93.933.7416</li>
-                        <li>Email: qiaq.nquyen1133@gmail.com</li>
+                        <li style="font-size: 15px">Email: qiaq.nquyen1133@gmail.com</li>
                     </ul>
                 </div>
             </div>

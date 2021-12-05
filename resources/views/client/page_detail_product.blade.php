@@ -120,8 +120,6 @@
                                             <span style="color: #34ce57"> Còn hàng</span>
                                         @endif
                                     @endforeach
-
-
                                 </li>
                                 <li><b>Vận chuyển</b> <span>Miễn ship cho đơn trong  <samp>phạm vi 5km.</samp></span></li>
                                 <li><b>Đơn vị</b>
@@ -143,10 +141,7 @@
                     <div class="col-lg-12">
                         <div class="product__details__tab">
                             <ul class="nav nav-tabs" role="tablist">
-{{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"--}}
-{{--                                       aria-selected="true">Mô tả sản phẩm</a>--}}
-{{--                                </li>--}}
+
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#tabs-2" role="tab"
                                        aria-selected="false">Thông tin</a>
@@ -161,14 +156,12 @@
                                     <div class="product__details__tab__desc">
                                         <h6>Mô tả sản phẩm</h6>
                                         <p>{{$product_details->description_product}}</p>
-
                                     </div>
                                 </div>
-
                                 <div class="tab-pane" id="tabs-3" role="tabpanel">
                                     <div id="fb-root"></div>
-                                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="K5JNo5F2"></script>
-                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#http://localhost/cooperative.com.vn/page-detail-product/{{$product_details->id}}" data-width="500" data-numposts="0"></div>
+                                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="FyaAsUN7"></script>
+                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator#http://localhost/cooperative.com.vn/page-detail-product/{{$product_details->id}}" data-width="1100" data-numposts="5"></div>
                                 </div>
                             </div>
                         </div>
@@ -178,9 +171,7 @@
         </div>
     </section>
     <!-- Product Details Section End -->
-
     <!-- Related Product Section Begin -->
-
     @foreach($product_detail as $product_details)
         @php($product_lq = DB::table('products')->where('id_cate_product','=',$product_details->id_cate_product )->take(4)->latest()->get())
         <section class="related-product">

@@ -346,3 +346,47 @@
         })
     }
 </script>
+
+
+<script>
+    var msg = '{{Session::get('update_cart_success')}}';
+    var exist = '{{Session::has('update_cart_success')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Đã cập nhật giỏ hàng'
+        })
+    }
+</script>
+<script>
+    var msg = '{{Session::get('no_update_cart_success')}}';
+    var exist = '{{Session::has('no_update_cart_success')}}';
+    if (exist) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'info',
+            title: 'Số lượng không hợp lệ'
+        })
+    }
+</script>

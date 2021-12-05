@@ -69,7 +69,7 @@
                             .show {display: block;}
                         </style>
                         <div class="dropdown">
-                            <img onclick="myFunction()" class="dropbtn" src="{{asset('public/uploads/admin/'.Auth::user()->image_user)}}" alt="...">
+                            <img style="width: 30px;height: 30px" onclick="myFunction()" class="dropbtn" src="{{asset('public/uploads/admin/'.Auth::user()->image_user)}}" alt="...">
 
                             <div id="myDropdown" class="dropdown-content">
                                 <a href="{{route('page_profile_client',Auth::user()->id)}}"><i class="fas fa-user"></i>&nbsp{{ucwords(Auth::user()->name_user)}}</a>
@@ -141,7 +141,15 @@
                             @endif
                         </ul>
                         @if(Session::has('cart'))
-                            <div class="header__cart__price">Tạm tính: <span>{{number_format($totalPrice)}} VNĐ</span></div>
+                            <?php
+                            $total_cart = 0;
+                            ?>
+                            @foreach($product_cart as $product)
+                                <?php
+                                $total_cart += $product['price']*((100- $product['discount'])/100);
+                                ?>
+                            @endforeach
+                            <div class="header__cart__price">Tạm tính: <span>{{number_format($total_cart)}} VNĐ</span></div>
                         @else
                             <div class="header__cart__price">Tạm tính: <span>0 VNĐ</span></div>
                         @endif
@@ -321,7 +329,15 @@
                             @endif
                         </ul>
                         @if(Session::has('cart'))
-                                <div class="header__cart__price">Tạm tính: <span>{{number_format($totalPrice)}} VNĐ</span></div>
+                            <?php
+                            $total_cart = 0;
+                            ?>
+                            @foreach($product_cart as $product)
+                                <?php
+                                $total_cart += $product['price']*((100- $product['discount'])/100);
+                                ?>
+                            @endforeach
+                            <div class="header__cart__price">Tạm tính: <span>{{number_format($total_cart)}} VNĐ</span></div>
                         @else
                             <div class="header__cart__price">Tạm tính: <span>0 VNĐ</span></div>
                         @endif
