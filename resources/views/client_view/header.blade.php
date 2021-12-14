@@ -186,7 +186,8 @@
                             <div class="hero__search__form">
                                 <form action="{{route('searchProduct')}}" method="get">
                                     @csrf
-                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
+{{--                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />--}}
+                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -240,7 +241,8 @@
                             <div class="hero__search__form">
                                 <form action="{{route('searchProduct')}}" method="get">
                                     @csrf
-                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì..." />
+{{--                                    <input type="text" name="search_product" id="search_product" class="form-control-lg" placeholder="Bạn cần tìm gì..." />--}}
+                                    <input type="text" name="user_name" id="user_name" class="form-control-lg" placeholder="Bạn cần tìm gì . . ." />
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -447,24 +449,7 @@
         </section>
     @endif
 @endif
-<script>
 
-    var path = "{{ url('typeahead_autocomplete/action') }}";
-
-    $('#user_name').typeahead({
-
-        source: function(query, process){
-
-            return $.get(path, {query:query}, function(data){
-
-                return process(data);
-
-            });
-
-        }
-
-    });
-</script>
 
 
 

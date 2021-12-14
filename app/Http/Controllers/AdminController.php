@@ -716,12 +716,10 @@ class AdminController extends Controller
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');
             }else{
-                $product = DB::table('products')->get();
-                $unit = DB::table('units')->get();
+//                $unit = DB::table('units')->get();
                 $warehouse = DB::table('detail_warehouses')->get();
                 return view('server.csdl_server.page_list_detail_warehouse')->with([
-                    'product'=>$product,
-                    'unit'=>$unit,
+//                    'unit'=>$unit,
                     'warehouse'=>$warehouse
                 ]);
             }
@@ -737,7 +735,6 @@ class AdminController extends Controller
             }else{
                 $request->session()->forget('id_product_warehouse');
                 $unit = product::find($request->quantity);
-
                 if($request->id and $request->quantity){
                     Session()->put('id_product_warehouse',$unit);
                 }

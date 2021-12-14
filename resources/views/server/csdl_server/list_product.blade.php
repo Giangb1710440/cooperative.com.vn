@@ -35,7 +35,7 @@
                     <h2 class="mb-2 page-title text-center">QUẢN LÝ SẢN PHẨM</h2>
                     <p class="card-text">
                         Nếu muốn thêm mới sản phẩm hãy
-                        <a href="" data-toggle="modal" data-target="#add_product" data-whatever="@mdo">nhấp vào đây</a>
+                        <a style="color: #38d39f" href="" data-toggle="modal" data-target="#add_product" data-whatever="@mdo">nhấp vào đây</a>
                         <div class="modal fade" id="add_product" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -174,150 +174,149 @@
                                                         </div>
                                                     </div>
                                                 </td>
-
                                                 <td>
                                                     <a href="" data-toggle="modal" data-target="#edit_namep{{$products->id}}" data-whatever="@mdo">{{$products->name_product}}</a>
-                                                    <div class="modal fade" id="edit_namep{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Chỉnh sửa tên sản phẩm</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{route('post_edit_product',[$products->id,1])}}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="name_product"  value="{{$products->name_product}}" required>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
-                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="modal fade" id="edit_namep{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">--}}
+{{--                                                        <div class="modal-dialog" role="document">--}}
+{{--                                                            <div class="modal-content">--}}
+{{--                                                                <div class="modal-header">--}}
+{{--                                                                    <h5 class="modal-title" id="varyModalLabel">Chỉnh sửa tên sản phẩm</h5>--}}
+{{--                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                                                        <span aria-hidden="true">&times;</span>--}}
+{{--                                                                    </button>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="modal-body">--}}
+{{--                                                                    <form action="{{route('post_edit_product',[$products->id,1])}}" method="post">--}}
+{{--                                                                        @csrf--}}
+{{--                                                                        <div class="form-group mb-3">--}}
+{{--                                                                            <label for="exampleInputEmail1">Tên sản phẩm</label>--}}
+{{--                                                                            <input type="text" class="form-control" id="" name="name_product"  value="{{$products->name_product}}" required>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="modal-footer">--}}
+{{--                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>--}}
+{{--                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </form>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </td>
 
                                                 <td>
                                                     <a href="" data-toggle="modal" data-target="#edit_gianhap{{$products->id}}" data-whatever="@mdo">{{$products->cost_price_product}}</a>
-                                                    <div class="modal fade" id="edit_gianhap{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật giá nhập sản phẩm</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{route('post_edit_product',[$products->id,2])}}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm (VNĐ)</label>
-                                                                            <input type="text" class="form-control" id="" name="cost_price"  value="{{$products->cost_price_product}}" required>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
-                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="modal fade" id="edit_gianhap{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">--}}
+{{--                                                        <div class="modal-dialog" role="document">--}}
+{{--                                                            <div class="modal-content">--}}
+{{--                                                                <div class="modal-header">--}}
+{{--                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật giá nhập sản phẩm</h5>--}}
+{{--                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                                                        <span aria-hidden="true">&times;</span>--}}
+{{--                                                                    </button>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="modal-body">--}}
+{{--                                                                    <form action="{{route('post_edit_product',[$products->id,2])}}" method="post">--}}
+{{--                                                                        @csrf--}}
+{{--                                                                        <div class="form-group mb-3">--}}
+{{--                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm (VNĐ)</label>--}}
+{{--                                                                            <input type="text" class="form-control" id="" name="cost_price"  value="{{$products->cost_price_product}}" required>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="modal-footer">--}}
+{{--                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>--}}
+{{--                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </form>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </td>
 
                                                 <td>
                                                     <a href="" data-toggle="modal" data-target="#edit_giaban{{$products->id}}" data-whatever="@mdo">{{$products->sale_price_product}}</a>
-                                                    <div class="modal fade" id="edit_giaban{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật giá sản phẩm bán ra</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{route('post_edit_product',[$products->id,3])}}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm bán ra(VNĐ)</label>
-                                                                            <input type="text" class="form-control" id="" name="sale_price"  value="{{$products->sale_price_product}}" required>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
-                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="modal fade" id="edit_giaban{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">--}}
+{{--                                                        <div class="modal-dialog" role="document">--}}
+{{--                                                            <div class="modal-content">--}}
+{{--                                                                <div class="modal-header">--}}
+{{--                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật giá sản phẩm bán ra</h5>--}}
+{{--                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                                                        <span aria-hidden="true">&times;</span>--}}
+{{--                                                                    </button>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="modal-body">--}}
+{{--                                                                    <form action="{{route('post_edit_product',[$products->id,3])}}" method="post">--}}
+{{--                                                                        @csrf--}}
+{{--                                                                        <div class="form-group mb-3">--}}
+{{--                                                                            <label for="exampleInputEmail1">Giá nhập sản phẩm bán ra(VNĐ)</label>--}}
+{{--                                                                            <input type="text" class="form-control" id="" name="sale_price"  value="{{$products->sale_price_product}}" required>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="modal-footer">--}}
+{{--                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>--}}
+{{--                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </form>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </td>
 
                                                 <td>
                                                     <a href="" data-toggle="modal" data-target="#edit_km{{$products->id}}" data-whatever="@mdo">{{$products->sale}}</a>
-                                                    <div class="modal fade" id="edit_km{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật khuyến mãi</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{route('post_edit_product',[$products->id,4])}}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Phần trăm chiết khấu trên sản phẩm  (%)</label>
-                                                                            <input type="text" class="form-control" id="" name="salep"  value="{{$products->sale}}" required>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
-                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="modal fade" id="edit_km{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">--}}
+{{--                                                        <div class="modal-dialog" role="document">--}}
+{{--                                                            <div class="modal-content">--}}
+{{--                                                                <div class="modal-header">--}}
+{{--                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật khuyến mãi</h5>--}}
+{{--                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                                                        <span aria-hidden="true">&times;</span>--}}
+{{--                                                                    </button>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="modal-body">--}}
+{{--                                                                    <form action="{{route('post_edit_product',[$products->id,4])}}" method="post">--}}
+{{--                                                                        @csrf--}}
+{{--                                                                        <div class="form-group mb-3">--}}
+{{--                                                                            <label for="exampleInputEmail1">Phần trăm chiết khấu trên sản phẩm  (%)</label>--}}
+{{--                                                                            <input type="text" class="form-control" id="" name="salep"  value="{{$products->sale}}" required>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="modal-footer">--}}
+{{--                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>--}}
+{{--                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </form>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </td>
 
                                                 <td>
                                                     <a href="" data-toggle="modal" data-target="#edit_stt{{$products->id}}" data-whatever="@mdo">{{$products->status_product}}</a>
-                                                    <div class="modal fade" id="edit_stt{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật tình trạng sản phẩm</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{route('post_edit_product',[$products->id,5])}}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group mb-3">
-                                                                            <label for="exampleInputEmail1">Tình trạng sản phẩm</label>
-                                                                            <input type="text" class="form-control" id="" name="stt_product"  value="{{$products->status_product}}" required>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>
-                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="modal fade" id="edit_stt{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">--}}
+{{--                                                        <div class="modal-dialog" role="document">--}}
+{{--                                                            <div class="modal-content">--}}
+{{--                                                                <div class="modal-header">--}}
+{{--                                                                    <h5 class="modal-title" id="varyModalLabel">Cập nhật tình trạng sản phẩm</h5>--}}
+{{--                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                                                        <span aria-hidden="true">&times;</span>--}}
+{{--                                                                    </button>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="modal-body">--}}
+{{--                                                                    <form action="{{route('post_edit_product',[$products->id,5])}}" method="post">--}}
+{{--                                                                        @csrf--}}
+{{--                                                                        <div class="form-group mb-3">--}}
+{{--                                                                            <label for="exampleInputEmail1">Tình trạng sản phẩm</label>--}}
+{{--                                                                            <input type="text" class="form-control" id="" name="stt_product"  value="{{$products->status_product}}" required>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="modal-footer">--}}
+{{--                                                                            <button type="submit" class="btn mb-2 btn-info">Cập nhật</button>--}}
+{{--                                                                            <button type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Đóng</button>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </form>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </td>
 
                                                 <td>

@@ -27,16 +27,11 @@
     <link rel="stylesheet" href="{{asset('public/fontawesome.css')}}" type="text/css">
     <script src="{{asset('public/fontawesome_pro.js')}}"></script>
     <script src="{{asset('public/sweetalert.js')}}"></script>
-
-{{--    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>--}}
-{{--    <script src="https://kit.fontawesome.com/12bbc8e57f.js" crossorigin="anonymous"></script>--}}
-{{--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>--}}
-
-{{--    tim kiem nhanh--}}
+{{--    gợi ý tìm kiếm--}}
 {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">--}}
-{{--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>--}}
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" ></script>--}}
-{{--    end tim kiem nhanh--}}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" ></script>
+{{--    end--}}
 </head>
 
 <body>
@@ -60,9 +55,30 @@
 <script src="{{asset('public/client/js/mixitup.min.js')}}"></script>
 <script src="{{asset('public/client/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('public/client/js/main.js')}}"></script>
+{{--Gợi ý tìm kiếm--}}
 
+
+{{--end--}}
 @include('client_view.sweetalers')
 
 </body>
 
 </html>
+<script>
+
+    var path = "{{ url('action') }}";
+    $('#user_name').typeahead({
+
+        source: function(query, process){
+
+            return $.get(path, {query:query}, function(data){
+
+                return process(data);
+
+            });
+
+        }
+
+    });
+
+</script>  s

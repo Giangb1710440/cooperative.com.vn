@@ -25,6 +25,10 @@ Route::get('/page-cate-product',[HomeController::class,'page_cate_product'])->na
 
 Route::get('page-profile-client/{id}',[LoginController::class,'page_profile_client'])->name('page_profile_client');
 
+//chuc nang tim kiem
+//Route::get('/typeahead_autocomplete', [LoginController::class, 'index']);
+Route::get('/best_index/action', [HomeController::class,'action'])->name('typeahead_autocomplete.action');
+Route::get('/best_index',[HomeController::class,'best_index']);
 Route::get('search-product', [HomeController::class,'searchProduct'])->name('searchProduct');
 //them gio hang
 Route::get('add-card/{id}',[HomeController::class,'addCard'])->name('addCard');
@@ -189,9 +193,7 @@ Route::post('/post-sign-up',[LoginController::class,'check_sign_up'])->name('pos
     //logot
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
-Route::get('/typeahead_autocomplete', [LoginController::class, 'index']);
 
-Route::get('/typeahead_autocomplete/action', [LoginController::class, 'action'])->name('typeahead_autocomplete.action');
 
 //quan ly nguoi dung
 Route::get('profile-user-page-admin/{id}',[LoginController::class,'profile_user_admin'])->name('profile_user_admin');

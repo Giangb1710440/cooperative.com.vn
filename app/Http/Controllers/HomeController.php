@@ -6,6 +6,7 @@ use App\Models\giohang;
 use App\Models\order;
 use App\Models\order_detail;
 use App\Models\product;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -14,12 +15,29 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
+    public function best_index(){
+        return view('client.best_index');
+    }
+    //goi y tim kiem
+    function action(Request $request)
+    {
+        $data = $request->all();
+
+        $query = $data['query'];
+
+        $filter_data = DB::table('products')
+            ->where('name_product', 'LIKE', '%'.$query.'%')
+            ->select('name_product')->get();
+        return response()->json($filter_data);
+    }
+
     //trang chu
     public function index(){
         Session::put('home','0');
         $product_flu = DB::table('products')->where('id_cate_product','=',1)->take(4)->latest()->get();
         $product_slider = DB::table('products')->take(5)->latest()->get();
         $product_ve = DB::table('products')->where('id_cate_product', '=',2)->take(3)->latest()->get();
+
         return view('client.index')->with([
             'product_slider'=>$product_slider,
             'product_flu'=>$product_flu,
@@ -27,6 +45,7 @@ class HomeController extends Controller
             'home'
         ]);
     }
+
 
     public function page_contact(){
         Session::forget('home');

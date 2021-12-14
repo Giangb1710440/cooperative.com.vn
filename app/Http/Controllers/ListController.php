@@ -37,17 +37,9 @@ class ListController extends Controller
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');
             }else{
-                $user = DB::table('users')->get();
-                $order =DB::table('orders')->latest()->get();
-                $product = DB::table('products')->get();
-                $detail_order = DB::table('order_details')->get();
                 $unit = DB::table('units')->get();
                 return view('server.csdl_server.list_order')->with([
-                    'order'=>$order,
-                    'user'=>$user,
-                    'product'=>$product,
                     'unit'=>$unit,
-                    'detail_order'=>$detail_order
                 ]);
             }
         }else{
@@ -139,17 +131,20 @@ class ListController extends Controller
 
     public function detail_diary(Request $res){
         $detail_diary = DB::table('farmer_diarys')->where('id',$res->id)->get();
-        $product = DB::table('products')->get();
-        $technique = DB::table('techniques')->get();
+        foreach ($detail_diary as $detail_diarys){
+            $product = DB::table('products')->where('id','=',$detail_diarys->id_product)->get();
+            $technique = DB::table('techniques')->where('id','=',$detail_diarys->id_technique)->get();
+            $phunthuoc = DB::table('phunthuocs')->where('id_diary','=',$detail_diarys->id)->get();
+            $bonphan=DB::table('bonphans')->where('id_diary','=',$detail_diarys->id)->get();
+            $thsb=DB::table('tdsbs')->where('id_diary','=',$detail_diarys->id)->get();
+            $thuhoach=DB::table('thuhoachs')->where('id_diary','=',$detail_diarys->id)->get();
+            break;
+        }
         $gdst=DB::table('gdsts')->get();
         $detail_gdst = DB::table('detail_gdsts')->get();
-        $phunthuoc = DB::table('phunthuocs')->get();
-        $bonphan=DB::table('bonphans')->get();
-        $thsb=DB::table('tdsbs')->get();
-        $thuhoach=DB::table('thuhoachs')->get();
         return view('server.csdl_server.detail_diary')->with([
             'detail_diary'=>$detail_diary,
-            'product'=>$product,
+            'product' => $product,
             'technique'=>$technique,
             'gdst'=>$gdst,
             'detail_gdst'=>$detail_gdst,

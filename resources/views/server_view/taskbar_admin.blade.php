@@ -11,26 +11,12 @@
             </a>
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">
+
             <li class="nav-item dropdown">
-                <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <a href="{{route('admin_home')}}" class="nav-link">
                     <i class="fe fe-home fe-16"></i>
                     <span class="ml-3 item-text">Gos - Cooperative</span><span class="sr-only">(current)</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="dashboard">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Doanh Thu</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link pl-3" href="{{route('list_order')}}"><span class="ml-1 item-text">Quản Lý Đơn Hàng</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('page_list_detail_warehouse')}}"><span class="ml-1 item-text">Tồn Kho</span></a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('list_product')}}"><span class="ml-1 item-text">Sản Phẩm</span></a>
-                    </li>
-                </ul>
             </li>
         </ul>
 
@@ -52,7 +38,6 @@
                         <a class="nav-link pl-3" href="{{route('list_order')}}"><span class="ml-1 item-text">Doanh Thu</span>
                         </a>
                     </li>
-
                 </ul>
             </li>
 

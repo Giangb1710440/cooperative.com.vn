@@ -58,16 +58,14 @@
                                         </thead>
                                         <tbody>
                                         @foreach($warehouse as $warehouses)
+                                        @php($product = DB::table('products')->where('id','=',$warehouses->id_product)->get())
                                             <tr>
                                                 <td>
                                                     @foreach($product as $products)
-                                                        @if($products->id == $warehouses->id_product)
-                                                            @foreach($unit as $units)
-                                                                @if($units->id == $products->id_unit )
-                                                                    {{$products->name_product}}({{$units->name_unit}})
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
+                                                        @php($unit = DB::table('units')->where('id','=',$products->id_unit)->get())
+                                                        @foreach($unit as $units)
+                                                            {{$products->name_product}}({{$units->name_unit}})
+                                                        @endforeach
                                                     @endforeach
                                                 </td>
                                                 <td>
@@ -90,7 +88,6 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{--                                                    <a href="{{route('detail_diary',$products->id)}}" type="button" class="btn mb-2 btn-outline-secondary"> </a>--}}
                                                     <a href="" type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" data-target="#update_warehouse{{$warehouses->id}}" data-whatever="@mdo"><i class="fas fa-edit"></i></a>
                                                     <div class="modal fade" id="update_warehouse{{$warehouses->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
@@ -107,33 +104,24 @@
                                                                         <div class="form-group mb-3">
                                                                             <label for="exampleInputEmail1">Tên sản phẩm</label>
                                                                             @foreach($product as $products)
-                                                                                @if($products->id == $warehouses->id_product)
-                                                                                    <input type="text" class="form-control" id="" name="name_product" value="{{$products->name_product}}" disabled>
-                                                                                @endif
+                                                                                <input type="text" class="form-control" id="" name="name_product" value="{{$products->name_product}}" disabled>
                                                                             @endforeach
-
                                                                         </div>
                                                                         <div class="form-group mb-3">
                                                                             @foreach($product as $products)
-                                                                                @if($products->id == $warehouses->id_product)
-                                                                                    @foreach($unit as $units)
-                                                                                        @if($units->id == $products->id_unit )
-                                                                                            <label for="exampleInputEmail1">Tồn đầu({{$units->name_unit}})</label>
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                @endif
+                                                                                @php($unit = DB::table('units')->where('id','=',$products->id_unit)->get())
+                                                                                @foreach($unit as $units)
+                                                                                    <label for="exampleInputEmail1">Tồn đầu({{$units->name_unit}})</label>
+                                                                                @endforeach
                                                                             @endforeach
                                                                             <input type="text" class="form-control" id="" name="start_qty"  value="{{$warehouses->qty_opening_stock}}">
                                                                         </div>
                                                                         <div class="form-group mb-3">
                                                                             @foreach($product as $products)
-                                                                                @if($products->id == $warehouses->id_product)
-                                                                                    @foreach($unit as $units)
-                                                                                        @if($units->id == $products->id_unit )
-                                                                                            <label for="exampleInputEmail1">Nhập({{$units->name_unit}}) </label>
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                @endif
+                                                                            @php($unit = DB::table('units')->where('id','=',$products->id_unit)->get())
+                                                                                @foreach($unit as $units)
+                                                                                    <label for="exampleInputEmail1">Nhập({{$units->name_unit}}) </label>
+                                                                                @endforeach
                                                                             @endforeach
                                                                             <input type="text" class="form-control" id="" name="qty_import"  value="{{$warehouses->qty_import_warehouse}}" >
                                                                         </div>

@@ -56,7 +56,6 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
                                         @foreach($diary as $diarys)
                                             <tr>
                                                 <td>
@@ -79,8 +78,8 @@
                                                 <td>{{date('d-m-Y', strtotime($diarys->created_at))}} </td>
                                                 <td>
                                                     <a href="{{route('detail_diary',$diarys->id)}}" type="button" class="btn mb-2 btn-outline-secondary"><i class="fas fa-edit"></i> </a>
-                                                    <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#varyModal1" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
-                                                    <div class="modal fade" id="varyModal1" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                    <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#varyModal{{$diarys->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                    <div class="modal fade" id="varyModal{{$diarys->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
