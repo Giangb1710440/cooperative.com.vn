@@ -6,13 +6,13 @@
         <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Bạn cần tìm gì..." aria-label="Search">
     </form>
     <ul class="nav">
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="dark">--}}
+{{--                <i class="fe fe-sun fe-16"></i>--}}
+{{--            </a>--}}
+{{--        </li>--}}
         <li class="nav-item">
-            <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="dark">
-                <i class="fe fe-sun fe-16"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-shortcut">
+            <a class="nav-link text-muted my-2" href="{{route('home')}}" data-toggle="modal" data-target=".modal-shortcut">
                 <span class=""><i class="fas fa-store-alt" title="Trang bán hàng"></i></span>
             </a>
         </li>
@@ -29,7 +29,13 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">{{Auth::User()->name_user}}</a>
+                @php($role_user = DB::table('role_accesss')->where('id','=',Auth::user()->role_id)->get())
+                <a class="dropdown-item" href="#"><i class="fab fa-atlassian"></i>
+                    @foreach($role_user as $role_users)
+                        {{trans($role_users->role_name)}}
+                    @endforeach
+
+                </a>
                 <hr>
                 <a class="dropdown-item" href="{{route('profile_user_admin',Auth::user()->id)}}">Trang cá nhân</a>
                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>

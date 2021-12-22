@@ -21,30 +21,58 @@ class LoginController extends Controller
         $password = $res->input('password');
         $confirm = $res->input('confirm');
 
-        if (User::where('email', '=', $res->input('email'))->count() > 0) {
-            return redirect()->back()->with('error_email', 'trung email');
-        }
-        if (strcasecmp($password, $confirm) != 0) {
-            $register_success = Session::get('noconfirm');
-            Session::put('noconfirm');
-            return redirect()->back()->with('noconfirm', 'Xác nhận mật khẩu sai');
-        } else {
-            //image
-            $user = new User;
-            $user->role_id = 3;
-            $user->id_position = 1;
-            $user->name_user = $res->input('name');
-            $user->email = $res->input('email');
-            $user->password = bcrypt($res->input('password'));
-            $user->address_user = $res->input('address');
-            $user->phone_user = $res->input('phone');
-            $user->sex_user = $res->input('sex');
-            $user->birthday_user = $res->input('birthday');
-            $user->image_user=$res->input('image');
-            $user->save();
-            $register_success = Session::get('signup_success');
-            Session::put('signup_success');
-            return redirect()->route('login')->with('signup_success', 'Đăng ký tài khoản thành công');
+        if (Auth::user()->role_id == 1){
+            if (User::where('email', '=', $res->input('email'))->count() > 0) {
+                return redirect()->back()->with('error_email', 'trung email');
+            }
+            if (strcasecmp($password, $confirm) != 0) {
+                $register_success = Session::get('noconfirm');
+                Session::put('noconfirm');
+                return redirect()->back()->with('noconfirm', 'Xác nhận mật khẩu sai');
+            } else {
+                //image
+                $user = new User;
+                $user->role_id = $res->input('role_account');
+                $user->id_position = 1;
+                $user->name_user = $res->input('name');
+                $user->email = $res->input('email');
+                $user->password = bcrypt($res->input('password'));
+                $user->address_user = $res->input('address');
+                $user->phone_user = $res->input('phone');
+                $user->sex_user = $res->input('sex');
+                $user->birthday_user = $res->input('birthday');
+                $user->image_user=$res->input('image');
+                $user->save();
+                $register_success = Session::get('signup_success');
+                Session::put('signup_success');
+                return redirect()->route('list_user');
+            }
+        }else{
+            if (User::where('email', '=', $res->input('email'))->count() > 0) {
+                return redirect()->back()->with('error_email', 'trung email');
+            }
+            if (strcasecmp($password, $confirm) != 0) {
+                $register_success = Session::get('noconfirm');
+                Session::put('noconfirm');
+                return redirect()->back()->with('noconfirm', 'Xác nhận mật khẩu sai');
+            } else {
+                //image
+                $user = new User;
+                $user->role_id = 3;
+                $user->id_position = 1;
+                $user->name_user = $res->input('name');
+                $user->email = $res->input('email');
+                $user->password = bcrypt($res->input('password'));
+                $user->address_user = $res->input('address');
+                $user->phone_user = $res->input('phone');
+                $user->sex_user = $res->input('sex');
+                $user->birthday_user = $res->input('birthday');
+                $user->image_user=$res->input('image');
+                $user->save();
+                $register_success = Session::get('signup_success');
+                Session::put('signup_success');
+                return redirect()->route('login')->with('signup_success', 'Đăng ký tài khoản thành công');
+            }
         }
     }
 
@@ -59,7 +87,15 @@ class LoginController extends Controller
     public function check_login(Request $request){
         $email = $request->input('email');
         $password = $request->input('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password,'role_id'=>1||2])){
+        if (Auth::attempt(['email' => $email, 'password' => $password,'role_id'=>1])){
+            $register_success = Session::get('login_success');
+            Session()->put('login_success');
+            return redirect()->route('admin_home')->with('login_success','thanh cong');
+        } elseif (Auth::attempt(['email' => $email, 'password' => $password,'role_id'=>2])){
+            $register_success = Session::get('login_success');
+            Session()->put('login_success');
+            return redirect()->route('admin_home')->with('login_success','thanh cong');
+        } elseif (Auth::attempt(['email' => $email, 'password' => $password,'role_id'=>4])){
             $register_success = Session::get('login_success');
             Session()->put('login_success');
             return redirect()->route('admin_home')->with('login_success','thanh cong');
@@ -77,7 +113,7 @@ class LoginController extends Controller
 //dang xuất
     public function logout(Request $request){
         if (Auth::check()){
-            if (Auth::user()->role_id == 1 or Auth::user()->role_id == 2){
+            if (Auth::user()->role_id == 1 or Auth::user()->role_id == 2 or Auth::user()->role_id == 4){
                 Auth::logout();
                 Session::forget('cart');
                 return redirect()->route('login');
@@ -117,7 +153,7 @@ class LoginController extends Controller
 
     public function profile_user_admin($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $role= DB::table('role_accesss')->get();

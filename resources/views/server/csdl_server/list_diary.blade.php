@@ -57,58 +57,108 @@
                                         </thead>
                                         <tbody>
                                         @foreach($diary as $diarys)
-                                            <tr>
-                                                <td>
-                                                    <i class="fas fa-warehouse"></i>
-                                                </td>
-                                                <td>diary0{{$diarys->id}}</td>
-                                                <td><a href="{{route('detail_diary',$diarys->id)}}">{{$diarys->name_diary}}</a></td>
-                                                <td>{{$diarys->dientich_diary}}</td>
-                                                @foreach($product as $products)
-                                                    @if($products->id == $diarys->id_product )
-                                                        <td>{{$products->name_product}}</td>
-                                                    @endif
-                                                @endforeach
-                                                <td>{{$diarys->address_diary}}</td>
-                                                @foreach($technique as $techniques)
-                                                    @if($techniques->id == $diarys->id_technique )
-                                                        <td>{{$techniques->name_technique}}</td>
-                                                    @endif
-                                                @endforeach
-                                                <td>{{date('d-m-Y', strtotime($diarys->created_at))}} </td>
-                                                <td>
-                                                    <a href="{{route('detail_diary',$diarys->id)}}" type="button" class="btn mb-2 btn-outline-secondary"><i class="fas fa-edit"></i> </a>
-                                                    <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#varyModal{{$diarys->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
-                                                    <div class="modal fade" id="varyModal{{$diarys->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form>
-                                                                        <div class="form-group">
-                                                                            <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan đến nhật ký nông hộ
-                                                                                sẽ biến mất vã không thể khôi phục được nửa</label>
+                                            @if(Auth::user()->role_id == 4)
+                                                @if($diarys->id_user  == Auth::user()->id)
+                                                    @php($product = DB::table('products')->where('id','=',$diarys->id_product)->get())
+                                                    <tr>
+                                                        <td>
+                                                            <i class="fas fa-warehouse"></i>
+                                                        </td>
+                                                        <td>diary0{{$diarys->id}}</td>
+                                                        <td><a href="{{route('detail_diary',$diarys->id)}}">{{$diarys->name_diary}}</a></td>
+                                                        <td>{{$diarys->dientich_diary}}</td>
+                                                        @foreach($product as $products)
+                                                            <td>{{$products->name_product}}</td>
+                                                        @endforeach
+                                                        <td>{{$diarys->address_diary}}</td>
+                                                        @foreach($technique as $techniques)
+                                                            @if($techniques->id == $diarys->id_technique )
+                                                                <td>{{$techniques->name_technique}}</td>
+                                                            @endif
+                                                        @endforeach
+                                                        <td>{{date('d-m-Y', strtotime($diarys->created_at))}} </td>
+                                                        <td>
+                                                            <a href="{{route('detail_diary',$diarys->id)}}" type="button" class="btn mb-2 btn-outline-secondary"><i class="fas fa-eye"></i> </a>
+                                                            <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#varyModal{{$diarys->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                            <div class="modal fade" id="varyModal{{$diarys->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
                                                                         </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+                                                                        <div class="modal-body">
+                                                                            <form>
+                                                                                <div class="form-group">
+                                                                                    <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan đến nhật ký nông hộ
+                                                                                        sẽ biến mất vã không thể khôi phục được nửa</label>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
 
-                                                                    <a href="{{route('post_delete_diary',$diarys->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                            <a href="{{route('post_delete_diary',$diarys->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            @else
+                                                @php($product = DB::table('products')->where('id','=',$diarys->id_product)->get())
+                                                <tr>
+                                                    <td>
+                                                        <i class="fas fa-warehouse"></i>
+                                                    </td>
+                                                    <td>diary0{{$diarys->id}}</td>
+                                                    <td><a href="{{route('detail_diary',$diarys->id)}}">{{$diarys->name_diary}}</a></td>
+                                                    <td>{{$diarys->dientich_diary}}</td>
+                                                    @foreach($product as $products)
+                                                        <td>{{$products->name_product}}</td>
+                                                    @endforeach
+                                                    <td>{{$diarys->address_diary}}</td>
+                                                    @foreach($technique as $techniques)
+                                                        @if($techniques->id == $diarys->id_technique )
+                                                            <td>{{$techniques->name_technique}}</td>
+                                                        @endif
+                                                    @endforeach
+                                                    <td>{{date('d-m-Y', strtotime($diarys->created_at))}} </td>
+                                                    <td>
+                                                        <a href="{{route('detail_diary',$diarys->id)}}" type="button" class="btn mb-2 btn-outline-secondary"><i class="fas fa-eye"></i> </a>
+                                                        <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal" title="Xóa" data-target="#varyModal{{$diarys->id}}" data-whatever="@mdo"><i class="fas fa-trash-alt"></i></button>
+                                                        <div class="modal fade" id="varyModal{{$diarys->id}}" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="varyModalLabel">Thông báo</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <label for="recipient-name" class="col-form-label">Nếu bạn ấn xóa, tất cả dữ liệu liên quan đến nhật ký nông hộ
+                                                                                    sẽ biến mất vã không thể khôi phục được nửa</label>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Đóng</button>
+
+                                                                        <a href="{{route('post_delete_diary',$diarys->id)}}" style="background-color: red" type="button" class="btn mb-2 btn-primary">Xác nhận xóa</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
-
-
                                         </tbody>
                                     </table>
                                 </div>

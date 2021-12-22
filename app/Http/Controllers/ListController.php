@@ -17,7 +17,7 @@ class ListController extends Controller
     }
     public function list_position (){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $user = DB::table('users')->get();
@@ -34,7 +34,7 @@ class ListController extends Controller
     //quan ly don hang
     public function list_order(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $unit = DB::table('units')->get();
@@ -67,7 +67,7 @@ class ListController extends Controller
     public function list_role_access (){
 
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $list_role_access = DB::table('role_accesss')->get();
@@ -120,11 +120,11 @@ class ListController extends Controller
 
     public function list_diary(){
         $diary = DB::table('farmer_diarys')->get();
-        $product =DB::table('products')->get();
+//        $product =DB::table('products')->get();
         $technique = DB::table('techniques')->get();
         return view('server.csdl_server.list_diary')->with([
             'diary'=>$diary,
-            'product'=>$product,
+//            'product'=>$product,
             'technique'=>$technique
         ]);
     }

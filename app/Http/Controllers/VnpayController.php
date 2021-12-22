@@ -21,7 +21,7 @@ class VnpayController extends Controller
         $vnp_Returnurl = "http://localhost/hongshop/return-page-vnpay-checkout";
         $vnp_TxnRef = date("YmdHis"); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = $request->input('order_desc');//noi dung thanh toan
-        $vnp_OrderType = 200000; //ma loai san pham thanh toan
+        $vnp_OrderType = 250000; //ma loai san pham thanh toan
         $vnp_Amount = $request->input('amount') * 100;
 
         $vnp_BankCode = $request->input('bank_code');

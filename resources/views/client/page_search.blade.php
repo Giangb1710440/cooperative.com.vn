@@ -1,6 +1,8 @@
 @extends('client_view.master')
 
-@section('title','Tìm kiếm - '.$keyWord)
+@foreach($product as $products)
+    @section('title','Tìm kiếm - '.$keyWord)
+@endforeach
 @section('content')
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg">

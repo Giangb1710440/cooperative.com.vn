@@ -32,7 +32,7 @@ class AdminController extends Controller
 {
     public function index(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3 ){
                 return redirect()->route('home');
             }else{
                 return view('server.page_index');
@@ -45,7 +45,7 @@ class AdminController extends Controller
     //them moi loai san pham
     public function page_add_caterogy_product(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 return view('server.page_add_caterogy_product');
@@ -57,7 +57,7 @@ class AdminController extends Controller
     }
     public function post_add_caterogy_product(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $pcate = new product_caterogy();
@@ -76,7 +76,7 @@ class AdminController extends Controller
 
     public function post_delete_catep($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 product_caterogy::find($id)->delete();
@@ -90,7 +90,7 @@ class AdminController extends Controller
     }
     public function post_edit_catep($id,Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $edit_catep = product_caterogy::find($id);
@@ -109,7 +109,7 @@ class AdminController extends Controller
     //them moi don vi
     public function page_add_unit(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 return view('server.page_add_unit');
@@ -122,7 +122,7 @@ class AdminController extends Controller
 
     public function post_add_unit(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $unit =new unit();
@@ -141,7 +141,7 @@ class AdminController extends Controller
 
     public function post_delete_unit($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 unit::find($id)->delete();
@@ -156,7 +156,7 @@ class AdminController extends Controller
 
     public function post_edit_unit($id,Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $edit_unit = unit::find($id);
@@ -175,7 +175,7 @@ class AdminController extends Controller
     //them nha cung cap
     public function page_add_suppliers(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 return view('server.page_add_suppliers');
@@ -188,7 +188,7 @@ class AdminController extends Controller
 
     public function post_add_suppliers(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $supplier = new supplier();
@@ -208,7 +208,7 @@ class AdminController extends Controller
     //them loai hoa don
     public function page_add_caterogy_invoice(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 return view('server.page_add_caterogy_invoice');
@@ -220,7 +220,7 @@ class AdminController extends Controller
     }
     public function post_add_caterogy_invoice(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $cate_invoice = new invoice_caterogy();
@@ -240,7 +240,7 @@ class AdminController extends Controller
     //them quyen user
     public function page_add_role_access(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 return view('server.page_add_role_access');
@@ -253,7 +253,7 @@ class AdminController extends Controller
     //them quyen
     public function post_add_role_access(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $role_access = new role_access();
@@ -273,7 +273,7 @@ class AdminController extends Controller
     //cap nhat quyen user
     public function post_edit_role_user($id,Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $user_edit=User::find($id);
@@ -291,7 +291,7 @@ class AdminController extends Controller
     //them chuc vu
     public function page_add_position(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 return view('server.page_add_position');
@@ -305,7 +305,7 @@ class AdminController extends Controller
     //them chuc vu
     public function post_add_position(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $position = new position();
@@ -324,7 +324,7 @@ class AdminController extends Controller
     //edit chuc vu
     public function post_edit_position($id,Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $edit_position_user = User::find($id);
@@ -342,7 +342,7 @@ class AdminController extends Controller
     //them loai don hang
     public function page_add_caterogy_order(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 return view('server.page_add_caterogy_order');
@@ -356,7 +356,7 @@ class AdminController extends Controller
     //them loai don hang
     public function post_add_caterogy_order(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $cate_order = new order_caterogy();
@@ -375,7 +375,7 @@ class AdminController extends Controller
     //xoa loai don hang
     public function post_delete_caterogy_order($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 order_caterogy::find($id)->delete();
@@ -392,7 +392,7 @@ class AdminController extends Controller
 
     public function post_edit_invoice_cate($id, Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $edit_order = order_caterogy::find($id);
@@ -411,7 +411,7 @@ class AdminController extends Controller
     //them kho hang
 //    public function page_add_warehouse(){
 //        if (Auth::check()){
-//            if(Auth::user()->role_id !== 1){
+//            if(Auth::user()->role_id == 3){
 //                return redirect()->route('home');
 //            }else{
 //                return view('server.page_add_warehouse');
@@ -423,7 +423,7 @@ class AdminController extends Controller
 //    }
 //    public function post_add_warehouse(Request $res){
 //        if (Auth::check()){
-//            if(Auth::user()->role_id !== 1){
+//            if(Auth::user()->role_id == 3){
 //                return redirect()->route('home');
 //            }else{
 //                $warehouse = new warehouse();
@@ -442,7 +442,7 @@ class AdminController extends Controller
 //    }
 //    public function post_delete_warehouse($id){
 //        if (Auth::check()){
-//            if(Auth::user()->role_id !== 1){
+//            if(Auth::user()->role_id == 3){
 //                return redirect()->route('home');
 //            }else{
 //                warehouse::find($id)->delete();
@@ -459,7 +459,7 @@ class AdminController extends Controller
     //them moi san pham
     public function page_add_product(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $cate_product = DB::table('product_caterogys')->get();
@@ -478,7 +478,7 @@ class AdminController extends Controller
     public function post_add_product(Request $res){
         $loinhuan = 40/100;
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 if (product::where('name_product', '=',$res->input('name_product'))->count() > 0) {
@@ -537,7 +537,7 @@ class AdminController extends Controller
 
     public function post_edit_product(Request $res,$id,$cate_edit){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 if ($cate_edit == 1){
@@ -602,7 +602,7 @@ class AdminController extends Controller
 
     public function post_delete_product($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 product::find($id)->delete();
@@ -617,7 +617,7 @@ class AdminController extends Controller
     //khoi tao kho hang
     public function page_add_detail_warehouse(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $product = DB::table('products')->get();
@@ -638,7 +638,7 @@ class AdminController extends Controller
     //xoa ton kho dua theo id
     public function post_delete_warehouse($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                  warehouse::find($id)->delete();
@@ -653,7 +653,7 @@ class AdminController extends Controller
     //edit ton kho dua theo id
     public function post_edit_warehouse($id,Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                  $edit_warehouse = warehouse::find($id);
@@ -673,7 +673,7 @@ class AdminController extends Controller
 //post khoi tao kho hang
     public function  post_detail_warehouse(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $product  = DB::table('products')->get();
@@ -713,7 +713,7 @@ class AdminController extends Controller
     //quan ly kho hang
     public function page_list_detail_warehouse(){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
 //                $unit = DB::table('units')->get();
@@ -730,7 +730,7 @@ class AdminController extends Controller
 
     public function getUpdateUnit(Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $request->session()->forget('id_product_warehouse');
@@ -753,7 +753,7 @@ class AdminController extends Controller
     }
     public function post_add_technique(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                     $technique = new technique();
@@ -772,7 +772,7 @@ class AdminController extends Controller
     //xoa ky thuat canh tac
     public function post_delete_technique($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                     $delete_technique = technique::find($id)->delete();
@@ -789,7 +789,7 @@ class AdminController extends Controller
 
     public function post_edit_technique($id,Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $edit_technique = technique::find($id);
@@ -824,7 +824,7 @@ class AdminController extends Controller
     //xoa gdst
     public function post_delete_gdst($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 gdst::find($id)->delete();
@@ -839,7 +839,7 @@ class AdminController extends Controller
     }
     public function post_edit_edit_csdl($id,Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $edit_gdst = gdst::find($id);
@@ -869,7 +869,7 @@ class AdminController extends Controller
     //them moi dỉay
     public function post_add_diary(Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 if (farmer_diary::where('id_product', '=',$res->input('cate_diary'))->count() > 0) {
@@ -902,7 +902,7 @@ class AdminController extends Controller
     //them moi bang giai doan sinh truong
     public function post_gdst(Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                     $detail_gdst = new detail_gdst();
@@ -924,7 +924,7 @@ class AdminController extends Controller
 
     public function post_bonphan(Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $bonphan  = new bonphan();
@@ -945,7 +945,7 @@ class AdminController extends Controller
     // them du lieu phun thuoc
     public function post_phunthuoc(Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                     $phunthuoc  = new phunthuoc();
@@ -966,7 +966,7 @@ class AdminController extends Controller
     //tinh hinh sau benh
     public function post_thsb(Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                     $thsb  = new tdsb();
@@ -987,7 +987,7 @@ class AdminController extends Controller
     //thuhoach
     public function post_thuhoach(Request $request){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                     $thuhoach  = new thuhoach();
@@ -1011,7 +1011,7 @@ class AdminController extends Controller
     //chinh sua gia doan sinh truiong
     public function post_edit_gdsts(Request $res,$id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $detail_gdst = detail_gdst::find($id);
@@ -1031,7 +1031,7 @@ class AdminController extends Controller
     //chinh sua bang bon phan
     public function post_edit_bonphan($id,Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $bp = bonphan::find($id);
@@ -1051,7 +1051,7 @@ class AdminController extends Controller
     //cap nhat phun thuoc
     public function post_edit_phunthuoc($id,Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $pt = phunthuoc::find($id);
@@ -1071,7 +1071,7 @@ class AdminController extends Controller
     //cap nhat tinh hinh sau benh
     public function post_edit_thsb($id,Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $thsb = tdsb::find($id);
@@ -1092,7 +1092,7 @@ class AdminController extends Controller
     //banh thu hoach chih sua
     public function post_edit_th($id,Request $res){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                 $th = thuhoach::find($id);
@@ -1153,7 +1153,7 @@ class AdminController extends Controller
 //xoa don hang
     public function post_delete_order($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 $check_order = order::find($id);
                 if($check_order->id_user == Auth::user()->id){
                     $order_status = order::find($id);
@@ -1186,7 +1186,7 @@ class AdminController extends Controller
     //cap nhat tinh trang don hang
     public function getUpdate_status_order($id){
         if (Auth::check()){
-            if(Auth::user()->role_id !== 1){
+            if(Auth::user()->role_id == 3){
                 return redirect()->route('home');
             }else{
                     $order_status = order::find($id);

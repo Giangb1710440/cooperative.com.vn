@@ -122,7 +122,7 @@ Route::post('post-edit-gdst-csdl/{id}',[AdminController::class,'post_edit_edit_c
 
 //them moi diary
 Route::get('page-add-diary',[AdminController::class,'page_add_diary'])->name('page_add_diary');
-Route::post('page-add-diary',[AdminController::class,'post_add_diary'])->name('post_add_diary');
+Route::post('post-add-diary',[AdminController::class,'post_add_diary'])->name('post_add_diary');
 //danh sach diary
 Route::get('list-diary',[ListController::class,'list_diary'])->name('list_diary');
 //them moi giai doan sinh truong

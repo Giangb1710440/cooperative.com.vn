@@ -24,76 +24,169 @@
 
 
 
-<div class="content">
-    <div class="container" >
-        <div class="row">
-            <div class="col-md-6 order-md-2">
-                <img style="height: 500px" src="{{asset('public/client/login/images/undraw_file_sync_ot38.svg')}}" alt="Image" class="img-fluid">
+@if(Auth::check())
+    @if(Auth::user()->role_id == 1)
+        @php($role_user = DB::table('role_accesss')->get())
+        <div class="content">
+            <div class="container" >
                 <div class="row">
-                    <div class="col-md-6"><p class="md-3"><a style="color: coral" href="{{route('home')}}"><i class="fas fa-home"></i> Quay lại trang chủ</a></p></div>
-                    <div class="col-md-6"><p class="md-3"><a style="color: #2bbb8b" href="{{route('login')}}"><i class="fas fa-user-check"></i> Bạn đã có tài khoản ?</a></p></div>
-                </div>
-
-            </div>
-            <div class="col-md-6 contents">
-                <div class="row justify-content-center">
-                    <div class="col-md-8" >
-                        <div class="mb-4">
-                            <h3>ĐĂNG KÝ <strong>THÀNH VIÊN</strong></h3>
+                    <div class="col-md-6 order-md-2">
+                        <img style="height: 500px" src="{{asset('public/client/login/images/undraw_file_sync_ot38.svg')}}" alt="Image" class="img-fluid">
+                        <div class="row">
+                            <div class="col-md-6"><p class="md-3"><a style="color: coral" href="{{route('home')}}"><i class="fas fa-home"></i> Quay lại trang chủ</a></p></div>
+                            <div class="col-md-6"><p class="md-3"><a style="color: #2bbb8b" href="{{route('login')}}"><i class="fas fa-user-check"></i> Bạn đã có tài khoản ?</a></p></div>
                         </div>
-                        <form action="{{route('post_sign_up')}}" method="post">
-                            @csrf
-                            <div class="form-group first">
-                                <label for="username">Họ và tên</label>
-                                <input type="text" class="form-control"  name="name" required>
-                            </div>
-                            <div class="form-group first">
-                                <label for="">Email</label>
-                                <input type="email" class="form-control"  name="email">
-                            </div>
-                            <div class="form-group last mb-3">
-                                <label for="">Mật khẩu</label>
-                                <input type="password" class="form-control"  name="password">
-                            </div>
-                            <div class="form-group last mb-3">
-                                <label for="">Xác nhận mật khẩu</label>
-                                <input type="password" class="form-control"  name="confirm">
-                            </div>
-                            <div class="form-group last mb-3">
-                                <label for="">Địa chỉ</label>
-                                <input type="text" class="form-control"   name="address">
-                            </div>
-                            <div class="form-group last mb-3">
-                                <label for="">Số điện thoại</label>
-                                <input type="text" class="form-control"  name="phone">
-                            </div>
-                            <div class="form-group last mb-3">
-                                <span  for="">Giới tính: &nbsp;</span>
-                                <input type="radio" class=""  value="0" name="sex">Nam
-                                <input style="margin-left: 20px" type="radio" class=""  value="1" name="sex"> Nữ
-                                <input style="margin-left: 20px" type="radio" class=""  value="2" name="sex"> Khác
-                            </div>
-                            <div class="form-group last mb-3">
 
-                                <span  for="">Ngày sinh</span>
-                                <input type="date" class="form-control"   name="birthday">
-                            </div>
-                            <div class="form-group last mb-3">
-                                <span    for="">Hình ảnh</span>
-                                <input type="file" class="form-control" name="image" >
-                            </div>
+                    </div>
+                    <div class="col-md-6 contents">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8" >
+                                <div class="mb-4">
+                                    <h3>ĐĂNG KÝ <strong>THÀNH VIÊN</strong></h3>
+                                </div>
+                                <form action="{{route('post_sign_up')}}" method="post">
+                                    @csrf
 
-                            <input type="submit" value="Đăng ký" class="btn text-white btn-block btn-primary">
-                            {{--                            <input type="submit" value="Trang chủ" onclick="history.back()" class="btn text-white btn-block btn-primary">--}}
-                            {{--                            <a href="{{route('home')}}" type="button"  class="btn text-white btn-block btn-primary">Trang chủ</a>--}}
-                        </form>
+                                    <div class="form-group first">
+                                        <label for="username">Họ và tên</label>
+                                        <input type="text" class="form-control"  name="name" required>
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        {{--                                    <label for="role">Chức vụ</label>--}}
+                                        <select class="form-control" name="role_account" id="role_account" style="background-color: #f8fafb">
+                                            <option style="background-color: #f8fafb" class="form-control" value="">Chọn Chức vụ . . . </option>
+                                            @foreach($role_user as $role_users)
+                                                @if($role_users->id == 1)
+                                                    @continue
+                                                @else
+                                                    <option style="background-color: #f8fafb" class="form-control" value="{{$role_users->id}}">{{trans($role_users->role_name)}}</option>
+                                                @endif
+                                            @endforeach
+
+                                        </select>
+                                        <hr>
+                                    </div>
+                                    <div class="form-group first">
+                                        <label for="">Email</label>
+                                        <input type="email" class="form-control"  name="email">
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        <label for="">Mật khẩu</label>
+                                        <input type="password" class="form-control"  name="password">
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        <label for="">Xác nhận mật khẩu</label>
+                                        <input type="password" class="form-control"  name="confirm">
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        <label for="">Địa chỉ</label>
+                                        <input type="text" class="form-control"   name="address">
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        <label for="">Số điện thoại</label>
+                                        <input type="text" class="form-control"  name="phone">
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        <span  for="">Giới tính: &nbsp;</span>
+                                        <input type="radio" class=""  value="0" name="sex">Nam
+                                        <input style="margin-left: 20px" type="radio" class=""  value="1" name="sex"> Nữ
+                                        <input style="margin-left: 20px" type="radio" class=""  value="2" name="sex"> Khác
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        <span  for="">Ngày sinh</span>
+                                        <input type="date" class="form-control"   name="birthday">
+                                    </div>
+                                    <div class="form-group last mb-3">
+                                        <span    for="">Hình ảnh</span>
+                                        <input type="file" class="form-control" name="image" >
+                                    </div>
+
+                                    <input type="submit" value="Đăng ký" class="btn text-white btn-block btn-primary">
+                                    {{--                            <input type="submit" value="Trang chủ" onclick="history.back()" class="btn text-white btn-block btn-primary">--}}
+                                    {{--                            <a href="{{route('home')}}" type="button"  class="btn text-white btn-block btn-primary">Trang chủ</a>--}}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    @endif
+
+
+@else
+    <div class="content">
+        <div class="container" >
+            <div class="row">
+                <div class="col-md-6 order-md-2">
+                    <img style="height: 500px" src="{{asset('public/client/login/images/undraw_file_sync_ot38.svg')}}" alt="Image" class="img-fluid">
+                    <div class="row">
+                        <div class="col-md-6"><p class="md-3"><a style="color: coral" href="{{route('home')}}"><i class="fas fa-home"></i> Quay lại trang chủ</a></p></div>
+                        <div class="col-md-6"><p class="md-3"><a style="color: #2bbb8b" href="{{route('login')}}"><i class="fas fa-user-check"></i> Bạn đã có tài khoản ?</a></p></div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8" >
+                            <div class="mb-4">
+                                <h3>ĐĂNG KÝ <strong>THÀNH VIÊN</strong></h3>
+                            </div>
+                            <form action="{{route('post_sign_up')}}" method="post">
+                                @csrf
+                                <div class="form-group first">
+                                    <label for="username">Họ và tên</label>
+                                    <input type="text" class="form-control"  name="name" required>
+                                </div>
+                                <div class="form-group first">
+                                    <label for="">Email</label>
+                                    <input type="email" class="form-control"  name="email">
+                                </div>
+                                <div class="form-group last mb-3">
+                                    <label for="">Mật khẩu</label>
+                                    <input type="password" class="form-control"  name="password">
+                                </div>
+                                <div class="form-group last mb-3">
+                                    <label for="">Xác nhận mật khẩu</label>
+                                    <input type="password" class="form-control"  name="confirm">
+                                </div>
+                                <div class="form-group last mb-3">
+                                    <label for="">Địa chỉ</label>
+                                    <input type="text" class="form-control"   name="address">
+                                </div>
+                                <div class="form-group last mb-3">
+                                    <label for="">Số điện thoại</label>
+                                    <input type="text" class="form-control"  name="phone">
+                                </div>
+                                <div class="form-group last mb-3">
+                                    <span  for="">Giới tính: &nbsp;</span>
+                                    <input type="radio" class=""  value="0" name="sex">Nam
+                                    <input style="margin-left: 20px" type="radio" class=""  value="1" name="sex"> Nữ
+                                    <input style="margin-left: 20px" type="radio" class=""  value="2" name="sex"> Khác
+                                </div>
+                                <div class="form-group last mb-3">
+
+                                    <span  for="">Ngày sinh</span>
+                                    <input type="date" class="form-control"   name="birthday">
+                                </div>
+                                <div class="form-group last mb-3">
+                                    <span    for="">Hình ảnh</span>
+                                    <input type="file" class="form-control" name="image" >
+                                </div>
+
+                                <input type="submit" value="Đăng ký" class="btn text-white btn-block btn-primary">
+                                {{--                            <input type="submit" value="Trang chủ" onclick="history.back()" class="btn text-white btn-block btn-primary">--}}
+                                {{--                            <a href="{{route('home')}}" type="button"  class="btn text-white btn-block btn-primary">Trang chủ</a>--}}
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
+@endif
 
 
 <script src="{{asset('public/client/login/js/jquery-3.3.1.min.js')}}"></script>

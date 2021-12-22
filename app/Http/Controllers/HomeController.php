@@ -306,7 +306,7 @@ class HomeController extends Controller
                     $vnp_Returnurl = "http://localhost/cooperative.com.vn/return-vnpay";
                     $vnp_TxnRef = date("YmdHis"); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
                     $vnp_OrderInfo = $request->input('note_vnpay');//noi dung thanh toan
-                    $vnp_OrderType = 200000; //ma loai san pham thanh toan
+                    $vnp_OrderType = 100000; //ma loai san pham thanh toan
                     $vnp_Amount =  $request->input('total_order_vnpay')* 100;
 
                     $vnp_BankCode = $request->input('bank_code');
@@ -370,6 +370,7 @@ class HomeController extends Controller
         $keyWord = $request->input('search_product');
         $product = DB::table('products')->where('name_product', 'LIKE', '%'.$keyWord.'%')->paginate(8);
         $count = DB::table('products')->where('name_product', 'LIKE', '%'.$keyWord.'%')->count();
+        Session::forget('home');
         return view('client.page_search')->with([
             'product' => $product,
             'count' => $count,

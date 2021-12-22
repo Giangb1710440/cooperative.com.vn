@@ -26,7 +26,6 @@
 <body class="vertical  light  ">
 <div class="wrapper">
     @include('server_view.header_admin')
-
     @include('server_view.taskbar_admin')
     <main role="main" class="main-content">
         <div class="container-fluid">
@@ -687,7 +686,6 @@
                                 </div> <!-- simple table -->
                             </div> <!-- end section -->
                         </div>
-
                         <div class="tab-pane" id="status2" role="tabpanel">
                             <div class="row my-4">
                                 <!-- Small table -->

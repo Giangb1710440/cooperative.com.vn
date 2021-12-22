@@ -49,7 +49,11 @@
             <div class="col-lg-12">
                 <div class="footer__copyright">
                     <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                             Tiểu luận tốt nghiệp ngành Cộng Nghệ Thông Tin - Nguyễn Hà Giang - <a href="https://www.facebook.com/profile.php?id=100028369747691" target="_blank">B1710440</a>
+                             Tiểu luận tốt nghiệp ngành Cộng Nghệ Thông Tin - HG17V7A1 - K43
+                            <br>
+                            Cán Bộ Hướng Dẫn: Th.S Sử Kim Anh
+                            <br>
+                            Sinh Viên Thực Hiện - Nguyễn Hà Giang - <a href="https://www.facebook.com/profile.php?id=100028369747691" target="_blank">B1710440</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                     <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                 </div>
